@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
-  root 'home#index'
+  root 'home#entering'
   match "/:controller(/:action(/:id))", :via => [:post, :get]
+
 end
