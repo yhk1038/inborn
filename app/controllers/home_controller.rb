@@ -5,6 +5,10 @@ class HomeController < ApplicationController
     end
 
     def index
-        
+
+    end
+
+    def main
+        render layout: false
     end
 end
