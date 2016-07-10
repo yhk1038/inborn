@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  layout 'home'
 
     def entering
         render layout: false
@@ -9,6 +10,6 @@ class HomeController < ApplicationController
     end
 
     def main
-        render layout: false
+        
     end
 end

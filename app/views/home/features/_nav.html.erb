@@ -1,0 +1,24 @@
+<header id="navigation">
+  <div class="navbar navbar-inverse navbar-fixed-top" role="banner">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/"><h1><img src="/main/images/favicon/logo.png" style="height: 50px;" alt="logo"></h1></a>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <% arr = [['main', 'Home'], ['aboutus', 'About Us'], ['board', 'Board']]%>
+          <% arr.each do |a| %>
+            <li class="<%= "active" if params[:action] == a[0] %>"><a href="/home/<%= a[0] %>"><%= a[1] %></a></li>
+          <% end %>
+          
+          <!-- <li class="<%= "active" if params[:action] == "main" %>"><a href="/home/main">Home</a></li>
+          <li class="<%= "active" if params[:action] == "aboutus" %>"><a href="/home/aboutus">About Us</a></li>
+          <li class="<%= "active" if params[:action] == "board" %>"><a href="/home/aboutus">About Us</a></li> -->
+        </ul>
+      </div>
+    </div>
+  </div><!--/navbar-->
+</header> <!--/#navigation-->
