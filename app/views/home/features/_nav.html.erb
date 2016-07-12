@@ -8,30 +8,12 @@
         <a class="navbar-brand" href="/"><h1><img src="/main/images/favicon/logo.png" style="height: 50px;" alt="logo"></h1></a>
       </div>
       <div class="collapse navbar-collapse">
-        <div class="row">
         <ul class="nav navbar-nav navbar-right">
           <% arr = [['main', 'Home'], ['aboutus', 'About Us'], ['board', 'Board']]%>
           <% arr.each do |a| %>
             <li class="<%= "active" if params[:action] == a[0] %>"><a href="/home/<%= a[0] %>"><%= a[1] %></a></li>
           <% end %>
-          
-          <!-- <li class="<%= "active" if params[:action] == "main" %>"><a href="/home/main">Home</a></li>
-          <li class="<%= "active" if params[:action] == "aboutus" %>"><a href="/home/aboutus">About Us</a></li>
-          <li class="<%= "active" if params[:action] == "board" %>"><a href="/home/aboutus">About Us</a></li> -->
         </ul>
-        </div>
-        <div class="row">
-          <ul class="nav navbar-nav navbar-right">
-            <% arr = [['main', 'Home'], ['aboutus', 'About Us'], ['board', 'Board']]%>
-            <% arr.each do |a| %>
-                <li class="<%= "active" if params[:action] == a[0] %>"><a href="/home/<%= a[0] %>"><%= a[1] %></a></li>
-            <% end %>
-
-            <!-- <li class="<%= "active" if params[:action] == "main" %>"><a href="/home/main">Home</a></li>
-          <li class="<%= "active" if params[:action] == "aboutus" %>"><a href="/home/aboutus">About Us</a></li>
-          <li class="<%= "active" if params[:action] == "board" %>"><a href="/home/aboutus">About Us</a></li> -->
-          </ul>
-        </div>
       </div>
     </div>
   </div><!--/navbar-->
