@@ -1148,7 +1148,25 @@ h1, h2, h3, h4, h5, h6 {
     margin-top: -25px;
 }
 
+.tabs-left, .tabs-right {
+	border-bottom: none;
+	padding-top: 2px;
+}
 
+.tabs-left {
+	border-right: 1px solid #F7F7F7;
+}
+
+.tabs-left>li, .tabs-right>li {
+	float: none;
+	margin-bottom: 2px;
+}
+
+
+
+.tabs-left>li {
+	margin-right: -1px;
+}
 
 /*====================
 ======Contact CSS=====
