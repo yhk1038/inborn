@@ -1,92 +1,141 @@
 <style>
-  .header-img{
+.header-img{
     background-size: cover;
     width: 100%;
     height: 150px;
     padding-top: 20px;
     background-position: center center;
-  }
-  .header-img h1{
+}
+.header-img h1{
     /*padding-top: 50px;*/
     font-size: 34px;
     font-weight:800;
     color: white;
-  }
-  .header-img h2{
+}
+.header-img h2{
     /*padding-top: 50px;*/
     font-size: 24px;
     font-weight:400;
     color: white;
-  }
-  .contents-navi{
+}
+.contents-navi{
     color: white;
     background-color: sandybrown;
-  }
-  .breadcrumb li a{
+}
+.breadcrumb li a{
     color:rgba(77,145,205,1);
-  }
-  .tab-box{
+}
+.tab-box{
     background-image: url(/main/images/brown-pattern2.png);
     background-size: cover;
     height: 120px;
     width: 100%;
-    padding-top: 20px;
-  }
-  .tab-box h1{
+    padding-top: 35px;
+    vertical-align: middle;
+}
+.tab-box h1{
     text-align: center;
     font-size: 30px;
     font-weight:400;
     color: white;
-  }
+}
 </style>
 
 <section id="header" style="padding-bottom: 10px;">
-  <div class="header-img" style="background-image: url(/main/images/business/11.jpg);">
-    <center>
-      <h1>Board</h1>
-      <h2>법무법인 인본</h2>
-    </center>
-  </div>
-  <ol class="breadcrumb">
-    <li><a href="/home/main" style="">Home</a></li>
-    <li class="active">Board</li>
-  </ol>
+    <div class="header-img" style="background-image: url(/main/images/business/12.jpg);">
+        <center>
+            <h1>게시판</h1>
+            <h2>법무법인 인본</h2>
+        </center>
+    </div>
+    <ol class="breadcrumb">
+        <li><a href="/home/main" style="">Home</a></li>
+        <li class="active">Board</li>
+    </ol>
 </section>
 
 <div class="container" style="padding-bottom: 30px;">
-  <div class="row">
-    <div class="col-xs-2">
-      <div class="tab-box">
-        <h1>Board</h1>
-      </div>
-      <!-- required for floating -->
-      <!-- Nav tabs -->
-      <ul class="nav nav-tabs tabs-left">
-        <li class="active"><a href="#home" data-toggle="tab">공지사항</a>
-        </li>
-        <li><a href="#profile" data-toggle="tab">게시판1</a>
-        </li>
-        <li><a href="#messages" data-toggle="tab">게시판2</a>
-        </li>
-        <li><a href="#settings" data-toggle="tab">게시판3</a>
-        </li>
-      </ul>
-    </div>
-
-    <div class="col-xs-8">
-      <!-- Tab panes -->
-      <div class="tab-content">
-        <div class="tab-pane active" id="home">
-          <p class="lead">공지사항</p>
-          <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher
-            synth. Cosby sweater eu banh mi, qui irure terr.</p>
+    <div class="row">
+        <div class="col-xs-2">
+            <div class="tab-box">
+                <h1>Board</h1>
+            </div>
+            <!-- required for floating -->
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs tabs-left" style="border: 1px solid #CCCCCC;">
+                <li class="active"><a href="#home" data-toggle="tab">공지사항</a>
+                </li>
+                <li><a href="#profile" data-toggle="tab">게시판1</a>
+                </li>
+                <li><a href="#messages" data-toggle="tab">게시판2</a>
+                </li>
+                <li><a href="#settings" data-toggle="tab">게시판3</a>
+                </li>
+            </ul>
         </div>
-        <div class="tab-pane" id="profile">게시판1</div>
-        <div class="tab-pane" id="messages">게시판2</div>
-        <div class="tab-pane" id="settings">게시판3</div>
-      </div>
-    </div>
 
-    <div class="clearfix"></div>
-  </div>
+        <div class="col-xs-8">
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div class="tab-pane active" id="home">
+                    <p class="lead">Title</p>
+                    <p class="second-lead">Content</p>
+                    <hr class="lead-hr">
+
+                    <table id="example" class="uk-table uk-table-hover uk-table-striped" cellspacing="0" width="100%">
+                    <!-- <table id="example" class="display" cellspacing="0" width="100%"> -->
+                        <thead>
+                            <tr>
+                                <th>번호</th>
+                                <th>제목</th>
+                                <th>작성자</th>
+                                <th>날짜</th>
+                                <th>조회수</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>System Architect</td>
+                                <td>Edinburgh</td>
+                                <td>2011/04/25</td>
+                                <td>61</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Accountant</td>
+                                <td>Tokyo</td>
+                                <td>2011/07/25</td>
+                                <td>63</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="tab-pane" id="profile">
+
+                    게시판1
+
+
+
+                </div>
+                <div class="tab-pane" id="messages">게시판2</div>
+                <div class="tab-pane" id="settings">게시판3</div>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+    </div>
 </div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#example').DataTable({
+        // "order": [[ 1, "asc" ]],
+        "ordering": false,
+        "searching": false
+    });
+
+} );
+</script>
