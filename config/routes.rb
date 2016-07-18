@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   #   get 'sign_in', to: 'devise/sessions#new'
   #   get 'sign_up', to: 'devise/sessions#new'
   # end
+
+  get '/intro(/:tab)', to: 'site#intro'
+  get '/member(/:tab)', to: 'site#member'
+
   root 'site#entering'
   match "/:controller(/:action(/:id))", :via => [:post, :get]
 end
