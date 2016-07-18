@@ -4,10 +4,20 @@ class SiteController < ApplicationController
   def entering
     render layout: false
   end
-  
+
+  def intro
+    render params[:tab]
+  end
+
+  def member
+    render params[:tab]
+  end
+
   def main
     @carousel = ["slide2","slide3","slide4","slide5","slide6","slide7","slide8"]
   end
+
+
   
   def page
     
