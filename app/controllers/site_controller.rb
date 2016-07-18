@@ -30,4 +30,19 @@ class SiteController < ApplicationController
   
   def network_4 # Temp templete sample no.4 >> card-type
   end
+  
+  def member_5 # Temp templete sample no.5 >> people-type
+  end
+  
+  def member2_5 # Temp templete sample no.5 >> people-type / second use
+  end
+  
+  def member3_5 # Temp templete sample no.5 >> people-type / third use
+  end
+  
+  def member4_5 # Temp templete sample no.5 >> people-type / fourth use
+  end
+  
+  def member5_5 # Temp templete sample no.5 >> people-type / fifth use
+  end
 end
