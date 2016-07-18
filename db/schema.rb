@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20160716094242) do
     t.integer  "user_id"
     t.integer  "board_id"
     t.integer  "is_secret"
+    t.integer  "viewcount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
