@@ -1,0 +1,292 @@
+
+
+<!--
+케러셀
+-------------------------------------------------->
+<div id="carousel-example-generic" class="carousel slide carousel-fade" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+    <% i = 1 %>
+    <% @carousel.each do |crsl_none| %>
+      <li data-target="#carousel-example-generic" data-slide-to="<%= i %>"></li>
+      <% i += 1 %>
+    <% end %>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+      <img src="/main/images/slider/slide1.jpg" alt="법무법인 인본은 사람을 근본으로 생각하고 일합니다">
+      <div class="carousel-caption">
+        법무법인 인본은 사람을 근본으로 생각하고 일합니다<br>
+        <span>법무법인 인본은 사람을 근본으로 생각하며 일하고 사람이 숨쉬는 자연을 소중히 합니다.</span>
+      </div>
+    </div>
+    <% @carousel.each do |crsl| %>
+    <div class="item">
+      <img src="/main/images/slider/<%= crsl %>.jpg" alt="법무법인 인본은 사람을 근본으로 생각하고 일합니다">
+      <div class="carousel-caption">
+        법무법인 인본은 사람을 근본으로 생각하고 일합니다<br>
+        <span>법무법인 인본은 사람을 근본으로 생각하며 일하고 사람이 숨쉬는 자연을 소중히 합니다.</span>
+      </div>
+    </div>
+    <% end %>
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+<!--
+화면 중앙 네비게이션바
+-------------------------------------------------->
+<div id="middle_navbar">
+  <div class="container wrapper">
+    <div class="col-sm-3 pnl pnl-start">
+      <div></div>
+    </div>
+    <div class="col-sm-3 pnl">
+      <div></div>
+    </div>
+    <div class="col-sm-3 pnl">
+      <div></div>
+    </div>
+    <div class="col-sm-3 pnl">
+      <div></div>
+    </div>
+  </div>
+</div>
+
+<!--
+메인 컨텐츠 Wrapper
+-------------------------------------------------->
+<div id="contants">
+  <!--<div style="width:100%; height:105%; margin-top:-2%; position:absolute;">-->
+  <!--  <div class="pattern"></div>-->
+  <!--</div>-->
+  <div class="container" style="padding:0">
+    <div class="row" style="padding:0">
+      <div id="board_left" class="col-md-8" style="padding:0">
+        
+        <!--
+          LEFT-TOP-LEFT
+        --------------->
+        <div class="col-md-6 contentBox-wrapper">
+          <div id="" class="contentBox" style=""> <!--370*250-->
+            <!--보드 Title-->
+            <div class="title-box debug">
+              <p>공지사항<a href=""><span class="glyphicon glyphicon-plus"></span></a></p>
+            </div>
+            
+            <!--hr TAG-->
+            <hr class="hr-line">
+            
+            <!--Each post Do 5 Times-->
+            <div class="post-box debug">
+              <li type="square" class="post-title">법률사무소 인본의 방문을 환영합니다<span class="y-m-d">2016-03-01</span></li>
+              <li type="square" class="post-title">공지사항 게시물이 출력됩니다.<span class="y-m-d">2016-03-01</span></li>
+              <li type="square" class="post-title">공지사항 게시물이 출력됩니다.<span class="y-m-d">2016-03-01</span></li>
+              <li type="square" class="post-title">법률사무소 인본의 방문을 환영합니다<span class="y-m-d">2016-03-01</span></li>
+              <!--<li type="square" class="post-title">법률사무소 인본의 방문을 환영합니다<span>2016-03-01</span></li>-->
+            </div>
+          </div>
+        </div>
+      
+        <!--
+          LEFT-TOP-RIGHT
+        --------------->
+        <div class="col-md-6 contentBox-wrapper">
+          <div id="faqBox" class="contentBox" style="">
+            <!--보드 Title-->
+            <div class="title-box debug">
+              <p>FAQ 묻고답하기<a href=""><span class="glyphicon glyphicon-plus"></span></a></p>
+            </div>
+            
+            <!--hr TAG-->
+            <hr class="hr-line">
+            
+            <!--Each post Do 5 Times-->
+            <div class="post-box debug">
+              <li type="none" class="post-title"><span class="glyphicon glyphicon-question-sign"></span>개인회생후 신용회복<span class="y-m-d">2016-03-01</span></li>
+              <li type="none" class="post-title"><span class="glyphicon glyphicon-question-sign"></span>개인회생 변제계획 인가의 효력<span class="y-m-d">2016-03-01</span></li>
+              <li type="none" class="post-title"><span class="glyphicon glyphicon-question-sign"></span>개인회생채권은 어떤 경우에 확정되나요?<span class="y-m-d">2016-03-01</span></li>
+              <li type="none" class="post-title"><span class="glyphicon glyphicon-question-sign"></span>법률사무소 인본의 방문을 환영합니다<span class="y-m-d">2016-03-01</span></li>
+            </div>
+          </div>
+        </div>
+      
+        <!--
+          LEFT-BOTTOM
+        --------------->
+        <div class="col-md-12 contentBox-wrapper" style="margin-top: -25px; height: 275px;">
+          <div id="" class="contentBox debug" role="tabpanel" style="">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs title-box-ul" role="tablist">
+              <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
+              <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
+              <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
+              <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+              <li class="moreBtn"><a href="#settings">더보기 >></a></li>
+              <style>
+                .title-box-ul > .moreBtn{
+                  float: right;
+                }
+                .title-box-ul > .moreBtn > a{
+                  font-size: 15px;
+                  padding: 9px 5px 5px 10px !important;
+                }
+              </style>
+            </ul>
+          
+            <!-- Tab panes -->
+            <div class="tab-content" style="height:232px">
+              <div role="tabpanel" class="post-box tab-pane active" id="home">
+                <table id="board_table">
+                  <tr class="board_table-tr">
+                    <td>145</td>
+                    <td>개인회생</td>
+                    <td>상담제목이 출력됩니다</td>
+                    <td>2016-03-20</td>
+                    <td>김*민</td>
+                  </tr>
+                  <tr class="board_table-tr">
+                    <td>10</td>
+                    <td>개인파산</td>
+                    <td>상담제목이 출력됩니다. 상담제목이 출력됩니다.</td>
+                    <td>2016-03-20</td>
+                    <td>김*미</td>
+                  </tr>
+                  <tr class="board_table-tr">
+                    <td>3</td>
+                    <td>개인회생</td>
+                    <td>상담제목이 출력됩니다. 상담제목이</td>
+                    <td>2016-03-20</td>
+                    <td>서*은</td>
+                  </tr>
+                  <tr class="board_table-tr">
+                    <td>2</td>
+                    <td>개인회생</td>
+                    <td>상담제목이 출력됩니다. 상담제목이 출력</td>
+                    <td>2016-03-20</td>
+                    <td>조*현</td>
+                  </tr>
+                  <tr class="board_table-tr">
+                    <td>1</td>
+                    <td>개인회생</td>
+                    <td>상담제목이 출력됩니다. 상담제목이 출력</td>
+                    <td>2016-03-20</td>
+                    <td>송*석</td>
+                  </tr>
+                </table>
+              </div>
+              <div role="tabpanel" class="post-box tab-pane" id="profile">profile tab content</div>
+              <div role="tabpanel" class="post-box tab-pane" id="messages">messages tab content</div>
+              <div role="tabpanel" class="post-box tab-pane" id="settings">settings tab content</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+      <div id="board_right" class="col-md-4" style="padding:0">
+      
+        <!--
+          RIGHT
+        --------------->
+        <div class="col-md-12 contentBox-wrapper">
+          <div id="" class="contentBox counsel" style="">
+            <table id="counselTable">
+              <th colspan="2">법률사무소 인본 무료상담신청</th>
+              <tr class="counselTable_tr">
+                <td>성 함</td><td><input type="text"></td>
+              </tr>
+              <tr class="counselTable_tr">
+                <td>전화번호</td><td><input type="text"></td>
+              </tr>
+              <tr class="counselTable_tr">
+                <td>관심분야</td><td style="width: 90%; float: right;"><input type="radio">개인회생 <input type="radio">개인파산</td>
+              </tr>
+              <tr class="counselTable_tr">
+                <td>채무금액</td>
+                <td>
+                  <select>
+                    <option>1000만원 ~ 2000만원</option>
+                  </select>
+                </td>
+              </tr>
+              <tr class="counselTable_tr">
+                <td>연락시간</td>
+                <td>
+                  <select>
+                    <option>09:00 ~ 10:00</option>
+                  </select>
+                </td>
+              </tr>
+              <tr class="counselTable_tr">
+                <td colspan="2">
+                  <textarea>이 청춘 소담스러운 끓는다. 이상 있는 인간은 보내는 꽃이 같은 아니다. 아름답고 위하여 같지 찾아 이 곳이 넣는 봄바람이다. 청춘의 이성은 얼음 아니한 방지하는 길을 그들에게 때까지 황금시대다. 공자는 그들의 무엇을 가치를 오아이스도 아름답고 거친 말이다. 작고 청춘의 트고, 듣기만 그림자는 곧 속잎나고, 아니다. 사랑의 역사를 청춘에서만 어디 미묘한 두기 속잎나고, 피가 것이다. 전인 봄바람을 낙원을 아니다. 현저하게 희망의 자신과 유소년에게서 때문이다. 거친 끓는 품었기 내려온 무엇이 있는가?
+
+봄날의 무한한 황금시대의 아름다우냐? 그들은 같으며, 있음으로써 없으면, 구하기 말이다. 많이 스며들어 위하여 이것이다. 광야에서 대고, 이상의 대한 이것이다. 눈에 그것을 것은 아니다. 무엇이 그와 이상 그들에게 이상, 품고 때문이다. 충분히 이상은 새 얼마나 이것은 없는 그리하였는가? 인생에 원질이 황금시대를 실로 위하여, 있으며, 일월과 우리는 칼이다. 밥을 방황하여도, 이 가는 옷을 곳이 끓는다. 이것이야말로 눈이 소담스러운 광야에서 만물은 속에서 사막이다.
+
+시들어 이상의 이성은 피어나는 할지니, 공자는 사막이다. 싶이 그들은 너의 끓는 창공에 그들의 옷을 아름다우냐? 이것을 얼마나 끓는 이것이다. 관현악이며, 소금이라 인생에 봄날의 물방아 구하지 이것이다. 피고 그러므로 보이는 봄바람이다. 이상은 끝까지 목숨을 그들의 가슴이 부패뿐이다. 꽃이 인도하겠다는 원질이 싶이 그들을 들어 꽃이 이것이다. 때에, 앞이 이 그들은 보내는 소금이라 무엇을 실로 것이다. 청춘이 얼마나 무엇을 사막이다. 생의 새 인간이 것이다.
+                  </textarea>
+                </td>
+              </tr>
+            </table>
+            <div>
+              <input type="checkbox">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<style>
+  #counselTable{
+    width:100%;
+  }
+  #counselTable th{
+    font-size: 25px;
+    text-align: center;
+    padding: 0px 0px 15px;
+  }
+  .counselTable_tr td{
+    padding: 3px 0px;
+    font-size: 18px;
+    height: 40px;
+  }
+  .counselTable_tr td > input[type="text"], .counselTable_tr td > select{
+    height: 40px;
+    width: 90%;
+    float: right;
+    padding: 0px 15px;
+  }
+  .counselTable_tr td > input[type="radio"]{
+    margin: 10px 5px 10px 17px;
+  }
+  .counselTable_tr td > select{
+    font-size:16px;
+  }
+  .counselTable_tr td > textarea{
+    width:100%;
+    height: 100px;
+    font-size: 16px;
+    font-weight: 100;
+  }
+  .counsel > div > input[type="checkbox" i]{
+    width:50px;
+  }
+</style>
+
+
