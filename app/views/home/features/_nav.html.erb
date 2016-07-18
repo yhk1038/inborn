@@ -13,6 +13,8 @@
           <% arr.each do |a| %>
             <li class="<%= "active" if params[:action] == a[0] %>"><a href="/home/<%= a[0] %>"><%= a[1] %></a></li>
           <% end %>
+          <li class="<%= 'active' if params[:action] == 'login' %>"><a href="/users/sign_in">Login</a></li>
+          <li><a href="/admin/index">Admin</a></li>
         </ul>
       </div>
     </div>

@@ -9,7 +9,7 @@
 	<link href="/main/css/prettyPhoto.css" rel="stylesheet">
 	<link href="/main/css/font-awesome.min.css" rel="stylesheet">
 	<link href="/main/css/animate.css" rel="stylesheet">
-	<link href="/main/css/main.css" rel="stylesheet">
+
 	<link href="/main/css/responsive.css" rel="stylesheet">
 	<!--[if lt IE 9]> <script src="/main/js/html5shiv.js"></script>
 	<script src="/main/js/respond.min.js"></script> <![endif]-->
@@ -37,9 +37,20 @@ in
   <link href="/admin/vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
   <link href="/admin/vendors/pnotify/dist/pnotify.nonblock.css" rel="stylesheet">
   <!-- Custom Theme Style --><!--<link href="/admin/build/css/custom.min.css" rel="stylesheet">-->
+  <!-- <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css"> -->
+  <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/uikit/2.24.3/css/uikit.min.css">
+  <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/dataTables.uikit.min.css">
+
+
+	<link href="/main/css/main.css" rel="stylesheet">
+	<link href="/main/css/custom.css" rel="stylesheet">
 
 </head><!--/head-->
 <body>
+	<script type="text/javascript" src="/main/js/jquery.js"></script>
+
+	<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
+	<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/dataTables.uikit.min.js"></script>
 	<div class="preloader">
 		<div class="preloder-wrap">
 			<div class="preloder-inner">
@@ -59,14 +70,15 @@ in
   <%= yield %>
 
 		<%= render partial: 'home/features/footer', layout: false %>
-		
-  	<script type="text/javascript" src="/main/js/jquery.js"></script>
+
+
   	<script type="text/javascript" src="/main/js/bootstrap.min.js"></script>
   	<script type="text/javascript" src="/main/js/smoothscroll.js"></script>
   	<script type="text/javascript" src="/main/js/jquery.isotope.min.js"></script>
   	<script type="text/javascript" src="/main/js/jquery.prettyPhoto.js"></script>
   	<script type="text/javascript" src="/main/js/jquery.parallax.js"></script>
   	<script type="text/javascript" src="/main/js/main.js"></script>
+
 
     <!-- FastClick -->
     <!--<script src="/admin/vendors/fastclick/lib/fastclick.js"></script>-->

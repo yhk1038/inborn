@@ -47,7 +47,7 @@
               <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                   <div class="navbar nav_title" style="border: 0;">
-                    <a href="index.html" class="site_title"><i class="fa fa-institution"></i> <span>법무법인 인본</span></a>
+                    <a href="/" class="site_title"><i class="fa fa-institution"></i> <span>법무법인 인본</span></a>
                   </div>
 
                   <div class="clearfix"></div>
@@ -87,7 +87,13 @@
                 </div>
               </div>
 
+                      <%= render partial: 'admin/nav', layout: false %>
+
+                      <!-- page content -->
+                      <div class="right_col" role="main">
       <%= yield %>
+  </div>
+  <!-- /page content -->
 
       <!-- FastClick -->
       <script src="/admin/vendors/fastclick/lib/fastclick.js"></script>
@@ -120,6 +126,8 @@
       <!-- bootstrap-daterangepicker -->
       <script src="/admin/production/js/moment/moment.min.js"></script>
       <script src="/admin/production/js/datepicker/daterangepicker.js"></script>
+
+      <script src="/admin/vendors/switchery/dist/switchery.min.js"></script>
 
       <!-- Custom Theme Scripts -->
       <script src="/admin/build/js/custom.min.js"></script>
