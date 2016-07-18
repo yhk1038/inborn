@@ -5,10 +5,317 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  
+  <!-- 합쳐지고 최소화된 최신 CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+  <!-- 부가적인 테마 -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+  <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+  <style>
+    body{
+      font-family:'나눔바른고딕';
+      background:#eee;
+    }
+  </style>
+  <% 
+    mother_height = 104
+    child_height = 89 
+    
+    middle_navbar_Height = 175
+    wrapper_padding = 23
+  %>
+  <style>
+    .pattern{
+      height: 100%;
+      position: absolute;
+      width: 100%;
+      z-index: 1;
+      left: 0;
+      bottom: 0;
+      background-image: url(/main/images/pattern.png);
+      background-repeat: repeat;
+      opacity: 0.2;
+    }
+    .child_height{
+      height: <%= child_height %>px;
+    }
+    #mother_nav{
+      border: 0px;
+      border-radius: 0px;
+      box-shadow: rgba(0, 0, 0, 0.3) 1px 1px 10px;
+      background:#fff; 
+      margin-bottom:0px;
+      min-height: <%= mother_height %>px;
+    }
+    #login_container{
+      background:#fff;
+      min-height: <%= mother_height - child_height %>px;
+    }
+    #login_container a{
+      cursor: pointer;
+      float: right;
+      font-weight: bold;
+      font-size: 18px;
+    }
+    #bs-example-navbar-collapse-1{
+      height: <%= child_height %>px !important;
+    }
+    #main_container{
+      background:#fff;
+      min-height: <%= child_height %>px;
+      padding: 0;
+    }
+    #child_nav{
+      margin-bottom: 0px; 
+      min-height: <%= child_height %>px;
+      border: none; 
+      background-image: none; 
+      background-color: initial; 
+      box-shadow: none;
+    }
+    .tab_box{
+      width: 70%;
+    }
+    .tab{
+      width: 20%;
+      height: <%= child_height %>px;
+    }
+    .tab:hover{
+      background:#e7e7e7;
+    }
+    .tab a{
+      width:100%;
+      height: <%= child_height %>px;
+      font-size: 20px !important;
+      text-align: center !important;
+      padding: 35px 15px !important;
+      font-weight: bold;
+    }
+    .tab-ul{
+      position: absolute;
+      z-index: 1000;
+      /*display: inline-block !important;*/
+      list-style-type: none;
+      padding: 0;
+      width: 13%;
+      top: 88px;
+      background: #e7e7e7;
+      color: #555;
+      font-size: 16px;
+      padding: 7px 15px;
+      text-align: center;
+      line-height: 2;
+    }
+    
+    
+    
+    .item > img{
+      width:100% !important;
+    }
+    .carousel > .carousel-inner img{
+      height: 650px;
+    }
+    .carousel-caption{
+      font-size: 30px;
+      font-weight: bold;
+      top: 78%;
+      background: rgba(0, 0, 0, 0.4);
+      width: 100%;
+      left: 0;
+      bottom: 0%;
+      line-height: 1.1;
+    }
+    .carousel-fade .carousel-inner .item {
+      -webkit-transition-property: opacity;
+      transition-property: opacity;
+    }
+    .carousel-fade .carousel-inner .item,
+    .carousel-fade .carousel-inner .active.left,
+    .carousel-fade .carousel-inner .active.right {
+      opacity: 0;
+    }
+    .carousel-fade .carousel-inner .active,
+    .carousel-fade .carousel-inner .next.left,
+    .carousel-fade .carousel-inner .prev.right {
+      opacity: 1;
+    }
+    .carousel-fade .carousel-inner .next,
+    .carousel-fade .carousel-inner .prev,
+    .carousel-fade .carousel-inner .active.left,
+    .carousel-fade .carousel-inner .active.right {
+      left: 0;
+      -webkit-transform: translate3d(0, 0, 0);
+              transform: translate3d(0, 0, 0);
+    }
+    .carousel-fade .carousel-control {
+      z-index: 2;
+    }
+    .carousel-caption span{
+      font-size: 20px;
+      font-weight: initial;
+    }
+    .carousel-control{
+      width: 30%;
+    }
+    
+    
+    #middle_navbar{
+      border:0px solid #000;
+      width:100%;
+      height: <%= middle_navbar_Height %>px; /* [#middle_navbar.height.DEF] */
+      margin-bottom: <%= wrapper_padding*3/2 %>px; /* [Wrapper.아랫마진.DEF] = (Wrapper.padding)*3/2 */
+      background: #00B28A;
+      box-shadow: 0px 1px 10px #a9a9a9;
+    }
+    
+    #middle_navbar > .wrapper{
+      height: <%= middle_navbar_Height %>px; /* [Wrapper.height.DEF] = (#middle_navbar.height) */
+      padding: <%= wrapper_padding %>px 0%; /* [Wrapper.padding.DEF] */
+    }
+    #middle_navbar .pnl{
+      height: <%= (middle_navbar_Height - wrapper_padding*2) %>px; /* [.pnl.height.DEF] = (#middle_navbar.height) - (Wrapper.padding)*2 */
+      border-left: 2px solid rgba(255, 255, 255, 0.25);
+      padding: 0px 50px;
+    }
+    .pnl-start{
+      border-left:none !important;
+    }
+    #middle_navbar .pnl > div{
+      width:100%;
+      height:129px;
+      border:1px solid;
+    }
+    
+    
+    #board_right > .contentBox-wrapper{
+      height: 500px;
+    }
+    
+    .contentBox-wrapper{
+      height:250px;
+      /*border:1px solid;*/
+    }
+    .contentBox{
+      height:100%;
+      /*border:1px solid;*/
+    }
+    .title-box{
+      width:100%;
+      height:<%= 40 - 0 %>px; /* (TitleBox.height) - (TitleBox.아랫마진.height) */
+      margin-top: <%= 0 %>px; /* [TitleBOX.아랫마진.height.DEF] */
+    } 
+    .title-box > p{
+      width:100%;
+      padding: 10px 0px;
+      margin: 0;
+      font-size: 20px;
+      font-weight: bold;
+      color:#337ab7;
+    }
+    .title-box > p span{
+      float:right;
+      border: 1px solid rgb(173, 201, 227);
+      margin: 0;
+      padding-left: 2px;
+      padding-bottom: 2px;
+      background: rgb(224, 235, 244);
+    }
+    .hr-line{
+      width:100%;
+      margin: 0;
+      margin-bottom: 10px;
+      border-top: 2px solid #337ab7;
+    } 
+    .post-box{
+      width:100%;
+      height: <%= 250-40-2-20 %>px; /* (부모박스.height) - (TitleBox.height) - (hr라인.height) - (PostBOX.아랫마진.height) */
+      margin-bottom: <%= 20 %>px; /* [PostBOX.아랫마진.height.DEF] */
+    }
+    .post-title{
+      font-size: 17px;
+      margin: 0;
+      padding: 6px 0px 5px 5px;
+      color: #000;
+      font-weight: 300;
+    }
+    .post-title > .y-m-d{
+      font-size: 13px;
+      float: right;
+      margin-top: 3px;
+    }
+    .post-title > .glyphicon-question-sign{
+      float: left;
+      margin-top: 2px;
+      margin-right: 7px;
+    }
+    .title-box-ul a{
+      font-size: 18px;
+      font-weight: bold;
+      color: #337ab7;
+      padding: 9px 30px 5px 30px !important;
+    }
+    #faqBox .y-m-d{
+      display:none;
+    }
+    
+    .nav-tabs{
+      border-bottom: 2px solid #337ab7;
+      height: 42px;
+    }
+    .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
+      border: 2px solid #337ab7;
+      border-radius: 0px;
+      border-bottom-color: transparent;
+      background-color: #eee;
+    }
+    .tab-pane{
+      height:232px;
+      margin-bottom:0;
+    }
+    #board_table{
+      width: 100%;
+      height: 100%;
+    }
+    #board_table .board_table-tr{
+      border-bottom:2px solid #aeaeae;
+      font-size: 16px;
+    }
+    .board_table-tr > td:nth-child(1), .board_table-tr > td:nth-child(2){
+      text-align:center;
+    }
+    .debug{
+      /*background:#eaeaea;*/
+    }
+    .counsel{
+      border:2px solid #337ab7;
+      background:rgba(51, 122, 183, 0.15);
+      padding: 20px;
+    }
+    
+    #footer{
+      margin-top: <%= 23*3/2 %>px; /**/
+      width: 100%;
+      height: 100px;
+      background: #333;
+    }
+  </style>
 </head>
-<body> -->
+<body>
+
+<!--
+네비게이션바
+-------------------------------------------------->
+<%= render partial: "site/features/nav" %>
 
 <%= yield %>
 
-<!-- </body>
-</html> -->
+
+<!--
+FOOTER
+-------------------------------------------------->
+<%= render partial: "site/features/footer" %>
+
+</body>
+</html>

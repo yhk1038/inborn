@@ -1,0 +1,160 @@
+<nav id="mother_nav" class="navbar navbar-default">
+  <div id="login_container" class="container">
+      <a class="">로그인</a>
+  </div>
+  <div id="main_container" class="container">
+    <nav id="child_nav" class="navbar navbar-default">
+      <div class="container-fluid child_height">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header child_height">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/" style="height: 94px;margin-top: -33px;"><img src="/main/images/inbon_logofix.png"></a>
+        </div>
+    
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"  style="">
+          <!--<form class="navbar-form navbar-left" role="search">-->
+          <!--  <div class="form-group">-->
+          <!--    <input type="text" class="form-control" placeholder="Search">-->
+          <!--  </div>-->
+          <!--  <button type="submit" class="btn btn-default">Submit</button>-->
+          <!--</form>-->
+          <ul class="nav navbar-nav navbar-right child_height tab_box">
+            
+            <li id="tab1" class="tab <%= "active" if params[:action] == "intro" %>"><a href="/intro/introduce_1">인본소개 <span class="sr-only">(current)</span></a></li>
+            <ul id="dropdown_tab1" class="tab-ul" style="display:none;margin-left:0;">
+              <!--<a href="/site/introduce_1"><li>인사말</li></a>-->
+              <!--<a href="/site/dream_1"><li>인본의 꿈</li></a>-->
+              <!--<a href="/site/org_2"><li>조직</li></a>-->
+              <!--<a href="/site/map_3"><li>찾아오시는 길</li></a>-->
+              <!--<a href="/site/network_4"><li>소셜네트워크</li></a>-->
+              <a href="/intro/introduce_1"><li>인사말</li></a>
+              <a href="/intro/dream_1"><li>인본의 꿈</li></a>
+              <a href="/intro/org_2"><li>조직</li></a>
+              <a href="/intro/map_3"><li>찾아오시는 길</li></a>
+              <a href="/intro/network_4"><li>소셜네트워크</li></a>
+            </ul>
+            
+            <li id="tab2" class="tab <%= "active" if params[:action] == "member" %>"><a href="/member/member_5">법인구성원</a></li>
+            <ul id="dropdown_tab2" class="tab-ul" style="display:none;margin-left:13.3%;">
+              <!--<a href="/site/member_5"><li>대표변호사</li></a>-->
+              <!--<a href="/site/member2_5"><li>변호사</li></a>-->
+              <!--<a href="/site/member3_5"><li>국제변호사</li></a>-->
+              <!--<a href="/site/member4_5"><li>자문위원</li></a>-->
+              <!--<a href="/site/member5_5"><li>연구원</li></a>-->
+              <a href="/member/member_5"><li>대표변호사</li></a>
+              <a href="/member/member2_5"><li>변호사</li></a>
+              <a href="/member/member3_5"><li>국제변호사</li></a>
+              <a href="/member/member4_5"><li>자문위원</li></a>
+              <a href="/member/member5_5"><li>연구원</li></a>
+              <a href=""><li>연구원 활동</li></a>
+            </ul>
+            <li id="tab3" class="tab <%= "active" if params[:current_tab] == "task" %>"><a href="?current_tab=task">업무분야</a></li>
+            <ul id="dropdown_tab3" class="tab-ul" style="display:none;margin-left:26.6%;">
+              <a href=""><li>분야별</li></a>
+              <a href=""><li>기획소송</li></a>
+              <a href=""><li>업무일정</li></a>
+            </ul>
+            <li id="tab4" class="tab <%= "active" if params[:current_tab] == "news" %>"><a href="?current_tab=news">인본소식</a></li>
+            <ul id="dropdown_tab4" class="tab-ul" style="display:none;margin-left:39.9%;">
+              <a href=""><li>최근소식</li></a>
+              <a href=""><li>언론보도</li></a>
+              <a href=""><li>공익활동</li></a>
+              <a href=""><li>자료실</li></a>
+              <a href=""><li>공지사항</li></a>
+            </ul>
+            <li id="tab5" class="tab <%= "active" if params[:current_tab] == "counsel" %>"><a href="?current_tab=counsel">고객상담</a></li>
+            <ul id="dropdown_tab5" class="tab-ul" style="display:none;margin-left:53.2%;">
+              <a href=""><li>상담신청</li></a>
+              <a href=""><li>자주하는 질문</li></a>
+              <a href=""><li>방명록</li></a>
+            </ul>
+            <style>
+                .tab-ul > a{
+                    color:inherit;
+                    text-decoration:none;
+                }
+                .tab-ul > a:hover{
+                    font-weight:bold;
+                }
+            </style>
+            <script>
+              $("#tab1").hover(function(){
+                $("#dropdown_tab1").show();
+              },function(){
+                $("#dropdown_tab1").hide();
+              })
+              $("#dropdown_tab1").hover(function(){
+                $("#dropdown_tab1").show();
+              },function(){
+                $("#dropdown_tab1").hide();
+              });
+              
+              $("#tab2").hover(function(){
+                $("#dropdown_tab2").show();
+              },function(){
+                $("#dropdown_tab2").hide();
+              })
+              $("#dropdown_tab2").hover(function(){
+                $("#dropdown_tab2").show();
+              },function(){
+                $("#dropdown_tab2").hide();
+              });
+              
+              $("#tab3").hover(function(){
+                $("#dropdown_tab3").show();
+              },function(){
+                $("#dropdown_tab3").hide();
+              })
+              $("#dropdown_tab3").hover(function(){
+                $("#dropdown_tab3").show();
+              },function(){
+                $("#dropdown_tab3").hide();
+              });
+              
+              $("#tab4").hover(function(){
+                $("#dropdown_tab4").show();
+              },function(){
+                $("#dropdown_tab4").hide();
+              })
+              $("#dropdown_tab4").hover(function(){
+                $("#dropdown_tab4").show();
+              },function(){
+                $("#dropdown_tab4").hide();
+              });
+              
+              $("#tab5").hover(function(){
+                $("#dropdown_tab5").show();
+              },function(){
+                $("#dropdown_tab5").hide();
+              })
+              $("#dropdown_tab5").hover(function(){
+                $("#dropdown_tab5").show();
+              },function(){
+                $("#dropdown_tab5").hide();
+              });
+            </script>
+            <% if params[:admin] != nil %>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">Separated link</a></li>
+                </ul>
+              </li>
+            <% end %>
+          
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+  </div>
+</nav>

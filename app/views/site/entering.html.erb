@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="/entering/assets/ico/favicon.png">
+
+    <title>인본 방문을 환영합니다.</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/entering/assets/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/entering/assets/css/main.css" rel="stylesheet">
+	<link rel="stylesheet" href="/entering/assets/css/font-awesome.min.css">
+
+    <script src="/entering/assets/js/jquery.min.js"></script>
+	<script src="/entering/assets/js/Chart.js"></script>
+	<script src="/entering/assets/js/modernizr.custom.js"></script>
+
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="/entering/assets/js/html5shiv.js"></script>
+      <script src="/entering/assets/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body data-spy="scroll" data-offset="0" data-target="#theMenu">
+
+    <style media="screen">
+      html, body{ height:100%; margin:0; padding:0;}
+      #gnb{height: 100px; width:100%; background:green;}
+      #headerwrap{min-height:100%; margin-top:-100px;}
+      .first{
+        margin-top: 25%;
+        color: white;
+        font-size: 80px;
+        font-weight: 700;
+        letter-spacing: 3px;
+      }
+      .second{
+        color: white;
+        font-size: 20px;
+        font-weight: 100;
+        letter-spacing: 2px;
+      }
+      #buttonBox-wrapper{
+        z-index:2;
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: 100%; 
+      }
+      #buttonBox-wrapper > div{
+        padding: 35% 12% 12%;
+      }
+      #goInbon{
+        height:100%;
+        background:rgba(0,0,0,0);
+        padding-left:20% !important;
+        padding-right:4% !important;
+        -moz-transition: all .3s ease; /* Firefox */
+        -webkit-transition: all .3s ease; /* WebKit */
+        -o-transition: all .3s ease; /* Opera */
+        transition: all .3s ease; /* Standard */
+      }
+      #goInbon:hover{
+        background:rgba(0,0,0,0.3);
+      }
+      #goOther{
+        height:100%;
+        background:rgba(0,0,0,0);
+        padding-left:4% !important;
+        padding-right:20% !important;
+        -moz-transition: all .3s ease; /* Firefox */
+        -webkit-transition: all .3s ease; /* WebKit */
+        -o-transition: all .3s ease; /* Opera */
+        transition: all .3s ease; /* Standard */
+      }
+      #goOther:hover{
+        background:rgba(0,0,0,0.3);
+      }
+      .go_button{
+        /*display: inline-block;*/
+        background: rgba(255, 255, 255, 0.6);
+        -moz-transition: all .3s ease; /* Firefox */
+        -webkit-transition: all .3s ease; /* WebKit */
+        -o-transition: all .3s ease; /* Opera */
+        transition: all .3s ease; /* Standard */
+        width: 100%;
+        height: 100%;
+        font-size: 30px;
+        font-weight: 300;
+        text-align: center;
+        width: 360px;
+        height: 250px;
+        bottom: 20%;
+        position: absolute;
+        padding-top: 90px;
+        cursor: pointer;
+      }
+      .go_button:hover{
+        background: rgba(255, 255, 255, 1);
+      }
+      .go_button span{
+        font-weight:bold;
+        vertical-align: middle;
+      }
+      #buttonBox-wrapper > a{
+        color: #555;
+      }
+      #buttonBox-wrapper > a:hover{
+        color: #000;
+      }
+    </style>
+
+  	<!-- ========== HEADER SECTION ========== -->
+  	<div id="gnb" name="home"></div>
+  	<div id="headerwrap" style="z-index:0 !important;">
+  		<div class="container">
+  			<br>
+  			<p class="first">법무법인 인본</p><br>
+  			<span class="second">법무법인 인본은 사람을 근본으로 생각하며 일하고 사람이 숨쉬는 자연을 소중히 합니다.</span>
+        <br><br><br>
+  			<!--<div class="row">-->
+     <!--     <a href="/site/main">-->
+            <!--<img src="http://dummyimage.com/150x80/000/fff.jpg&text=Button1"/>-->
+     <!--       <div id="goInbon" class="go_button">-->
+     <!--         <span>법무법인 인본</span>-->
+     <!--       </div>-->
+     <!--     </a>-->
+     <!--     <a href="/home/main">-->
+            <!--<img src="http://dummyimage.com/150x80/000/fff.jpg&text=Button2"/>-->
+     <!--       <div id="goOther" class="go_button">-->
+     <!--         <span>회생/파산</span>-->
+     <!--       </div>-->
+     <!--     </a>-->
+  			<!--	<br>-->
+  			<!--	<br>-->
+  			<!--	<br>-->
+  				<!--<div class="col-lg-6 col-lg-offset-3"></div>-->
+  			<!--</div>-->
+  		</div><!-- /container -->
+  	</div><!-- /headerwrap -->
+  	<div id="buttonBox-wrapper">
+  	  <a href="/site/main">
+  	    <div id="goInbon" class="col-xs-6">
+    	    <div class="go_button" style="float: right;right: 0;border-right:1px solid rgba(0,0,0,0.5);">
+    	      <span>법무법인 인본</span>
+    	    </div>
+    	  </div>
+    	</a>
+    	<a href="/home/main">
+    	  <div id="goOther" class="col-xs-6">
+    	    <div class="go_button" style="float: left;left: 0;border-left:1px solid rgba(0,0,0,0.5);">
+    	      <span>회생/파산</span>
+    	    </div>
+    	  </div>
+    	</a>
+  	</div>
+  
+      <!-- Bootstrap core JavaScript
+      ================================================== -->
+      <!-- Placed at the end of the document so the pages load faster -->
+  	<script src="/entering/assets/js/classie.js"></script>
+      <script src="/entering/assets/js/bootstrap.min.js"></script>
+      <script src="/entering/assets/js/smoothscroll.js"></script>
+  	<script src="/entering/assets/js/main.js"></script>
+  </body>
+</html>

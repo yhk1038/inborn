@@ -1,0 +1,152 @@
+<style>
+  #identityPannel{
+    width: 100%;
+    height: 260px;
+    background-image: url("/main/images/slider/slide4.jpg");
+    background-size: cover;
+    background-position-y: 25%;
+    box-shadow: #aeaeae 0px 2px 10px;
+  }
+  #identityPannel_cover{
+    width: 100%;
+    height: 260px;
+    margin-top: -260px;
+    background:rgba(0,0,0,0.3);
+  }
+  #identityPannel_cover > p{
+    color: #fff;
+    text-align: center;
+  }
+  #identityPannel_cover > p:first-child{
+    font-size: 40px;
+    padding-top: 80px;
+  }
+  #identityPannel_cover > p:nth-child(2){
+    font-size:25px;
+  }
+  #current_position{
+    width:100%;
+    height:50px;
+    background:#ddd;
+    box-shadow: #aeaeae 0px 2px 10px;
+  }
+  #current_position p{
+    font-size: 20px;
+    color: #777;
+    font-weight: bold;
+    margin-top: 12px;
+    float: left;
+  }
+  #callBox{
+    float:right;
+    font-size: 18px;
+    color: #777;
+    font-weight: bold;
+    padding: 12px 24px;
+    border-left: 1px solid #777;
+    border-right: 1px solid #777;
+  }
+  
+  #contents{
+    padding-top:50px;
+    padding-bottom:30px;
+  }
+  #contents p{
+    font-size: 24px;
+  }
+  #contents pre{
+    white-space: pre-line;
+    line-height: 2;
+    background: none;
+    border: none;
+    font-size: 18px;
+    font-family: inherit;
+    padding: 9.5px 0px;
+    clear: both;
+  }
+  #introduce-title{
+    color:#377ab7;
+    font-weight: bold;
+    margin-top: 100px;
+  }
+  #introduce-signature{
+    float: right;
+  }
+</style>
+
+<div id="identityPannel"></div>
+<div id="identityPannel_cover">
+  <p>자문위원</p>
+  <p>자문위원 이창진</p>
+</div>
+<div id="current_position">
+  <div class="container" style="padding: 0px 30px;">
+    <p><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp; <a href="/site/main" style="color: inherit;font-weight:400;">HOME</a> &nbsp;&nbsp;>&nbsp;&nbsp; <span style="font-weight:400;">법인구성원</span> &nbsp;&nbsp;>&nbsp;&nbsp; <a href="#" style="color: inherit;">자문위원</a></p>
+    <div id="callBox"><span class="glyphicon glyphicon-earphone"></span>&nbsp; 02) 596 - 9400</div>
+  </div>
+</div>
+<div id="contents">
+  <div class="container" style="padding: 0px 30px;">
+    <p id="introduce-title" style="font-size: 30px;margin-top: 10px;margin-bottom: 30px;text-align: center;"><span id="member_9" class="active">자문위원 이창진</span></p>
+    <div id="member_detail_9" class="col-sm-12" style="padding:0;">
+      <div class="col-sm-6" style="padding:0px 15px;margin-top:15px;">
+        <img src="/main/images/templete/member9.jpg" style="width:100%;margin:0px 5px;box-shadow: #777 5px 5px 23px;">
+      </div>
+      <div class="col-sm-6" style="padding:0px 15px;margin-top:15px;">
+        <div class="trans">
+          <p style="color:rgba(55, 122, 183, 1);"><strong class="point_gray1">■ 학력</strong><br></p>
+          <p class="detail" style="">서울 홍익사대부고</p>
+          <p class="detail" style="">홍익대학교 도시계획과</p>
+          <p class="detail" style="">The Ohio State Univ. (City and Regional Planning)</p>
+        </div>
+        <div class="trans">
+          <p style="color:rgba(55, 122, 183, 1);"><strong class="point_gray1">■ 활동</strong><br></p>
+          <p class="detail" style="">국립 강릉대 겸임교수</p>
+          <p class="detail" style="">중부대학 겸임교수</p>
+          <p class="detail" style="">군산국립대 강의</p>
+          <p class="detail" style="">현 삼성이앤씨 사장, 부설연구소 소장</p>
+          <p class="detail" style="">국토개발분야, 도시계획, 사업성분석, 개발업무, 엔지니어링 등</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  #introduce-title > span{
+    color: rgba(55, 122, 183, 0.33);
+    cursor: pointer;
+  }
+  #introduce-title > span.active{
+    color: rgba(55, 122, 183, 1);
+  }
+</style>
+<script>
+  $("#member_8").click(function(){
+    $(this).addClass("active");
+    $("#member_detail_8").fadeIn();
+  });
+</script>
+
+
+<style>
+  .address{
+    font-size: 22px !important;
+    font-weight: bold;
+    color: #666;
+  }
+  .address > span.detail{
+    font-size: 21px !important;
+    font-weight: 400;
+    color: #555;
+    background:#fff;
+  }
+  .trans{
+    margin-top:20px;
+  }
+  .trans > p.detail{
+    font-size: 20px !important;
+    font-weight:bold;
+    padding-left:10px;
+  }
+</style>
