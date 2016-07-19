@@ -17,9 +17,6 @@ class SiteController < ApplicationController
     @carousel = ["slide2","slide3","slide4","slide5","slide6","slide7","slide8"]
   end
 
-  def page
-    # Templete Handler Function
-  end
 
   def introduce_1 # Temp templete sample no.1 >> introduce-type
 
@@ -154,6 +151,6 @@ class SiteController < ApplicationController
                 [2,	  "금융",	                "금융",	 	                        "[레벨:3]administrator",	"2012.08.06",	"9392"],
                 [1,	  "기업법무일반",	        "기업법무일반	 fileimage",	      "[레벨:3]administrator",	"2012.08.06",	"9740"]
               ]
-    render @intab.template
+    render 'site/template/' + @intab.template
   end
 end
