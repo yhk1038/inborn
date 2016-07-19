@@ -131,6 +131,14 @@ class AdminController < ApplicationController
         eval("@b.#{a} = params[:#{a}]")
       end
       @b.save
+      unless params[:board_id].empty?
+        b = Board.where(id: params[:board_id]).first
+        if b.nil?
+          flash[:error] = '존재하지 않은 게시판입니다'
+        else
+          b.intab_id = @b.id
+        end
+      end
       flash[:alert] = @b.title.to_s + ' 인탭이 성공적으로 저장되었습니다.'
       redirect_to '/admin/intab/new/' + @b.tab_id.to_s
     when :options
