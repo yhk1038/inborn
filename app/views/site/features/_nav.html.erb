@@ -32,20 +32,22 @@
           <!--  <button type="submit" class="btn btn-default">Submit</button>-->
           <!--</form>-->
           <ul class="nav navbar-nav navbar-right child_height tab_box">
-            
-            <li id="tab1" class="tab <%= "active" if params[:action] == "intro" %>"><a href="/intro/introduce_1">인본소개 <span class="sr-only">(current)</span></a></li>
+            <% tt = Tab.first %>
+            <li id="tab1" class="tab <%= "active" if params[:action] == "intro" %>"><a href="#"><%= tt.title %> <span class="sr-only">(current)</span></a></li>
+            <ul id="dropdown_tab1" class="tab-ul" style="display:none;margin-left:0;">
+              <% tt.intabs.each do |intab| %>
+                <a href="/sites/<%= intab.id %>"><li><%= intab.title %></li></a>
+              <% end %>
+            </ul>
+
+            <!-- <li id="tab1" class="tab <%= "active" if params[:action] == "intro" %>"><a href="/intro/introduce_1">인본소개 <span class="sr-only">(current)</span></a></li>
             <ul id="dropdown_tab1" class="tab-ul" style="display:none;margin-left:0;">
               <a href="/site/introduce_1"><li>인사말</li></a>
               <a href="/site/dream_1"><li>인본의 꿈</li></a>
               <a href="/site/org_2"><li>조직</li></a>
               <a href="/site/map_3"><li>찾아오시는 길</li></a>
               <a href="/site/network_4"><li>소셜네트워크</li></a>
-              <!--<a href="/intro/introduce_1"><li>인사말</li></a>-->
-              <!--<a href="/intro/dream_1"><li>인본의 꿈</li></a>-->
-              <!--<a href="/intro/org_2"><li>조직</li></a>-->
-              <!--<a href="/intro/map_3"><li>찾아오시는 길</li></a>-->
-              <!--<a href="/intro/network_4"><li>소셜네트워크</li></a>-->
-            </ul>
+            </ul> -->
 
             <li id="tab2" class="tab <%= "active" if params[:action] == "member" %>"><a href="/member/member_5">법인구성원</a></li>
             <ul id="dropdown_tab2" class="tab-ul" style="display:none;margin-left:13.3%;">
