@@ -1,6 +1,10 @@
 <nav id="mother_nav" class="navbar navbar-default">
   <div id="login_container" class="container">
-      <a class="">로그인</a>
+    <% if user_signed_in? %>
+      <a class="" href="/users/sign_out">로그아웃</a>
+    <% else %>
+      <a class="" href="/users/sign_in">로그인</a>
+    <% end %>
   </div>
   <div id="main_container" class="container">
     <nav id="child_nav" class="navbar navbar-default">
@@ -15,7 +19,7 @@
           </button>
           <a class="navbar-brand" href="/" style="height: 94px;margin-top: -33px;"><img src="/main/images/inbon_logofix.png"></a>
         </div>
-    
+
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"  style="">
           <!--<form class="navbar-form navbar-left" role="search">-->
@@ -25,7 +29,7 @@
           <!--  <button type="submit" class="btn btn-default">Submit</button>-->
           <!--</form>-->
           <ul class="nav navbar-nav navbar-right child_height tab_box">
-            
+
             <li id="tab1" class="tab <%= "active" if params[:action] == "intro" %>"><a href="/intro/introduce_1">인본소개 <span class="sr-only">(current)</span></a></li>
             <ul id="dropdown_tab1" class="tab-ul" style="display:none;margin-left:0;">
               <!--<a href="/site/introduce_1"><li>인사말</li></a>-->
@@ -39,7 +43,7 @@
               <a href="/intro/map_3"><li>찾아오시는 길</li></a>
               <a href="/intro/network_4"><li>소셜네트워크</li></a>
             </ul>
-            
+
             <li id="tab2" class="tab <%= "active" if params[:action] == "member" %>"><a href="/member/member_5">법인구성원</a></li>
             <ul id="dropdown_tab2" class="tab-ul" style="display:none;margin-left:13.3%;">
               <!--<a href="/site/member_5"><li>대표변호사</li></a>-->
@@ -94,7 +98,7 @@
               },function(){
                 $("#dropdown_tab1").hide();
               });
-              
+
               $("#tab2").hover(function(){
                 $("#dropdown_tab2").show();
               },function(){
@@ -105,7 +109,7 @@
               },function(){
                 $("#dropdown_tab2").hide();
               });
-              
+
               $("#tab3").hover(function(){
                 $("#dropdown_tab3").show();
               },function(){
@@ -116,7 +120,7 @@
               },function(){
                 $("#dropdown_tab3").hide();
               });
-              
+
               $("#tab4").hover(function(){
                 $("#dropdown_tab4").show();
               },function(){
@@ -127,7 +131,7 @@
               },function(){
                 $("#dropdown_tab4").hide();
               });
-              
+
               $("#tab5").hover(function(){
                 $("#dropdown_tab5").show();
               },function(){
@@ -151,7 +155,7 @@
                 </ul>
               </li>
             <% end %>
-          
+
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->

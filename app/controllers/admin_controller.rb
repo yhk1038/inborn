@@ -11,12 +11,13 @@ class AdminController < ApplicationController
           @b = Board.where(id: params[:id]).first if params[:id]
           @b = Board.new if @b.nil?
           if params[:mod] == '1'
-              skip_elts = ['created_at', 'updated_at', 'id', 'visible']
+              skip_elts = Board.skip_elts
               Board.attribute_names.each do |a|
                   next if skip_elts.include?(a)
                   eval("@b.#{a} = params[:#{a}]")
               end
               @b.save
+              redirect_to '/admin/board'
           end
       end
   end

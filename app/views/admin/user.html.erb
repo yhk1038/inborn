@@ -1,0 +1,54 @@
+<div class="x_panel">
+  <div class="x_title">
+    <h2>유저 관리 <small></small></h2>
+    <ul class="nav navbar-right panel_toolbox">
+      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+      </li>
+      <li><a class="close-link"><i class="fa fa-close"></i></a>
+      </li>
+    </ul>
+    <div class="clearfix"></div>
+  </div>
+  <div class="x_content">
+    <br />
+
+    <table id="user_table" class="uk-table uk-table-hover uk-table-striped" cellspacing="0" width="100%">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Email</th>
+          <!-- <th>작성자</th>
+          <th>날짜</th>
+          <th>조회수</th> -->
+          <th>Commands</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% i = 1 %>
+        <% User.all.each do |u| %>
+        <tr>
+          <td><%= u.id %></td>
+          <td><%= u.email %></td>
+          <!-- <td><%#= p.user.name %></td>
+          <td><%= p.created_at %></td>
+          <td><%#= p.viewcount %></td> -->
+          <td><a href="/admin/user/<%= u.id %>"><button class="btn btn-primary">관리</button></a></td>
+        </tr>
+        <% i += 1 %>
+        <% end %>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $('#user_table').DataTable({
+    // "order": [[ 1, "asc" ]],
+    // "ordering": false,
+    // "searching": false
+  });
+
+} );
+</script>
