@@ -6,6 +6,7 @@ class CreateIntabs < ActiveRecord::Migration
       t.string :description
       t.integer :turn
       t.string :template
+      t.text  :container
 
       t.timestamps null: false
     end

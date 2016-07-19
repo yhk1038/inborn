@@ -128,6 +128,8 @@ class SiteController < ApplicationController
 
   def page
     @intab = Intab.find(params[:id])
+    @tab = @intab.tab
+    @intabs = @tab.intabs
 
     sortingTab = [
                     ["전체","기업법무일반","금융","공정거래","조세-행정","지적재산권","부동산","엔터테인먼트-스포츠","가사","형사","일반 민사"],
@@ -135,9 +137,6 @@ class SiteController < ApplicationController
                     [],[],[],[],[]
                   ]
     @sortingTab = sortingTab[@intab[:id].to_i - 1]
-
-    @tab = @intab.tab
-    @intabs = @tab.intabs
 
     @table =  [
                 [10,	"일반 민사",            "일반 민사 제분야", 	            "[레벨:2]人本",	          "2012.08.06",	"12531"],

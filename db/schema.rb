@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20160719152236) do
     t.integer  "a_write"
     t.integer  "a_delete"
     t.integer  "a_secret"
+    t.integer  "intab_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -32,13 +33,17 @@ ActiveRecord::Schema.define(version: 20160719152236) do
     t.string   "description"
     t.integer  "turn"
     t.string   "template"
+    t.text     "container"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
   create_table "posts", force: :cascade do |t|
     t.string   "title"
+    t.string   "subtitle"
     t.text     "content"
+    t.string   "img1"
+    t.string   "img2"
     t.integer  "user_id"
     t.integer  "board_id"
     t.integer  "is_secret"
