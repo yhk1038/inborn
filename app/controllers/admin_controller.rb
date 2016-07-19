@@ -2,7 +2,7 @@ class AdminController < ApplicationController
   before_action :verify_request_type
   layout 'admin'
 
-  def user
+  def user_manage
     @u = User.where(id: params[:id]).first if params[:id]
     @u = User.new if @u.nil?
 
@@ -137,6 +137,7 @@ class AdminController < ApplicationController
           flash[:error] = '존재하지 않은 게시판입니다'
         else
           b.intab_id = @b.id
+          b.save
         end
       end
       flash[:alert] = @b.title.to_s + ' 인탭이 성공적으로 저장되었습니다.'
