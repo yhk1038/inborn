@@ -11,109 +11,22 @@
   </div>
   <div class="x_content">
     <br />
-    <form action="/admin/user" method="POST" data-parsley-validate class="form-horizontal form-label-left">
-        <input type="hidden" value="1" name="mod">
+    <form action="/admin/user_manage" method="POST" data-parsley-validate class="form-horizontal form-label-left">
         <input type="hidden" value="<%= params[:id] %>" name="id">
       <div class="form-group">
-        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">게시판 제목 <span class="required">*</span>
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">E-mail <span class="required">*</span>
         </label>
         <div class="col-md-6 col-sm-6 col-xs-12">
-          <input type="text" name="title" required="required" class="form-control col-md-7 col-xs-12" value="<%= @b.title %>">
+          <input type="text" name="email" required="required" class="form-control col-md-7 col-xs-12" value="<%= @u.email %>">
         </div>
       </div>
-      <div class="form-group">
-        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">게시판 소개글
-        </label>
-        <div class="col-md-6 col-sm-6 col-xs-12">
-          <input type="text" name="content" class="form-control col-md-7 col-xs-12" value="<%= @b.content %>">
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">순서<span class="required">*</span></label>
-        <div class="col-md-6 col-sm-6 col-xs-12">
-          <input class="form-control col-md-7 col-xs-12" type="number" name="turn" required="true" value="<%= @b.turn %><%= '1' if @b.turn.nil? %>">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-md-3 col-sm-3 col-xs-12">읽기 권한</label>
-        <div class="col-md-6 col-sm-6 col-xs-12">
-          <div class="btn-group" data-toggle="buttons">
-              <input type="radio" class="flat" name="a_read" value="3" <%= "checked" if @b.a_read == 3 || @b.a_read.nil? %> required />
-              모두
-              <br>
-              <input type="radio" class="flat" name="a_read" value="2" <%= "checked" if @b.a_read == 2 %> />
-              구성원 + 관리자
-              <br>
-              <input type="radio" class="flat" name="a_read" value="1" <%= "checked" if @b.a_read == 1 %> />
-              관리자
-          </div>
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-md-3 col-sm-3 col-xs-12">쓰기 권한</label>
-        <div class="col-md-6 col-sm-6 col-xs-12">
-          <div class="btn-group" data-toggle="buttons">
-              <input type="radio" class="flat" name="a_write" value="3" <%= "checked" if @b.a_write == 3 || @b.a_write.nil? %>  required />
-              모두
-              <br>
-              <input type="radio" class="flat" name="a_write" value="2" <%= "checked" if @b.a_write == 2 %> />
-              구성원 + 관리자
-              <br>
-              <input type="radio" class="flat" name="a_write" value="1" <%= "checked" if @b.a_write == 1 %> />
-              관리자
-          </div>
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-md-3 col-sm-3 col-xs-12">삭제 권한</label>
-        <div class="col-md-6 col-sm-6 col-xs-12">
-          <div class="btn-group" data-toggle="buttons">
-              <input type="radio" class="flat" name="a_delete" value="3" <%= "checked" if @b.a_delete == 3  || @b.a_delete.nil?%>  required />
-              모두
-              <br>
-              <input type="radio" class="flat" name="a_delete" value="2" <%= "checked" if @b.a_delete == 2 %> />
-              구성원 + 관리자
-              <br>
-              <input type="radio" class="flat" name="a_delete" value="1" <%= "checked" if @b.a_delete == 1 %> />
-              관리자
-          </div>
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-md-3 col-sm-3 col-xs-12">비밀글 설정 가능여부</label>
-        <div class="col-md-6 col-sm-6 col-xs-12">
-          <div class="">
-              <label>
-                <input type="checkbox" class="flat" value="1" name="a_secret" <%= "checked" if @b.a_secret == 1 %> />
-              </label>
-          </div>
-        </div>
-      </div>
-      <!-- <div class="form-group">
-        <label class="control-label col-md-3 col-sm-3 col-xs-12">Gender</label>
-        <div class="col-md-6 col-sm-6 col-xs-12">
-          <div id="gender" class="btn-group" data-toggle="buttons">
-              M:
-              <input type="radio" class="flat" name="gender" id="genderM" value="M" checked="" required />
-              F:
-              <input type="radio" class="flat" name="gender" id="genderF" value="F" />
-          </div>
-        </div>
-      </div> -->
-      <!-- <div class="form-group">
-        <label class="control-label col-md-3 col-sm-3 col-xs-12">Date Of Birth <span class="required">*</span>
-        </label>
-        <div class="col-md-6 col-sm-6 col-xs-12">
-          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
-        </div>
-      </div> -->
       <div class="ln_solid"></div>
       <div class="form-group">
         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
           <!-- <button type="reset" class="btn btn-primary">Reset</button> -->
           <button type="submit" class="btn btn-success">확인</button>
-          <% unless @b.id.nil? %>
-            <a href="/admin/board/delete?b=<%= @b.id %>"class="btn btn-danger">삭제</a>
+          <% unless @u.id.nil? %>
+            <a href="/admin/user_manage/delete?b=<%= @u.id %>"class="btn btn-danger">삭제</a>
           <% end %>
         </div>
       </div>

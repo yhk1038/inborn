@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20160719152236) do
     t.integer  "a_write"
     t.integer  "a_delete"
     t.integer  "a_secret"
+    t.integer  "intab_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
