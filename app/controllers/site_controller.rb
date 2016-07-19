@@ -55,4 +55,7 @@ class SiteController < ApplicationController
   
   def member5_5 # Temp templete sample no.5 >> people-type / fifth use
   end
+  
+  def grouping_6 # Temp templete sample no.6 >> list-type
+  end
 end

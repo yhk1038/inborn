@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <title>법무법인 인본</title>
@@ -307,7 +307,7 @@
 <!--
 네비게이션바
 -------------------------------------------------->
-<%= render partial: "site/features/nav" %>
+<%= render partial: "site/features/nav", layout: false %>
 
 <%= yield %>
 
@@ -315,7 +315,7 @@
 <!--
 FOOTER
 -------------------------------------------------->
-<%= render partial: "site/features/footer" %>
+<%= render partial: "site/features/footer", layout: false %>
 
 </body>
 </html>
