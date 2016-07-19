@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160716094242) do
+ActiveRecord::Schema.define(version: 20160719152236) do
 
   create_table "boards", force: :cascade do |t|
     t.string   "title"
@@ -24,6 +24,16 @@ ActiveRecord::Schema.define(version: 20160716094242) do
     t.integer  "a_secret"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "intabs", force: :cascade do |t|
+    t.integer  "tab_id"
+    t.string   "title"
+    t.string   "description"
+    t.integer  "turn"
+    t.string   "template"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "posts", force: :cascade do |t|
@@ -42,6 +52,15 @@ ActiveRecord::Schema.define(version: 20160716094242) do
     t.integer  "user_id"
     t.integer  "post_id"
     t.integer  "is_secret"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tabs", force: :cascade do |t|
+    t.string   "title"
+    t.string   "icon"
+    t.string   "picture"
+    t.integer  "turn"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
