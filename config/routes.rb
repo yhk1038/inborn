@@ -9,5 +9,5 @@ Rails.application.routes.draw do
   get '/member(/:tab)', to: 'site#member'
 
   root 'site#entering'
-  match "/:controller(/:action(/:id))", :via => [:post, :get]
+  match "/:controller(/:action(/:id(/:target)))", :via => [:post, :get]
 end

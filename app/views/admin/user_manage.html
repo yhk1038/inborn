@@ -1,6 +1,6 @@
 <div class="x_panel">
   <div class="x_title">
-    <h2>게시판 관리 <small></small></h2>
+    <h2>사용자 관리 <small></small></h2>
     <ul class="nav navbar-right panel_toolbox">
       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
       </li>
@@ -11,7 +11,7 @@
   </div>
   <div class="x_content">
     <br />
-    <form action="/admin/board" method="POST" data-parsley-validate class="form-horizontal form-label-left">
+    <form action="/admin/user" method="POST" data-parsley-validate class="form-horizontal form-label-left">
         <input type="hidden" value="1" name="mod">
         <input type="hidden" value="<%= params[:id] %>" name="id">
       <div class="form-group">
@@ -110,10 +110,10 @@
       <div class="ln_solid"></div>
       <div class="form-group">
         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+          <!-- <button type="reset" class="btn btn-primary">Reset</button> -->
           <button type="submit" class="btn btn-success">확인</button>
           <% unless @b.id.nil? %>
-            <%= link_to '삭제',  "/admin/board/delete/#{@b.id}", class: 'btn btn-danger',
-            data: { confirm: '정말 삭제하시겠습니까?' } %>
+            <a href="/admin/board/delete?b=<%= @b.id %>"class="btn btn-danger">삭제</a>
           <% end %>
         </div>
       </div>
