@@ -58,9 +58,14 @@ class SiteController < ApplicationController
   
   def grouping_6 # Temp templete sample no.6 >> list-type
     @intabs= []
-    $intab.size.times { |x|  if $intab[x][:id] == params[:id] then @intab = $intab[x] end }
-    $tab.size.times { |x| if $tab[x][:id] == @intab[:tab_id] then @tab = $tab[x] end }
-    $intab.size.times { |x|  if @tab[:id] == $intab[x][:tab_id] then @intabs.push($intab[x]) end }
+    allTabs = []
+    $intab.each do |x|
+      x.size.times { |y| allTabs.push(x[y]) }
+    end
+    intab = $intab[6]
+    intab.size.times { |x|  if intab[x][:id] == params[:id] then @intab = intab[x] end } # Search -> current_intab
+    $tab.size.times { |x| if $tab[x][:id] == @intab[:tab_id] then @tab = $tab[x] end }  # Search -> current_tab
+    allTabs.size.times { |x|  if @tab[:id] == allTabs[x][:tab_id] then @intabs.push(allTabs[x]) end }  # Search -> brother_tabs
     
     sortingTab = [
                     ["전체","기업법무일반","금융","공정거래","조세-행정","지적재산권","부동산","엔터테인먼트-스포츠","가사","형사","일반 민사"],
