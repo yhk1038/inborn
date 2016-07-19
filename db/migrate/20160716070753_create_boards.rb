@@ -10,7 +10,8 @@ class CreateBoards < ActiveRecord::Migration
         t.integer :a_write  #쓰기권한
         t.integer :a_delete #삭제권한
         t.integer :a_secret #비밀글 가능여부
-        
+
+        t.integer :intab_id
       t.timestamps null: false
     end
   end
