@@ -1,6 +1,6 @@
 class SiteController < ApplicationController
   # layout 'site'
-  
+
   def entering
     render layout: false
   end
@@ -18,44 +18,42 @@ class SiteController < ApplicationController
   end
 
 
-  
+
   def page
-    
     # Templete Handler Function
-    
   end
-  
+
   def introduce_1 # Temp templete sample no.1 >> introduce-type
-    
+
   end
-  
+
   def dream_1 # Temp templete sample no.1 >> introduce-type / second use
   end
-  
+
   def org_2 # Temp templete sample no.2 >> org-type
   end
-  
+
   def map_3 # Temp templete sample no.3 >> map-type
   end
-  
+
   def network_4 # Temp templete sample no.4 >> card-type
   end
-  
+
   def member_5 # Temp templete sample no.5 >> people-type
   end
-  
+
   def member2_5 # Temp templete sample no.5 >> people-type / second use
   end
-  
+
   def member3_5 # Temp templete sample no.5 >> people-type / third use
   end
-  
+
   def member4_5 # Temp templete sample no.5 >> people-type / fourth use
   end
-  
+
   def member5_5 # Temp templete sample no.5 >> people-type / fifth use
   end
-  
+
   def grouping_6 # Temp templete sample no.6 >> list-type
     @intabs= []
     allTabs = []
@@ -66,7 +64,7 @@ class SiteController < ApplicationController
     intab.size.times { |x|  if intab[x][:id] == params[:id] then @intab = intab[x] end } # Search -> current_intab
     $tab.size.times { |x| if $tab[x][:id] == @intab[:tab_id] then @tab = $tab[x] end }  # Search -> current_tab
     allTabs.size.times { |x|  if @tab[:id] == allTabs[x][:tab_id] then @intabs.push(allTabs[x]) end }  # Search -> brother_tabs
-    
+
     sortingTab = [
                     ["전체","기업법무일반","금융","공정거래","조세-행정","지적재산권","부동산","엔터테인먼트-스포츠","가사","형사","일반 민사"],
                     ["전체","경찰수당소송","근저당권설정비반환","KT개인정보유출 집단소송","아현2구역 조합원지위 확인의 소"],

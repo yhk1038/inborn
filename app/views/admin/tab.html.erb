@@ -1,0 +1,55 @@
+<div class="x_panel">
+  <div class="x_title">
+    <h2>탭 관리 <small></small></h2>
+    <ul class="nav navbar-right panel_toolbox">
+      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+      </li>
+      <li><a class="close-link"><i class="fa fa-close"></i></a>
+      </li>
+    </ul>
+    <div class="clearfix"></div>
+  </div>
+  <div class="x_content">
+    <br />
+    <form action="/admin/tab" method="POST" data-parsley-validate class="form-horizontal form-label-left">
+        <input type="hidden" value="<%= params[:id] %>" name="id">
+      <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">탭 제목 <span class="required">*</span>
+        </label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <input type="text" name="title" required="required" class="form-control col-md-7 col-xs-12" value="<%= @b.title %>">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">탭 ICON
+        </label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <input type="text" name="icon" class="form-control col-md-7 col-xs-12" value="<%= @b.icon %>">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">탭 사진
+        </label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <input type="text" name="picture" class="form-control col-md-7 col-xs-12" value="<%= @b.picture %>">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">순서<span class="required">*</span></label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <input class="form-control col-md-7 col-xs-12" type="number" name="turn" required="true" value="<%= @b.turn %><%= '1' if @b.turn.nil? %>">
+        </div>
+      </div>
+      <div class="ln_solid"></div>
+      <div class="form-group">
+        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+          <button type="submit" class="btn btn-success">확인</button>
+          <% unless @b.id.nil? %>
+            <%= link_to '삭제',  "/admin/tab/delete/#{@b.id}", class: 'btn btn-danger',
+            data: { confirm: '정말 삭제하시겠습니까?' } %>
+          <% end %>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
