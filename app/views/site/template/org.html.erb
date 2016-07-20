@@ -76,18 +76,18 @@
 
 <div id="identityPannel"></div>
 <div id="identityPannel_cover">
-  <p>조직</p>
-  <p>인본의 구성원 조직도</p>
+  <p><%= @intab.title %></p>
+  <p><%= @intab.description %></p>
 </div>
 <div id="current_position">
   <div class="container" style="padding: 0px 30px;">
-    <p><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp; <a href="/site/main" style="color: inherit;font-weight:400;">HOME</a> &nbsp;&nbsp;>&nbsp;&nbsp; <span style="font-weight:400;">인본소개</span> &nbsp;&nbsp;>&nbsp;&nbsp; <a href="#" style="color: inherit;">조직</a></p>
+    <p><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp; <a href="/site/main" style="color: inherit;font-weight:400;">HOME</a> &nbsp;&nbsp;>&nbsp;&nbsp; <span style="font-weight:400;"><%= @tab.title %></span> &nbsp;&nbsp;>&nbsp;&nbsp; <a href="#" style="color: inherit;"><%= @intab.title %></a></p>
     <div id="callBox"><span class="glyphicon glyphicon-earphone"></span>&nbsp; 02) 596 - 9400</div>
   </div>
 </div>
 <div id="contents">
   <div class="container" style="padding: 0px 30px;">
-    <p id="introduce-title" style="font-size: 30px;margin-top: 10px;margin-bottom: 40px;text-align: center;">{&nbsp;&nbsp; 인본의 구성원 조직도 &nbsp;&nbsp;}</p>
-    <img src="/main/images/templete/organization_structure.jpg" style="width:100%;margin:0px 5px;box-shadow: #777 5px 5px 23px;">
+    <p id="introduce-title" style="font-size: 30px;margin-top: 10px;margin-bottom: 40px;text-align: center;"><%= @intab.posts.first.title %></p>
+    <img src="<%= @intab.posts.first.img1 %>" style="width:100%;margin:0px 5px;box-shadow: #777 5px 5px 23px;">
   </div>
 </div>
