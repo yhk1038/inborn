@@ -63,6 +63,11 @@ font-family: inherit;
 padding: 9.5px 0px;
 clear: both;
 }
+#introduce-title{
+color:#377ab7;
+font-weight: bold;
+margin-top: 100px;
+}
 #introduce-signature{
 float: right;
 }

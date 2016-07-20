@@ -1,140 +1,60 @@
-<style>
-  #identityPannel{
-    width: 100%;
-    height: 260px;
-    background-image: url("/main/images/slider/slide4.jpg");
-    background-size: cover;
-    background-position-y: 25%;
-    box-shadow: #aeaeae 0px 2px 10px;
-  }
-  #identityPannel_cover{
-    width: 100%;
-    height: 260px;
-    margin-top: -260px;
-    background:rgba(0,0,0,0.3);
-  }
-  #identityPannel_cover > p{
-    color: #fff;
-    text-align: center;
-  }
-  #identityPannel_cover > p:first-child{
-    font-size: 40px;
-    padding-top: 80px;
-  }
-  #identityPannel_cover > p:nth-child(2){
-    font-size:25px;
-  }
-  #current_position{
-    width:100%;
-    height:50px;
-    background:#ddd;
-    box-shadow: #aeaeae 0px 2px 10px;
-  }
-  #current_position p{
-    font-size: 20px;
-    color: #777;
-    font-weight: bold;
-    margin-top: 12px;
-    float: left;
-  }
-  #callBox{
-    float:right;
-    font-size: 18px;
-    color: #777;
-    font-weight: bold;
-    padding: 12px 24px;
-    border-left: 1px solid #777;
-    border-right: 1px solid #777;
-  }
-  
-  #contents{
-    padding-top:50px;
-    padding-bottom:30px;
-  }
-  #contents p{
-    font-size: 24px;
-  }
-  #contents pre{
-    white-space: pre-line;
-    line-height: 2;
-    background: none;
-    border: none;
-    font-size: 18px;
-    font-family: inherit;
-    padding: 9.5px 0px;
-    clear: both;
-  }
-  #introduce-title{
-    color:#377ab7;
-    font-weight: bold;
-    margin-top: 100px;
-  }
-  #introduce-signature{
-    float: right;
-  }
-</style>
-
-<div id="identityPannel"></div>
-<div id="identityPannel_cover">
-  <p>대표변호사</p>
-  <p>김종규 변호사, 김명철 변호사</p>
-</div>
-<div id="current_position">
-  <div class="container" style="padding: 0px 30px;">
-    <p><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp; <a href="/site/main" style="color: inherit;font-weight:400;">HOME</a> &nbsp;&nbsp;>&nbsp;&nbsp; <span style="font-weight:400;">법인구성원</span> &nbsp;&nbsp;>&nbsp;&nbsp; <a href="#" style="color: inherit;">대표변호사</a></p>
-    <div id="callBox"><span class="glyphicon glyphicon-earphone"></span>&nbsp; 02) 596 - 9400</div>
-  </div>
-</div>
+<%= render partial: 'site/features/page_common_CSS' %>
+<%= render partial: 'site/features/page_common_header' %>
 <div id="contents">
   <div class="container" style="padding: 0px 30px;">
-    <p id="introduce-title" style="font-size: 30px;margin-top: 10px;margin-bottom: 30px;text-align: center;"><span id="member_1" class="active">대표변호사 김종규</span> &nbsp;&nbsp;|&nbsp;&nbsp; <span id="member_2">대표변호사 김명철</span></p>
-    <div id="member_detail_1" class="col-sm-12" style="padding:0;">
+    <p id="introduce-title" style="font-size: 30px;margin-top: 10px;margin-bottom: 30px;text-align: center;">
+      <% i=1 %>
+      <% @intab.board.posts.each do |people| %>
+      <% unless i == 1 %>&nbsp;&nbsp;|&nbsp;&nbsp;<% end %>
+      <span id="member_<%= people.id %>" class="member_span <%= "active" if i == 1 %>"><%= people.title %></span><% i+=1 %>
+      <% end %>
+    </p>
+    
+    <% i=1 %>
+    <% @intab.board.posts.each do |people| %>
+    <div id="member_detail_<%= people.id %>" class="col-sm-12 member_content" style="padding:0; <%= "display:none;" unless i == 1 %>">
       <div class="col-sm-6" style="padding:0px 15px;margin-top:15px;">
-        <img src="/main/images/templete/member1.jpg" style="width:100%;margin:0px 5px;box-shadow: #777 5px 5px 23px;">
+        <img src="<%= people.img1 %>" style="width:100%;margin:0px 5px;box-shadow: #777 5px 5px 23px;">
       </div>
       <div class="col-sm-6" style="padding:0px 15px;margin-top:15px;">
+        <% 
+          arr_first = []
+          arr_second = []
+          people.replies.each do |detail|
+            if detail.content.first == "0"
+              x = detail.content.split('//-//').last
+              arr_first << x
+            elsif detail.content.first == "1"
+              y = detail.content.split('//-//').last
+              arr_second << y
+            end
+          end 
+        %>
         <div class="trans">
           <p style="color:rgba(55, 122, 183, 1);"><strong class="point_gray1">■ 학력</strong><br></p>
-          <p class="detail" style="">대구덕원고등학교 졸업</p>
-          <p class="detail" style="">성균관대학교 법과대학 학사</p>
-          <p class="detail" style="">성균관대학교 법과대학 석사</p>
-          <p class="detail" style="">성균관대학교 법과대학 박사과정 수료</p>
-          <p class="detail" style="">독일만하임 대학교 LL.M.과정·  사법연수원 수료(제36기)</p>
-          
-          
-          
+          <% arr_first.each do |x| %>
+            <p class="detail" style=""><%= x %></p>
+          <% end %>
         </div>
+        
         <div class="trans">
           <p style="color:rgba(55, 122, 183, 1);"><strong class="point_gray1">■ 활동</strong><br></p>
-          <p class="detail" style="">현 서울지방변호사회 이사</p>
-          <p class="detail" style="">현 서울지방변호사회 대변인</p>
-          <p class="detail" style="">현 민주화운동관련자명예회복 및 보상심의위원회</p>
-          <p class="detail" style="">관련자분과위 위원</p>
-          <p class="detail" style="">현 국민권익위원회 자문위원</p>
-          <p class="detail" style="">뉴패러다임 인스티튜트 감사</p>
+          <% arr_second.each do |y| %>
+            <p class="detail" style=""><%= y %></p>
+          <% end %>
         </div>
       </div>
+      <script>
+        $("#member_<%= people.id %>").click(function(){
+          $(".member_span").removeClass("active");
+          $(".member_content").fadeOut();
+          $(this).addClass("active");
+          $("#member_detail_<%= people.id %>").fadeIn();
+        });
+      </script>
     </div>
-    <div id="member_detail_2" class="col-sm-12" style="padding:0; display:none;">
-      <div class="col-sm-6" style="padding:0px 15px;margin-top:15px;">
-        <img src="/main/images/templete/member2.jpg" style="width:100%;margin:0px 5px;box-shadow: #777 5px 5px 23px;">
-      </div>
-      <div class="col-sm-6" style="padding:0px 15px;margin-top:15px;">
-        <div class="trans">
-          <p style="color:rgba(55, 122, 183, 1);"><strong class="point_gray1">■ 학력</strong><br></p>
-          <p class="detail" style="">광주 국제고등학교 졸업</p>
-          <p class="detail" style="">성균관대학교 법학과 졸업</p>
-          <p class="detail" style="">사법연수원 수료(제36기)</p>
-        </div>
-        <div class="trans">
-          <p style="color:rgba(55, 122, 183, 1);"><strong class="point_gray1">■ 활동</strong><br></p>
-          <p class="detail" style="">법무법인 나래 변호사</p>
-          <p class="detail" style="">2007 우수국선변호인</p>
-          <p class="detail" style="">2008 우수국선변호인</p>
-          <p class="detail" style="">현 법무법인 인본 대표변호사</p>
-        </div>
-      </div>
-    </div>
+    <% i+=1 %>
+    <% end %>
   </div>
 </div>
 
@@ -146,24 +66,6 @@
   #introduce-title > span.active{
     color: rgba(55, 122, 183, 1);
   }
-</style>
-<script>
-  $("#member_1").click(function(){
-    $("#member_2").removeClass("active");
-    $("#member_detail_2").fadeOut();
-    $(this).addClass("active");
-    $("#member_detail_1").fadeIn();
-  });
-  $("#member_2").click(function(){
-    $("#member_1").removeClass("active");
-    $("#member_detail_1").fadeOut();
-    $(this).addClass("active");
-    $("#member_detail_2").fadeIn();
-  });
-</script>
-
-
-<style>
   .address{
     font-size: 22px !important;
     font-weight: bold;
