@@ -7,6 +7,9 @@ class Intab < ActiveRecord::Base
   end
 
   def posts
+    if self.board.nil?
+      return []
+    end
     self.board.posts
   end
 end

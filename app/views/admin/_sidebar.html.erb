@@ -8,7 +8,7 @@
       </li>
       <li><a><i class="fa fa-edit"></i> 게시판 관리 <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
-            <li><a href="/admin/board">게시판 생성</a></li>
+            <li><a href="/admin/board"><i class="fa fa-plus-circle"></i>게시판 생성</a></li>
             <% Board.all.each do |b| %>
                 <li><a href="/admin/board/<%= b.id %>"><%= b.title %> 게시판</a></li>
             <% end %>
@@ -23,13 +23,13 @@
 
       <li><a><i class="fa fa-sitemap"></i> 탭 관리 <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
-            <li><a href="/admin/tab">탭 생성</a></li>
+            <li><a href="/admin/tab"><i class="fa fa-plus-circle"></i>탭 생성</a></li>
             <% Tab.order('turn asc').each do |t| %>
               <li><a><%= t.title %> 탭<span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
-                  <li class="submenu"><a href="/admin/tab/<%= t.id %>">현재 탭 수정</a>
+                  <li class="submenu"><a href="/admin/tab/<%= t.id %>"><i class="fa fa-cog"></i>현재 탭 수정 </a>
                   </li>
-                  <li><a href="/admin/intab/new/<%= t.id %>">인탭 생성</a>
+                  <li><a href="/admin/intab/new/<%= t.id %>"><i class="fa fa-plus-circle"></i>새 인탭 생성</a>
                   </li>
                   <% t.intabs.order('turn asc').each do |intab| %>
                     <li><a href="/admin/intab/<%= intab.id %>"><%= intab.title %> 인탭</a>
