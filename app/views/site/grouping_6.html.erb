@@ -1,0 +1,334 @@
+<style>
+  #identityPannel{
+    width: 100%;
+    height: 260px;
+    background-image: url("<%= @tab[:picture] %>");
+    background-size: cover;
+    background-position-y: 25%;
+    box-shadow: #aeaeae 0px 2px 10px;
+  }
+  #identityPannel_cover{
+    width: 100%;
+    height: 260px;
+    margin-top: -260px;
+    background:rgba(0,0,0,0.3);
+  }
+  #identityPannel_cover > p{
+    color: #fff;
+    text-align: center;
+  }
+  #identityPannel_cover > p:first-child{
+    font-size: 40px;
+    padding-top: 80px;
+  }
+  #identityPannel_cover > p:nth-child(2){
+    font-size:25px;
+  }
+  #current_position{
+    width:100%;
+    height:50px;
+    background:#ddd;
+    box-shadow: #aeaeae 0px 2px 10px;
+  }
+  #current_position p{
+    font-size: 20px;
+    color: #777;
+    font-weight: bold;
+    margin-top: 12px;
+    float: left;
+  }
+  #callBox{
+    float:right;
+    font-size: 18px;
+    color: #777;
+    font-weight: bold;
+    padding: 12px 24px;
+    border-left: 1px solid #777;
+    border-right: 1px solid #777;
+  }
+  
+  #contents{
+    padding-top:50px;
+    padding-bottom:30px;
+  }
+  #contents p{
+    font-size: 24px;
+  }
+  #contents pre{
+    white-space: pre-line;
+    line-height: 2;
+    background: none;
+    border: none;
+    font-size: 18px;
+    font-family: inherit;
+    padding: 9.5px 0px;
+    clear: both;
+  }
+  #introduce-signature{
+    float: right;
+  }
+  
+  
+  
+  #side_tab_box{
+    width:100%;
+    margin:0px 5px;
+    box-shadow: #777 2px 2px 11px;
+    color:#fff;
+    text-align: center;
+  }
+  #side_tab_box .currentTab{
+    width:100%;
+    background:#333;
+    cursor: pointer;
+  }
+  #side_tab_box .currentTab > p {
+    font-size:25px;
+    font-weight:bold;
+    padding: 25px;
+    margin: 0;
+  }
+  #side_tab_box .intabs_wrap{
+    width:100%;
+    color: #666;
+  }
+  #side_tab_box .intabs_wrap .intab_in_currentTab{
+    font-size:23px;
+    font-weight: bold;
+    padding: 10px 0px;
+    margin: 0;
+    border-bottom: 1px solid #666;
+    cursor: pointer;
+    transition:all 0.1s;
+  }
+  #side_tab_box .intabs_wrap .intab_in_currentTab:hover{
+    background: #dddeee;
+  }
+  #side_tab_box .intabs_wrap .intab_in_currentTab.active{
+    color:#000;
+    background: rgba(221, 222, 238, 0.7);
+  }
+  #side_tab_box .intabs_wrap .intab_in_currentTab.active:hover{
+    background: rgba(221, 222, 238, 1);
+  }
+  .intabs_wrap > a{
+    color: inherit;
+    text-decoration: none;
+  }
+</style>
+
+<div id="identityPannel"></div>
+<div id="identityPannel_cover">
+  <p><%= @intab[:title] %></p>
+  <p><%= @intab[:description] %></p>
+</div>
+<div id="current_position">
+  <div class="container" style="padding: 0px 30px;">
+    <p><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp; <a href="/site/main" style="color: inherit;font-weight:400;">HOME</a> &nbsp;&nbsp;>&nbsp;&nbsp; <span style="font-weight:400;"><%= @tab[:title] %></span> &nbsp;&nbsp;>&nbsp;&nbsp; <a href="#" style="color: inherit;"><%= @intab[:title] %></a></p>
+    <div id="callBox"><span class="glyphicon glyphicon-earphone"></span>&nbsp; 02) 596 - 9400</div>
+  </div>
+</div>
+<div id="contents">
+  <div class="container" style="padding: 0px 30px;">
+    <div id="member_detail_1" class="col-sm-12" style="padding:0;">
+      <div class="col-sm-3" style="padding:0px 15px;margin-top:15px;">
+        <!--
+            Side Navigation Box==
+        ------------------------->
+        <div id="side_tab_box">
+          <div class="currentTab">
+            <p><%= @tab[:title] %></p>
+          </div>
+          <div class="intabs_wrap">
+            <% @intabs.each do |x| %>
+              <a href="/site/grouping_6/<%= x[:id] %>"><p class="intab_in_currentTab <%= "active" if x[:title] == @intab[:title] %> "><%= x[:title] %></p></a>
+            <% end %>
+          </div>
+        </div>
+        <!--End-->
+      </div>
+      <div class="col-sm-9" style="padding:0px 15px;margin-top:15px;">
+        <p id="sortingTab" style="margin-bottom: 0px;border-bottom: 0px;">
+          <% i=1 %>
+          <% @sortingTab.each do |s| %>
+            <span id="table_<%=i%>" class="sortBtn <%= "active" if i == 1 %>"><%= s %></span>
+            <% i+=1 %>
+          <% end %>
+        </p>
+        <table id="eTable_1" class="table table-hover">
+          <thead>
+            <tr>
+              <th>번호</th>
+              <th>분류</th>
+              <th>제목</th>
+              <th>글쓴이</th>
+              <th>날짜</th>
+              <th>조회수</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @table.each do |row| %>
+            <tr>
+              <td><%= row[0] %></td>
+              <td><%= row[1] %></td>
+              <td><%= row[2] %></td>
+              <td><%= row[3].to_s.split(']').last.to_s %></td>
+              <td><%= row[4] %></td>
+              <td><%= row[5] %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <table id="eTable_2" class="table table-hover" style="display:none;">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>분류</th>
+              <th>제목</th>
+              <th>글쓴이</th>
+              <th>날짜</th>
+              <th>조회수</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @table.each do |row| %>
+            <tr>
+              <td><%= row[0] %></td>
+              <td><%= row[1] %></td>
+              <td><%= row[2] %></td>
+              <td><%= row[3].to_s.split(']').last.to_s %></td>
+              <td><%= row[4] %></td>
+              <td><%= row[5] %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <table id="eTable_3" class="table table-hover" style="display:none;">
+          <thead>
+            <tr>
+              <th>3</th>
+              <th>분류</th>
+              <th>제목</th>
+              <th>글쓴이</th>
+              <th>날짜</th>
+              <th>조회수</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @table.each do |row| %>
+            <tr>
+              <td><%= row[0] %></td>
+              <td><%= row[1] %></td>
+              <td><%= row[2] %></td>
+              <td><%= row[3].to_s.split(']').last.to_s %></td>
+              <td><%= row[4] %></td>
+              <td><%= row[5] %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div id="member_detail_2" class="col-sm-12" style="padding:0; display:none;">
+      <div class="col-sm-6" style="padding:0px 15px;margin-top:15px;">
+        <img src="/main/images/templete/member2.jpg" style="width:100%;margin:0px 5px;box-shadow: #777 5px 5px 23px;">
+      </div>
+      <div class="col-sm-6" style="padding:0px 15px;margin-top:15px;">
+        <div class="trans">
+          <p style="color:rgba(55, 122, 183, 1);"><strong class="point_gray1">■ 학력</strong><br></p>
+          <p class="detail" style="">광주 국제고등학교 졸업</p>
+          <p class="detail" style="">성균관대학교 법학과 졸업</p>
+          <p class="detail" style="">사법연수원 수료(제36기)</p>
+        </div>
+        <div class="trans">
+          <p style="color:rgba(55, 122, 183, 1);"><strong class="point_gray1">■ 활동</strong><br></p>
+          <p class="detail" style="">법무법인 나래 변호사</p>
+          <p class="detail" style="">2007 우수국선변호인</p>
+          <p class="detail" style="">2008 우수국선변호인</p>
+          <p class="detail" style="">현 법무법인 인본 대표변호사</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  #sortingTab{
+    color:#377ab7;
+    font-weight: bold;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    height: 50px;
+    padding-top: 7px;
+    border-bottom: 3px solid;
+    overflow: auto;
+  }
+  #sortingTab > span{
+    color: rgba(255, 255, 255, 0.75);
+    cursor: pointer;
+    /*background: #673AB7;*/
+    background:rgba(103, 58, 183, 0.75);
+    box-shadow: 1px 1px 5px #555;
+    font-size: 15px;
+    padding: 7px 9px;
+  }
+  #sortingTab > span:hover{
+    padding: 9px 9px;
+  }
+  #sortingTab > span.active{
+    color: rgba(255, 255, 255, 1);
+    background:rgba(103, 58, 183, 1);
+  }
+  .table{
+    border-bottom: 2px solid;
+    border-top: 2px solid;
+  }
+</style>
+<script>
+  $("#table_1").click(function(){
+    $(".sortBtn").removeClass("active");
+    $(".table").hide();
+    $(this).addClass("active");
+    $("#eTable_1").show();
+  });
+  $("#table_2").click(function(){
+    $(".sortBtn").removeClass("active");
+    $(".table").hide();
+    $(this).addClass("active");
+    $("#eTable_2").show();
+  });
+  $("#table_3").click(function(){
+    $(".sortBtn").removeClass("active");
+    $(".table").hide();
+    $(this).addClass("active");
+    $("#eTable_3").show();
+  });
+  // $("#member_2").click(function(){
+  //   $("#member_1").removeClass("active");
+  //   $("#member_detail_1").fadeOut();
+  //   $(this).addClass("active");
+  //   $("#member_detail_2").fadeIn();
+  // });
+</script>
+
+
+<style>
+  .address{
+    font-size: 22px !important;
+    font-weight: bold;
+    color: #666;
+  }
+  .address > span.detail{
+    font-size: 21px !important;
+    font-weight: 400;
+    color: #555;
+    background:#fff;
+  }
+  .trans{
+    margin-top:20px;
+  }
+  .trans > p.detail{
+    font-size: 22px !important;
+    padding-left:10px;
+  }
+</style>

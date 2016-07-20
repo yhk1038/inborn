@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   #   get 'sign_up', to: 'devise/sessions#new'
   # # end
 
-  # get '/intro(/:tab)', to: 'site#intro'
-  # get '/member(/:tab)', to: 'site#member'
+  get '/intro(/:tab)', to: 'site#intro'
+  get '/member(/:tab)', to: 'site#member'
 
   match "/sites(/:id)", to: 'site#page', :via => [:post, :get]
 
