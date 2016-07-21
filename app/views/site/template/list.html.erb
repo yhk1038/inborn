@@ -14,7 +14,9 @@
         <p id="sortingTab" style="margin-bottom: 0px;border-bottom: 0px;">
           <% i=1 %>
           <% @sortingTab.each do |s| %>
-            <span id="table_<%=i%>" class="sortBtn <%= "active" if i == 1 %>"><%= s %></span>
+            <!-- <div style="float: left;"> -->
+              <span id="table_<%=i%>" class="sortBtn <%= "active" if i == 1 %>"><%= s %></span>
+            <!-- </div> -->
             <% i+=1 %>
           <% end %>
         </p>

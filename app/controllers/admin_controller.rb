@@ -2,6 +2,15 @@ class AdminController < ApplicationController
   before_action :verify_request_type
   layout 'admin'
 
+  def post
+    @b = Post.where(id: params[:id]).first
+    if @b.nil?
+      flash[:error] = '해당 게시글은 존재하지 않습니다.'
+      redirect_to :back
+      return
+    end
+  end
+
   def posts
     @b = Board.where(id: params[:id]).first
     if @b.nil?
@@ -12,7 +21,7 @@ class AdminController < ApplicationController
 
     @p = @b.posts
   end
-  
+
   def user_manage
     @u = User.where(id: params[:id]).first if params[:id]
     @u = User.new if @u.nil?
