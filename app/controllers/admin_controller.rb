@@ -2,12 +2,89 @@ class AdminController < ApplicationController
   before_action :verify_request_type
   layout 'admin'
 
+  def view
+    case request.method_symbol
+    when :get
+      if params[:id] == 'delete'
+        m = MainBoard.where(id: params[:target]).first
+        if m.nil?
+          flash[:error] = '잘못된 접근입니다.'
+        else
+          flash[:alert] = '성공적으로 삭제하였습니다.'
+          m.destroy
+        end
+        redirect_to '/admin/view/main'
+      end
+    when :post
+      case params[:board_type]
+      when '1'
+        m = MainBoard.where(board_type: 1).first
+        m = MainBoard.new if m.nil?
+      when '2'
+        m = MainBoard.where(board_type: 2).first
+        m = MainBoard.new if m.nil?
+      when '3'
+        m = MainBoard.where(id: params[:id]).first
+        m = MainBoard.new if m.nil?
+        if params[:board_id].empty?
+          flash[:error] = '연결할 게시판을 선택해주세요.'
+          redirect_to '/admin/view/main'
+          return
+        end
+      else
+        flash[:error] = '잘못된 접근입니다.'
+        redirect_to '/admin/view/main'
+        return
+      end
+      m.board_id = params[:board_id]
+      m.board_type = params[:board_type]
+      m.save
+      flash[:alert] = "성공적으로 저장되었습니다."
+      redirect_to '/admin/view/main'
+    when :options
+      # Header will contain a comma-separated list of methods that are supported for the resource.
+      headers['Access-Control-Allow-Methods'] = allowed_methods.map { |sym| sym.to_s.upcase }.join(', ')
+      head :ok
+    end
+  end
+
   def post
-    @b = Post.where(id: params[:id]).first
-    if @b.nil?
-      flash[:error] = '해당 게시글은 존재하지 않습니다.'
-      redirect_to :back
-      return
+    @b = Post.where(id: params[:id]).first if params[:id]
+    board_id = @b.board_id unless @b.nil?
+
+    case request.method_symbol
+    when :get
+      if params[:id] == 'delete'
+        @b = Post.where(id: params[:target]).first
+        if @b.nil?
+          flash[:error] = '해당 게시물이 존재하지 않습니다.'
+        else
+          flash[:alert] = '해당 게시물을 삭제하였습니다.'
+          @b.destroy
+        end
+        redirect_to '/admin/posts/' + board_id.to_s
+      elsif params[:id]
+        if @b.nil?
+          flash[:error] = '해당 게시물이 존재하지 않습니다.'
+          redirect_to '/admin/posts/' + board_id.to_s
+        end
+      else
+        @b = Post.new
+      end
+    when :post
+      @b = Post.new if @b.nil?
+      skip_elts = Post.skip_elts
+      Post.attribute_names.each do |a|
+        next if skip_elts.include?(a)
+        eval("@b.#{a} = params[:#{a}]")
+      end
+      @b.save
+      flash[:alert] = @b.title.to_s + ' 게시물이 성공적으로 저장되었습니다.'
+      redirect_to '/admin/posts' + @b.board_id
+    when :options
+      # Header will contain a comma-separated list of methods that are supported for the resource.
+      headers['Access-Control-Allow-Methods'] = allowed_methods.map { |sym| sym.to_s.upcase }.join(', ')
+      head :ok
     end
   end
 
