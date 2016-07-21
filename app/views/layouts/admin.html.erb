@@ -27,6 +27,14 @@
   <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/uikit/2.24.3/css/uikit.min.css">
   <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/dataTables.uikit.min.css">
 
+  <!-- <link rel="stylesheet" type="text/css" href="/admin/production/css/notify.css">
+  <link rel="stylesheet" type="text/css" href="/admin/production/css/prettify.css"> -->
+
+  <!-- PNotify -->
+  <link href="/admin/vendors/pnotify/dist/pnotify.css" rel="stylesheet">
+  <link href="/admin/vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
+  <link href="/admin/vendors/pnotify/dist/pnotify.nonblock.css" rel="stylesheet">
+
   <!-- Custom Theme Style -->
   <link href="/admin/build/css/custom.min.css" rel="stylesheet">
 </head>
@@ -131,10 +139,42 @@
 
       <script src="/admin/vendors/switchery/dist/switchery.min.js"></script>
 
+      <!-- <script src="/admin/production/js/notify.js"></script>
+      <script src="/admin/production/js/prettify.js"></script> -->
+
+      <!-- PNotify -->
+      <script src="/admin/vendors/pnotify/dist/pnotify.js"></script>
+      <script src="/admin/vendors/pnotify/dist/pnotify.buttons.js"></script>
+      <script src="/admin/vendors/pnotify/dist/pnotify.nonblock.js"></script>
+
       <!-- Custom Theme Scripts -->
       <script src="/admin/build/js/custom.min.js"></script>
 
+      <% if flash[:error] %>
+        <script type="text/javascript">
+        $(document).ready(function() {
+          new PNotify({
+                          title: 'Error',
+                          text: '<%= flash[:error] %>',
+                          type: 'error',
+                          styling: 'bootstrap3'
+                      });
+        });
+        </script>
+      <% end %>
 
+      <% if flash[:alert] %>
+        <script type="text/javascript">
+          $(document).ready(function() {
+            new PNotify({
+                            title: 'Success',
+                            text: '<%= flash[:alert] %>',
+                            type: 'success',
+                            styling: 'bootstrap3'
+                        });
+          });
+        </script>
+      <% end %>
     </div>
   </div>
 </body>

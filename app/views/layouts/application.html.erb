@@ -5,24 +5,36 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  
+
   <!-- 합쳐지고 최소화된 최신 CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
   <!-- 부가적인 테마 -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+  <!-- PNotify -->
+  <link href="/admin/vendors/pnotify/dist/pnotify.css" rel="stylesheet">
+  <link href="/admin/vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
+  <link href="/admin/vendors/pnotify/dist/pnotify.nonblock.css" rel="stylesheet">
+
   <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+
+  <!-- PNotify -->
+  <script src="/admin/vendors/pnotify/dist/pnotify.js"></script>
+  <script src="/admin/vendors/pnotify/dist/pnotify.buttons.js"></script>
+  <script src="/admin/vendors/pnotify/dist/pnotify.nonblock.js"></script>
+
   <style>
     body{
       font-family:'나눔바른고딕';
       background:#eee;
     }
   </style>
-  <% 
+  <%
     mother_height = 104
-    child_height = 89 
-    
+    child_height = 89
+
     middle_navbar_Height = 175
     wrapper_padding = 23
   %>
@@ -45,7 +57,7 @@
       border: 0px;
       border-radius: 0px;
       box-shadow: rgba(0, 0, 0, 0.3) 1px 1px 10px;
-      background:#fff; 
+      background:#fff;
       margin-bottom:0px;
       min-height: <%= mother_height %>px;
     }
@@ -68,11 +80,11 @@
       padding: 0;
     }
     #child_nav{
-      margin-bottom: 0px; 
+      margin-bottom: 0px;
       min-height: <%= child_height %>px;
-      border: none; 
-      background-image: none; 
-      background-color: initial; 
+      border: none;
+      background-image: none;
+      background-color: initial;
       box-shadow: none;
     }
     .tab_box{
@@ -108,9 +120,9 @@
       text-align: center;
       line-height: 2;
     }
-    
-    
-    
+
+
+
     .item > img{
       width:100% !important;
     }
@@ -159,8 +171,8 @@
     .carousel-control{
       width: 30%;
     }
-    
-    
+
+
     #middle_navbar{
       border:0px solid #000;
       width:100%;
@@ -169,7 +181,7 @@
       background: #00B28A;
       box-shadow: 0px 1px 10px #a9a9a9;
     }
-    
+
     #middle_navbar > .wrapper{
       height: <%= middle_navbar_Height %>px; /* [Wrapper.height.DEF] = (#middle_navbar.height) */
       padding: <%= wrapper_padding %>px 0%; /* [Wrapper.padding.DEF] */
@@ -187,12 +199,12 @@
       height:129px;
       border:1px solid;
     }
-    
-    
+
+
     #board_right > .contentBox-wrapper{
       height: 500px;
     }
-    
+
     .contentBox-wrapper{
       height:250px;
       /*border:1px solid;*/
@@ -205,7 +217,7 @@
       width:100%;
       height:<%= 40 - 0 %>px; /* (TitleBox.height) - (TitleBox.아랫마진.height) */
       margin-top: <%= 0 %>px; /* [TitleBOX.아랫마진.height.DEF] */
-    } 
+    }
     .title-box > p{
       width:100%;
       padding: 10px 0px;
@@ -227,7 +239,7 @@
       margin: 0;
       margin-bottom: 10px;
       border-top: 2px solid #337ab7;
-    } 
+    }
     .post-box{
       width:100%;
       height: <%= 250-40-2-20 %>px; /* (부모박스.height) - (TitleBox.height) - (hr라인.height) - (PostBOX.아랫마진.height) */
@@ -259,7 +271,7 @@
     #faqBox .y-m-d{
       display:none;
     }
-    
+
     .nav-tabs{
       border-bottom: 2px solid #337ab7;
       height: 42px;
@@ -293,7 +305,7 @@
       background:rgba(51, 122, 183, 0.15);
       padding: 20px;
     }
-    
+
     #footer{
       margin-top: <%= 23*3/2 %>px; /**/
       width: 100%;
@@ -316,6 +328,32 @@
 FOOTER
 -------------------------------------------------->
 <%= render partial: "site/features/footer", layout: false %>
+
+<% if flash[:error] %>
+  <script type="text/javascript">
+  $(document).ready(function() {
+    new PNotify({
+                    title: 'Error',
+                    text: '<%= flash[:error] %>',
+                    type: 'error',
+                    styling: 'bootstrap3'
+                });
+  });
+  </script>
+<% end %>
+
+<% if flash[:alert] %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      new PNotify({
+                      title: 'Success',
+                      text: '<%= flash[:alert] %>',
+                      type: 'success',
+                      styling: 'bootstrap3'
+                  });
+    });
+  </script>
+<% end %>
 
 </body>
 </html>
