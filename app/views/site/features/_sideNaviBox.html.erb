@@ -4,7 +4,7 @@
           </div>
           <div class="intabs_wrap">
             <% @intabs.each do |x| %>
-              <a href="/site/<%= x.id %>"><p class="intab_in_currentTab <%= "active" if x.title == @intab.title %> "><%= x.title %></p></a>
+              <a href="/sites/<%= x.id %>"><p class="intab_in_currentTab <%= "active" if x.title == @intab.title %> "><%= x.title %></p></a>
             <% end %>
           </div>
         </div>

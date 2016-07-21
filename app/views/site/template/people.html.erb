@@ -12,47 +12,46 @@
     
     <% i=1 %>
     <% @intab.board.posts.each do |people| %>
-    <div id="member_detail_<%= people.id %>" class="col-sm-12 member_content" style="padding:0; <%= "display:none;" unless i == 1 %>">
-      <div class="col-sm-6" style="padding:0px 15px;margin-top:15px;">
-        <img src="<%= people.img1 %>" style="width:100%;margin:0px 5px;box-shadow: #777 5px 5px 23px;">
-      </div>
-      <div class="col-sm-6" style="padding:0px 15px;margin-top:15px;">
-        <% 
-          arr_first = []
-          arr_second = []
-          people.replies.each do |detail|
-            if detail.content.first == "0"
-              x = detail.content.split('//-//').last
-              arr_first << x
-            elsif detail.content.first == "1"
-              y = detail.content.split('//-//').last
-              arr_second << y
-            end
-          end 
-        %>
-        <div class="trans">
-          <p style="color:rgba(55, 122, 183, 1);"><strong class="point_gray1">■ 학력</strong><br></p>
-          <% arr_first.each do |x| %>
-            <p class="detail" style=""><%= x %></p>
-          <% end %>
+      <div id="member_detail_<%= people.id %>" class="col-sm-12 member_content" style="padding:0; <%= "display:none;" unless i == 1 %>">
+        <div class="col-sm-4" style="padding:0px 15px;margin-top:15px;">
+          <img src="<%= people.img1 %>" style="width:100%;margin:0px 5px;box-shadow: #777 5px 5px 23px;">
         </div>
-        
-        <div class="trans">
-          <p style="color:rgba(55, 122, 183, 1);"><strong class="point_gray1">■ 활동</strong><br></p>
-          <% arr_second.each do |y| %>
-            <p class="detail" style=""><%= y %></p>
-          <% end %>
+        <div class="col-sm-8" style="padding:0px 15px;margin-top:15px;">
+          <% 
+            arr_first, arr_second = [], []
+            people.replies.each do |detail|
+              if detail.content.first == "0"
+                x = detail.content.split('//-//').last
+                arr_first << x
+              elsif detail.content.first == "1"
+                y = detail.content.split('//-//').last
+                arr_second << y
+              end
+            end 
+          %>
+          <div class="trans">
+            <p style="color:rgba(55, 122, 183, 1);"><strong class="point_gray1">■ 학력</strong><br></p>
+            <% arr_first.each do |x| %>
+              <p class="detail" style=""><%= x %></p>
+            <% end %>
+          </div>
+          
+          <div class="trans">
+            <p style="color:rgba(55, 122, 183, 1);"><strong class="point_gray1">■ 활동</strong><br></p>
+            <% arr_second.each do |y| %>
+              <p class="detail" style=""><%= y %></p>
+            <% end %>
+          </div>
         </div>
+        <script>
+          $("#member_<%= people.id %>").click(function(){
+            $(".member_span").removeClass("active");
+            $(".member_content").fadeOut();
+            $(this).addClass("active");
+            $("#member_detail_<%= people.id %>").fadeIn();
+          });
+        </script>
       </div>
-      <script>
-        $("#member_<%= people.id %>").click(function(){
-          $(".member_span").removeClass("active");
-          $(".member_content").fadeOut();
-          $(this).addClass("active");
-          $("#member_detail_<%= people.id %>").fadeIn();
-        });
-      </script>
-    </div>
     <% i+=1 %>
     <% end %>
   </div>

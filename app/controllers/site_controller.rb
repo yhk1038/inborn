@@ -136,7 +136,7 @@ class SiteController < ApplicationController
                     ["전체","경찰수당소송","근저당권설정비반환","KT개인정보유출 집단소송","아현2구역 조합원지위 확인의 소"],
                     [],[],[],[],[]
                   ]
-    @sortingTab = sortingTab[@intab[:id].to_i - 1]
+    @sortingTab = sortingTab[@intab.turn.to_i - 1]
 
     @table =  [
                 [10,	"일반 민사",            "일반 민사 제분야", 	            "[레벨:2]人本",	          "2012.08.06",	"12531"],
