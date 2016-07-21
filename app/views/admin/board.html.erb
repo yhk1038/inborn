@@ -92,24 +92,6 @@
           </div>
         </div>
       </div>
-      <!-- <div class="form-group">
-        <label class="control-label col-md-3 col-sm-3 col-xs-12">Gender</label>
-        <div class="col-md-6 col-sm-6 col-xs-12">
-          <div id="gender" class="btn-group" data-toggle="buttons">
-              M:
-              <input type="radio" class="flat" name="gender" id="genderM" value="M" checked="" required />
-              F:
-              <input type="radio" class="flat" name="gender" id="genderF" value="F" />
-          </div>
-        </div>
-      </div> -->
-      <!-- <div class="form-group">
-        <label class="control-label col-md-3 col-sm-3 col-xs-12">Date Of Birth <span class="required">*</span>
-        </label>
-        <div class="col-md-6 col-sm-6 col-xs-12">
-          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
-        </div>
-      </div> -->
       <div class="ln_solid"></div>
       <div class="form-group">
         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
@@ -117,6 +99,7 @@
           <% unless @b.id.nil? %>
             <%= link_to '삭제',  "/admin/board/delete/#{@b.id}", class: 'btn btn-danger',
             data: { confirm: '정말 삭제하시겠습니까?' } %>
+            <a href="/admin/posts/<%= @b.id %>" class="btn btn-warning">게시글</a>
           <% end %>
         </div>
       </div>

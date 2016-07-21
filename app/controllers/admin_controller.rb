@@ -2,6 +2,17 @@ class AdminController < ApplicationController
   before_action :verify_request_type
   layout 'admin'
 
+  def posts
+    @b = Board.where(id: params[:id]).first
+    if @b.nil?
+      flash[:error] = '해당 게시판은 존재하지 않습니다.'
+      redirect_to :back
+      return
+    end
+
+    @p = @b.posts
+  end
+  
   def user_manage
     @u = User.where(id: params[:id]).first if params[:id]
     @u = User.new if @u.nil?
@@ -13,10 +24,17 @@ class AdminController < ApplicationController
         if @u.nil?
           flash[:error] = '해당 사용자가 존재하지 않습니다.'
         else
-          flash[:alert] = '해당 사용자을 삭제하였습니다.'
+          flash[:alert] = '해당 사용자를 삭제하였습니다.'
           @u.destroy
         end
         redirect_to '/admin/user'
+      elsif params[:id]
+        if @u.nil?
+          flash[:error] = '해당 사용자가 존재하지 않습니다.'
+          redirect_to '/admin/user'
+        end
+      else
+        @u = User.new
       end
     when :post
       skip_elts = User.skip_elts
@@ -36,7 +54,6 @@ class AdminController < ApplicationController
 
   def board
     @b = Board.where(id: params[:id]).first if params[:id]
-    @b = Board.new if @b.nil?
 
     case request.method_symbol
     when :get
@@ -49,8 +66,16 @@ class AdminController < ApplicationController
           @b.destroy
         end
         redirect_to '/admin/board'
+      elsif params[:id]
+        if @b.nil?
+          flash[:error] = '해당 게시판이 존재하지 않습니다.'
+          redirect_to '/admin/board'
+        end
+      else
+        @b = Board.new
       end
     when :post
+      @b = Board.new if @b.nil?
       skip_elts = Board.skip_elts
       Board.attribute_names.each do |a|
         next if skip_elts.include?(a)
@@ -68,7 +93,6 @@ class AdminController < ApplicationController
 
   def tab
     @b = Tab.where(id: params[:id]).first if params[:id]
-    @b = Tab.new if @b.nil?
 
     case request.method_symbol
     when :get
@@ -81,6 +105,13 @@ class AdminController < ApplicationController
           @b.destroy
         end
         redirect_to '/admin/tab'
+      elsif params[:id]
+        if @b.nil?
+          flash[:error] = '해당 탭이 존재하지 않습니다.'
+          redirect_to '/admin/tab'
+        end
+      else
+        @b = Tab.new
       end
     when :post
       skip_elts = Tab.skip_elts
@@ -100,7 +131,6 @@ class AdminController < ApplicationController
 
   def intab
     @b = Intab.where(id: params[:id]).first if params[:id]
-    @b = Intab.new if @b.nil?
 
     case request.method_symbol
     when :get
@@ -121,8 +151,14 @@ class AdminController < ApplicationController
           redirect_to '/admin/tab'
           return
         end
-      else
+      elsif params[:id]
+        if @b.nil?
+          flash[:error] = '해당 인탭이 존재하지 않습니다.'
+          redirect_to '/admin/tab/'
+        end
         @t = @b.tab unless @b.tab_id.nil?
+      else
+        @b = Intab.new
       end
     when :post
       skip_elts = Intab.skip_elts
@@ -134,7 +170,7 @@ class AdminController < ApplicationController
       unless params[:board_id].empty?
         b = Board.where(id: params[:board_id]).first
         if b.nil?
-          flash[:error] = '존재하지 않은 게시판입니다'
+          flash[:error] = '연결실패 : 존재하지 않는 게시판입니다'
         else
           b.intab_id = @b.id
           b.save
