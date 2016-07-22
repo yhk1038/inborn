@@ -7,7 +7,8 @@ class User < ActiveRecord::Base
   has_many :posts
 
   def is_admin?
-    true
+    return true if self.role == 3
+    false
   end
 
   def self.skip_elts
