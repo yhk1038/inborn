@@ -81,22 +81,49 @@
         --------------->
         <div class="col-md-6 contentBox-wrapper">
           <div id="" class="contentBox" style=""> <!--370*250-->
-            <!--보드 Title-->
-            <div class="title-box debug">
-              <p>공지사항 <a href=""><span class="glyphicon glyphicon-plus"></span></a><a href=""><span class="glyphicon glyphicon-wrench"></span></a></p>
-            </div>
+            <% m = MainBoard.where(board_type: 1).first
+            if m.nil? %>
 
-            <!--hr TAG-->
-            <hr class="hr-line">
+              <!--보드 Title-->
+              <div class="title-box debug">
+                <p>공지사항
+                  <a href=""><span class="glyphicon glyphicon-plus"> </span></a>
+                  <a href="/admin/view/main"><span class="glyphicon glyphicon-wrench"> </span></a>
+                </p>
+              </div>
 
-            <!--Each post Do 5 Times-->
-            <div class="post-box debug">
-              <li type="square" class="post-title">법률사무소 인본의 방문을 환영합니다<span class="y-m-d">2016-03-01</span></li>
-              <li type="square" class="post-title">공지사항 게시물이 출력됩니다.<span class="y-m-d">2016-03-01</span></li>
-              <li type="square" class="post-title">공지사항 게시물이 출력됩니다.<span class="y-m-d">2016-03-01</span></li>
-              <li type="square" class="post-title">법률사무소 인본의 방문을 환영합니다<span class="y-m-d">2016-03-01</span></li>
-              <!--<li type="square" class="post-title">법률사무소 인본의 방문을 환영합니다<span>2016-03-01</span></li>-->
-            </div>
+              <!--hr TAG-->
+              <hr class="hr-line">
+
+              <!--Each post Do 5 Times-->
+              <div class="post-box debug">
+                <li type="square" class="post-title">법률사무소 인본의 방문을 환영합니다<span class="y-m-d">2016-03-01</span></li>
+                <li type="square" class="post-title">공지사항 게시물이 출력됩니다.<span class="y-m-d">2016-03-01</span></li>
+                <li type="square" class="post-title">공지사항 게시물이 출력됩니다.<span class="y-m-d">2016-03-01</span></li>
+                <li type="square" class="post-title">법률사무소 인본의 방문을 환영합니다<span class="y-m-d">2016-03-01</span></li>
+                <!--<li type="square" class="post-title">법률사무소 인본의 방문을 환영합니다<span>2016-03-01</span></li>-->
+              </div>
+            <% else %>
+
+              <!--보드 Title-->
+              <div class="title-box debug">
+                <p><%= m.board.title %>
+                  <a href=""><span class="glyphicon glyphicon-plus"> </span></a>
+                  <a href="/admin/view/main"><span class="glyphicon glyphicon-wrench"> </span></a>
+                </p>
+              </div>
+
+              <!--hr TAG-->
+              <hr class="hr-line">
+
+              <!--Each post Do 5 Times-->
+              <div class="post-box debug">
+                <% m.board.posts.last(4).each do |p| %>
+                  <li type="square" class="post-title"><%= p.title %><span class="y-m-d"><%= p.created_at.strftime("%Y-%m-%d") %></span></li>
+                <% end %>
+              </div>
+            <% end %>
+
           </div>
         </div>
 
@@ -105,21 +132,45 @@
         --------------->
         <div class="col-md-6 contentBox-wrapper">
           <div id="faqBox" class="contentBox" style="">
-            <!--보드 Title-->
-            <div class="title-box debug">
-              <p>FAQ 묻고답하기<a href=""><span class="glyphicon glyphicon-plus"></span></a></p>
-            </div>
+            <% m = MainBoard.where(board_type: 2).first
+            if m.nil? %>
+              <!--보드 Title-->
+              <div class="title-box debug">
+                <p>FAQ 묻고답하기
+                  <a href=""><span class="glyphicon glyphicon-plus"> </span></a>
+                  <a href="/admin/view/main"><span class="glyphicon glyphicon-wrench"> </span></a>
+                </p>
+              </div>
 
-            <!--hr TAG-->
-            <hr class="hr-line">
+              <!--hr TAG-->
+              <hr class="hr-line">
 
-            <!--Each post Do 5 Times-->
-            <div class="post-box debug">
-              <li type="none" class="post-title"><span class="glyphicon glyphicon-question-sign"></span>개인회생후 신용회복<span class="y-m-d">2016-03-01</span></li>
-              <li type="none" class="post-title"><span class="glyphicon glyphicon-question-sign"></span>개인회생 변제계획 인가의 효력<span class="y-m-d">2016-03-01</span></li>
-              <li type="none" class="post-title"><span class="glyphicon glyphicon-question-sign"></span>개인회생채권은 어떤 경우에 확정되나요?<span class="y-m-d">2016-03-01</span></li>
-              <li type="none" class="post-title"><span class="glyphicon glyphicon-question-sign"></span>법률사무소 인본의 방문을 환영합니다<span class="y-m-d">2016-03-01</span></li>
-            </div>
+              <!--Each post Do 5 Times-->
+              <div class="post-box debug">
+                <li type="none" class="post-title"><span class="glyphicon glyphicon-question-sign"></span>개인회생후 신용회복<span class="y-m-d">2016-03-01</span></li>
+                <li type="none" class="post-title"><span class="glyphicon glyphicon-question-sign"></span>개인회생 변제계획 인가의 효력<span class="y-m-d">2016-03-01</span></li>
+                <li type="none" class="post-title"><span class="glyphicon glyphicon-question-sign"></span>개인회생채권은 어떤 경우에 확정되나요?<span class="y-m-d">2016-03-01</span></li>
+                <li type="none" class="post-title"><span class="glyphicon glyphicon-question-sign"></span>법률사무소 인본의 방문을 환영합니다<span class="y-m-d">2016-03-01</span></li>
+              </div>
+            <% else %>
+              <!--보드 Title-->
+              <div class="title-box debug">
+                <p><%= m.board.title %>
+                  <a href=""><span class="glyphicon glyphicon-plus"> </span></a>
+                  <a href="/admin/view/main"><span class="glyphicon glyphicon-wrench"> </span></a>
+                </p>
+              </div>
+
+              <!--hr TAG-->
+              <hr class="hr-line">
+
+              <!--Each post Do 5 Times-->
+              <div class="post-box debug">
+                <% m.board.posts.last(4).each do |p| %>
+                  <li type="square" class="post-title"><%= p.title %><span class="y-m-d"><%= p.created_at.strftime("%Y-%m-%d") %></span></li>
+                <% end %>
+              </div>
+            <% end %>
           </div>
         </div>
 

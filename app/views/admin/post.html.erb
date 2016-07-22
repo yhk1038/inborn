@@ -1,6 +1,6 @@
 <div class="x_panel">
   <div class="x_title">
-    <h2>게시글 수정 <small></small></h2>
+    <h2>게시글 수정 (임시)<small></small></h2>
     <ul class="nav navbar-right panel_toolbox">
       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
       </li>
@@ -12,21 +12,29 @@
   <div class="x_content">
     <br />
     <form action="/admin/post" method="POST" data-parsley-validate class="form-horizontal form-label-left">
-        <input type="hidden" value="<%= params[:id] %>" name="id">
-      <div class="form-group">
-        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">E-mail <span class="required">*</span>
-        </label>
-        <div class="col-md-6 col-sm-6 col-xs-12">
-          <input type="text" name="email" required="required" class="form-control col-md-7 col-xs-12" value="<%= @u.email %>">
+      <input type="hidden" value="<%= params[:id] %>" name="id">
+      <%
+      skip_elts = Post.skip_elts
+      Post.attribute_names.each do |a|
+        next if skip_elts.include?(a) %>
+
+        <div class="form-group">
+          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"><%= a %></span>
+          </label>
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <input type="text" name="<%= a %>" required="required" class="form-control col-md-7 col-xs-12" value="<%= eval("@b.#{a}") %>">
+          </div>
         </div>
-      </div>
+
+      <% end %>
+
       <div class="ln_solid"></div>
       <div class="form-group">
         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
           <!-- <button type="reset" class="btn btn-primary">Reset</button> -->
           <button type="submit" class="btn btn-success">확인</button>
-          <% unless @u.id.nil? %>
-            <a href="/admin/post/delete/<%= @u.id %>"class="btn btn-danger">삭제</a>
+          <% unless @b.id.nil? %>
+            <a href="/admin/post/delete/<%= @b.id %>"class="btn btn-danger">삭제</a>
           <% end %>
         </div>
       </div>

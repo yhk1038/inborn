@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160719152236) do
+ActiveRecord::Schema.define(version: 20160721163212) do
 
   create_table "boards", force: :cascade do |t|
     t.string   "title"
@@ -38,12 +38,22 @@ ActiveRecord::Schema.define(version: 20160719152236) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "main_boards", force: :cascade do |t|
+    t.integer  "board_id"
+    t.integer  "board_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string   "title"
     t.string   "subtitle"
     t.text     "content"
+    t.string   "kind"
     t.string   "img1"
     t.string   "img2"
+    t.string   "file1"
+    t.string   "file2"
     t.integer  "user_id"
     t.integer  "board_id"
     t.integer  "is_secret"
@@ -81,6 +91,9 @@ ActiveRecord::Schema.define(version: 20160719152236) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.integer  "role",                   default: 1
+    t.string   "name",                   default: ""
+    t.string   "contact",                default: ""
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
   end
