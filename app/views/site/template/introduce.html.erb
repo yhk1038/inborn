@@ -4,7 +4,23 @@
   <div class="container" style="padding: 0px 30px;">
     <img src="<%= @intab.posts.first.img2 %>" style="<%= "display:none;" if @intab.posts.first.img2.length < 1 %> float:right;width:200px;height:200px;margin:0px 5px;">
     <img src="<%= @intab.posts.first.img1 %>" style="<%= "display:none;" if @intab.posts.first.img1.length < 1 %> float:right;width:200px;height:200px;margin:0px 5px;">
-    <p id="introduce-title"><%= @intab.posts.first.title %></p>
+  <!--head>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  -->
+    <% if @is_admin == true && @mod_select == "title" %>
+    <!--Admin Modify-->
+      <form action="" method="POST">
+        <input type="hidden" name="id" value="<%= @intab.posts.first.id %>">
+        <input type="text" name="title" id="introduce-title-input" value="<%= @intab.posts.first.title %>"><button type="submit" class="btn btn-info" id="introduce-title-submit">저장</button>
+      </form>
+      <a href="/sites/<%= @intab.id %>" class="btn btn-warning" id="introduce-title-submit" style="border-radius:5px; margin-top:10px">취소</a>
+    <% elsif @is_admin == true && @mod_select != "title" %>
+    <!--Admin See-->
+      <p id="introduce-title"><%= @intab.posts.first.title %></p>
+      <a href="?mod=title" class="btn btn-warning" id="introduce-title-submit" style="border-radius:5px;">수정</a>
+    <% else %>
+    <!--General See-->
+      <p id="introduce-title"><%= @intab.posts.first.title %></p>
+    <% end %>
+  <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  -->
     <pre id="introduce-content"><%= @intab.posts.first.content %></pre>
     <p id="introduce-signature"><%= @intab.posts.first.subtitle %></p>
   </div>

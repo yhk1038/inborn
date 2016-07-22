@@ -130,7 +130,19 @@ class SiteController < ApplicationController
     @intab = Intab.find(params[:id])
     @tab = @intab.tab
     @intabs = @tab.intabs
-
+    @mod_select = params[:mod]
+    
+    # @is_admin = false # 베포버전
+    @is_admin = true # 관리자 권한시를 테스트
+    
+    if user_signed_in?
+      if current_user.is_admin?
+        @is_admin = true
+      end
+    end
+    
+    
+    
     sortingTab = [
                     ["전체","기업법무일반","금융","공정거래","조세-행정","지적재산권","부동산","엔터테인먼트-스포츠","가사","형사","일반 민사"],
                     ["전체","경찰수당소송","근저당권설정비반환","KT개인정보유출 집단소송","아현2구역 조합원지위 확인의 소"],

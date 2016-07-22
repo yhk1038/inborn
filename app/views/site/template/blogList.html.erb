@@ -1,5 +1,5 @@
-<%= render partial: 'site/features/page_common_CSS' %>
-<%= render partial: 'site/features/page_common_header' %>
+<%= render 'site/features/page_common_CSS', layout: false %>
+<%= render 'site/features/page_common_header', layout: false %>
 <div id="contents">
   <div class="container" style="padding: 0px 30px;">
     <div id="member_detail_1" class="col-sm-12" style="padding:0;">
@@ -7,7 +7,6 @@
         <!--
             Side Navigation Box==
         ------------------------->
-        <%#= render partial: 'site/features/sideNavBox' %>
         <%= render partial: 'site/features/sideNaviBox' %>
         <!--End-->
       </div>
