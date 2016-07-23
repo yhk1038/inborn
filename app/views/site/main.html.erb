@@ -178,71 +178,128 @@
           LEFT-BOTTOM
         --------------->
         <div class="col-md-12 contentBox-wrapper" style="margin-top: -25px; height: 275px;">
-          <div id="" class="contentBox debug" role="tabpanel" style="">
-            <!-- Nav tabs -->
-            <ul class="nav nav-tabs title-box-ul" role="tablist">
-              <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
-              <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
-              <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
-              <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
-              <li class="moreBtn"><a href="#settings">더보기 >></a></li>
-              <style>
-                .title-box-ul > .moreBtn{
-                  float: right;
-                }
-                .title-box-ul > .moreBtn > a{
-                  font-size: 15px;
-                  padding: 9px 5px 5px 10px !important;
-                }
-              </style>
-            </ul>
+          <% if MainBoard.where(board_type: 3).empty? %>
+            <div id="" class="contentBox debug" role="tabpanel" style="">
+              <!-- Nav tabs -->
+              <ul class="nav nav-tabs title-box-ul" role="tablist">
+                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
+                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
+                <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
+                <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+                <li class="moreBtn"><a href="#settings">더보기 >></a></li>
+                <style>
+                  .title-box-ul > .moreBtn{
+                    float: right;
+                  }
+                  .title-box-ul > .moreBtn > a{
+                    font-size: 15px;
+                    padding: 9px 5px 5px 10px !important;
+                  }
+                </style>
+              </ul>
 
-            <!-- Tab panes -->
-            <div class="tab-content" style="height:232px">
-              <div role="tabpanel" class="post-box tab-pane active" id="home">
-                <table id="board_table">
-                  <tr class="board_table-tr">
-                    <td>145</td>
-                    <td>개인회생</td>
-                    <td>상담제목이 출력됩니다</td>
-                    <td>2016-03-20</td>
-                    <td>김*민</td>
-                  </tr>
-                  <tr class="board_table-tr">
-                    <td>10</td>
-                    <td>개인파산</td>
-                    <td>상담제목이 출력됩니다. 상담제목이 출력됩니다.</td>
-                    <td>2016-03-20</td>
-                    <td>김*미</td>
-                  </tr>
-                  <tr class="board_table-tr">
-                    <td>3</td>
-                    <td>개인회생</td>
-                    <td>상담제목이 출력됩니다. 상담제목이</td>
-                    <td>2016-03-20</td>
-                    <td>서*은</td>
-                  </tr>
-                  <tr class="board_table-tr">
-                    <td>2</td>
-                    <td>개인회생</td>
-                    <td>상담제목이 출력됩니다. 상담제목이 출력</td>
-                    <td>2016-03-20</td>
-                    <td>조*현</td>
-                  </tr>
-                  <tr class="board_table-tr">
-                    <td>1</td>
-                    <td>개인회생</td>
-                    <td>상담제목이 출력됩니다. 상담제목이 출력</td>
-                    <td>2016-03-20</td>
-                    <td>송*석</td>
-                  </tr>
-                </table>
+              <!-- Tab panes -->
+              <div class="tab-content" style="height:232px">
+                <div role="tabpanel" class="post-box tab-pane active" id="home">
+                  <table id="board_table">
+                    <tr class="board_table-tr">
+                      <td>145</td>
+                      <td>개인회생</td>
+                      <td>상담제목이 출력됩니다</td>
+                      <td>2016-03-20</td>
+                      <td>김*민</td>
+                    </tr>
+                    <tr class="board_table-tr">
+                      <td>10</td>
+                      <td>개인파산</td>
+                      <td>상담제목이 출력됩니다. 상담제목이 출력됩니다.</td>
+                      <td>2016-03-20</td>
+                      <td>김*미</td>
+                    </tr>
+                    <tr class="board_table-tr">
+                      <td>3</td>
+                      <td>개인회생</td>
+                      <td>상담제목이 출력됩니다. 상담제목이</td>
+                      <td>2016-03-20</td>
+                      <td>서*은</td>
+                    </tr>
+                    <tr class="board_table-tr">
+                      <td>2</td>
+                      <td>개인회생</td>
+                      <td>상담제목이 출력됩니다. 상담제목이 출력</td>
+                      <td>2016-03-20</td>
+                      <td>조*현</td>
+                    </tr>
+                    <tr class="board_table-tr">
+                      <td>1</td>
+                      <td>개인회생</td>
+                      <td>상담제목이 출력됩니다. 상담제목이 출력</td>
+                      <td>2016-03-20</td>
+                      <td>송*석</td>
+                    </tr>
+                  </table>
+                </div>
+                <div role="tabpanel" class="post-box tab-pane" id="profile">profile tab content</div>
+                <div role="tabpanel" class="post-box tab-pane" id="messages">messages tab content</div>
+                <div role="tabpanel" class="post-box tab-pane" id="settings">settings tab content</div>
               </div>
-              <div role="tabpanel" class="post-box tab-pane" id="profile">profile tab content</div>
-              <div role="tabpanel" class="post-box tab-pane" id="messages">messages tab content</div>
-              <div role="tabpanel" class="post-box tab-pane" id="settings">settings tab content</div>
             </div>
-          </div>
+
+          <% else %>
+            <div id="" class="contentBox debug" role="tabpanel" style="">
+              <!-- Nav tabs -->
+              <ul class="nav nav-tabs title-box-ul" role="tablist">
+                <%
+                 i = 1
+                 MainBoard.where(board_type: 3).each do |m|
+                %>
+                  <li role="presentation" class="<%= "active" if i == 1 %>"><a href="#bottom_tab_<%= i %>" aria-controls="<%= "bottom_tab_" + i.to_s %>" role="tab" data-toggle="tab"><%= m.board.title %></a></li>
+                  <% i += 1 %>
+                <% end %>
+                <li class="moreBtn"><a href="#settings">더보기 >></a></li>
+                <style>
+                  .title-box-ul > .moreBtn{
+                    float: right;
+                  }
+                  .title-box-ul > .moreBtn > a{
+                    font-size: 15px;
+                    padding: 9px 5px 5px 10px !important;
+                  }
+                </style>
+              </ul>
+
+              <!-- Tab panes -->
+              <div class="tab-content" style="height:232px">
+                <%
+                i = 1
+                MainBoard.where(board_type: 3).each do |m|
+                %>
+                  <div role="tabpanel" class="post-box tab-pane <%= "active" if i == 1 %>" id="<%= "bottom_tab_" + i.to_s %>">
+                    <table id="board_table">
+                      <% j = 0 %>
+                      <% posts_count = m.board.posts.count %>
+                      <% m.board.posts.last(4).each do |p| %>
+                        <tr class="board_table-tr">
+                          <td><%= posts_count - j %></td>
+                          <td>type</td>
+                          <td><%= p.title %></td>
+                          <td><%= p.created_at.strftime("%Y-%m-%d") %></td>
+                          <td>name</td>
+                        </tr>
+                        <% j += 1 %>
+                      <% end %>
+                      <% if posts_count <= 4 %>
+                        <% (4 - posts_count).times do %>
+                          <tr></tr>
+                        <% end %>
+                      <% end %>
+                    </table>
+                  </div>
+                  <% i += 1 %>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
         </div>
       </div>
 

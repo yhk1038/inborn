@@ -3,8 +3,16 @@
 <head>
   <title>법무법인 인본</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%#= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
+  <!-- favicon -->
+  <link rel="apple-touch-icon" sizes="120x120" href="/main/images/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/main/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/main/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="/main/images/favicons/manifest.json">
+  <link rel="mask-icon" href="/main/images/favicons/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="theme-color" content="#ffffff">
 
   <!-- 합쳐지고 최소화된 최신 CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
