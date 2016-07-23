@@ -5,6 +5,14 @@
   <title>법무법인 인본</title>
   <link rel="stylesheet" href="/sign_in/css/reset.css">
 
+  <!-- favicon -->
+  <link rel="apple-touch-icon" sizes="120x120" href="/main/images/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/main/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/main/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="/main/images/favicons/manifest.json">
+  <link rel="mask-icon" href="/main/images/favicons/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="theme-color" content="#ffffff">
+
   <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900'>
   <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
 
@@ -53,6 +61,7 @@
       </h1>
       <!-- <form action="/" method="POST"> -->
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= devise_error_messages! %>
         <div class="input-container">
           <!-- <input type="email" id="Username" name="email" required="required"/> -->
           <input autofocus="autofocus" type="email" value="" name="user[email]" id="user_email">

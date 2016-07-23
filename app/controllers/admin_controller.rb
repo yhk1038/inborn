@@ -17,6 +17,42 @@ class AdminController < ApplicationController
       end
     when :post
       case params[:board_type]
+      when '0'
+        unless params[:intab_id1].empty?
+          m = Maintab.where(turn: 1).first
+          m = Maintab.new if m.nil?
+          m.turn = 1
+          m.icon = params[:icon1]
+          m.intab_id = params[:intab_id1]
+          m.save
+        end
+        unless params[:intab_id2].empty?
+          m = Maintab.where(turn: 2).first
+          m = Maintab.new if m.nil?
+          m.turn = 2
+          m.icon = params[:icon2]
+          m.intab_id = params[:intab_id2]
+          m.save
+        end
+        unless params[:intab_id3].empty?
+          m = Maintab.where(turn: 3).first
+          m = Maintab.new if m.nil?
+          m.turn = 3
+          m.icon = params[:icon3]
+          m.intab_id = params[:intab_id3]
+          m.save
+        end
+        unless params[:intab_id4].empty?
+          m = Maintab.where(turn: 4).first
+          m = Maintab.new if m.nil?
+          m.turn = 4
+          m.icon = params[:icon4]
+          m.intab_id = params[:intab_id4]
+          m.save
+        end
+        flash[:alert] = "성공적으로 저장되었습니다."
+        redirect_to '/admin/view/main'
+        return
       when '1'
         m = MainBoard.where(board_type: 1).first
         m = MainBoard.new if m.nil?

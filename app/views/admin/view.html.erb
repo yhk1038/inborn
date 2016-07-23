@@ -1,4 +1,66 @@
 <div class="">
+
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+      <div class="x_title">
+        <h2><i class="fa fa-bars"></i> 메인화면 상단 메뉴 링크 <small></small></h2>
+        <ul class="nav navbar-right panel_toolbox">
+          <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#">Settings 1</a>
+              </li>
+              <li><a href="#">Settings 2</a>
+              </li>
+            </ul>
+          </li>
+          <li><a class="close-link"><i class="fa fa-close"></i></a>
+          </li>
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+
+        <form action="/admin/view" method="POST" data-parsley-validate class="form-horizontal form-label-left">
+          <% 4.times do |x| %>
+            <% x += 1 %>
+            <% m = Maintab.where(turn: x).first %>
+            <% m = Maintab.new if m.nil? %>
+            <div class="col-md-6">
+                <input type="hidden" value="0" name="board_type" />
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12"><%= x %> 번째 인탭</label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <select name="intab_id<%= x %>" class="form-control col-md-7 col-xs-12">
+                      <option value="">선택</option>
+                      <% Intab.all.each do |b| %>
+                        <option value="<%= b.id %>" <%= 'selected' if !(m.intab.nil?) && m.intab.id == b.id %>><%= b.title %></option>
+                      <% end %>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12">ICON</label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input value="<%= m.icon %>" name="icon<%= x %>" type="text" />
+                  </div>
+                  <!-- <div class="ln_solid"></div> -->
+                </div>
+            </div>
+          <% end %>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-10"></div>
+              <button type="submit" class="btn btn-success">확인</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
   <div class="col-md-6 col-sm-6 col-xs-12">
     <div class="x_panel">
       <div class="x_title">
@@ -36,7 +98,7 @@
                 <% end %>
               </select>
             </div>
-            <div class="ln_solid"></div>
+            <!-- <div class="ln_solid"></div> -->
             <div class="form-group">
               <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                 <button type="submit" class="btn btn-success">확인</button>
@@ -89,7 +151,7 @@
                   <% end %>
                 </select>
               </div>
-              <div class="ln_solid"></div>
+              <!-- <div class="ln_solid"></div> -->
               <div class="form-group">
                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                   <button type="submit" class="btn btn-success">확인</button>
@@ -152,12 +214,12 @@
                         <select name="board_id" class="form-control col-md-7 col-xs-12">
                           <option value="">선택</option>
                           <% Board.all.each do |b| %>
-                            <option value="<%= b.id %>" <%= 'selected' if !(m.board.nil?) && m.board.id == b.id %>><%= b.title %></option>
+                            <option value="<%= b.id %>"><%= b.title %></option>
                           <% end %>
                         </select>
                       </div>
                     </div>
-                    <div class="ln_solid"></div>
+                    <!-- <div class="ln_solid"></div> -->
                     <div class="form-group">
                       <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                         <button type="submit" class="btn btn-success">확인</button>
@@ -183,8 +245,7 @@
                         </div>
                       </div>
 
-
-                      <div class="ln_solid"></div>
+                      <!-- <div class="ln_solid"></div> -->
                       <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                           <button type="submit" class="btn btn-success">확인</button>

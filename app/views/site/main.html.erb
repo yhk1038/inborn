@@ -45,23 +45,49 @@
   </a>
 </div>
 
+<style media="screen">
+  .main_icon{
+    font-size:70px;
+
+  }
+  .main_icon_title{
+    font-size: 30px;
+  }
+</style>
+
 <!--
 화면 중앙 네비게이션바
 -------------------------------------------------->
 <div id="middle_navbar">
   <div class="container wrapper">
-    <div class="col-sm-3 pnl pnl-start">
-      <div>23456</div>
+    <% 4.times do |x| %>
+      <% x += 1 %>
+      <% m = Maintab.where(turn: x).first %>
+      <% m = Maintab.new if m.nil? %>
+      <div class="col-sm-3 pnl <%= "pnl-start" if x == 1 %>">
+        <a href="/sites/<%= m.intab.id %>">
+          <div>
+            <i class="glyphicon <%= m.icon %> main_icon"></i><br>
+            <p class="main_icon_title"><%= m.intab.title %></p>
+          </div>
+        </a>
+      </div>
+    <% end %>
+    <!-- <div class="col-sm-3 pnl">
+      <div>
+        9876
+      </div>
     </div>
     <div class="col-sm-3 pnl">
-      <div>9876</div>
+      <div>
+        asdfghj
+      </div>
     </div>
     <div class="col-sm-3 pnl">
-      <div>asdfghj</div>
-    </div>
-    <div class="col-sm-3 pnl">
-      <div>o0piuy</div>
-    </div>
+      <div>
+        o0piuy
+      </div>
+    </div> -->
   </div>
 </div>
 
@@ -119,7 +145,7 @@
               <!--Each post Do 5 Times-->
               <div class="post-box debug">
                 <% m.board.posts.last(4).each do |p| %>
-                  <li type="square" class="post-title"><%= p.title %><span class="y-m-d"><%= p.created_at.strftime("%Y-%m-%d") %></span></li>
+                  <li type="square" class="post-title"><span class="post-title-s"><%= p.title %></span><span class="y-m-d"><%= p.created_at.strftime("%Y-%m-%d") %></span></li>
                 <% end %>
               </div>
             <% end %>
