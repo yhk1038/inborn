@@ -11,10 +11,14 @@
   </div>
   <div class="x_content">
     <br />
-    <form action="/admin/post" method="POST" data-parsley-validate class="form-horizontal form-label-left">
+    <form action="/admin/post" method="POST" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
       <input type="hidden" value="<%= params[:id] %>" name="id">
       <%
       skip_elts = Post.skip_elts
+      skip_elts << "file1"
+      skip_elts << "file2"
+      skip_elts << "img1"
+      skip_elts << "img2"
       Post.attribute_names.each do |a|
         next if skip_elts.include?(a) %>
 
@@ -22,11 +26,28 @@
           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"><%= a %></span>
           </label>
           <div class="col-md-6 col-sm-6 col-xs-12">
-            <input type="text" name="<%= a %>" required="required" class="form-control col-md-7 col-xs-12" value="<%= eval("@b.#{a}") %>">
+            <input type="text" name="<%= a %>" class="form-control col-md-7 col-xs-12" value="<%= eval("@b.#{a}") %>">
           </div>
         </div>
 
       <% end %>
+
+      <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">img1</span>
+        </label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <input type="file" name="img1" class="form-control col-md-7 col-xs-12" value="<%= @b.img1 %>">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">img2</span>
+        </label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <input type="file" name="img2" class="form-control col-md-7 col-xs-12" value="<%= @b.img2 %>">
+        </div>
+      </div>
+
 
       <div class="ln_solid"></div>
       <div class="form-group">

@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+# gem "rmagick"
+gem "carrierwave"
 gem 'tzinfo-data'
 gem 'seed_dump'
 gem 'devise'

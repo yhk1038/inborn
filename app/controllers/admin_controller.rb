@@ -80,7 +80,7 @@ class AdminController < ApplicationController
       end
       @b.save
       flash[:alert] = @b.title.to_s + ' 게시물이 성공적으로 저장되었습니다.'
-      redirect_to '/admin/posts' + @b.board_id
+      redirect_to '/admin/posts/' + @b.board_id.to_s
     when :options
       # Header will contain a comma-separated list of methods that are supported for the resource.
       headers['Access-Control-Allow-Methods'] = allowed_methods.map { |sym| sym.to_s.upcase }.join(', ')

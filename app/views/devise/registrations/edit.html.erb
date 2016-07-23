@@ -1,6 +1,6 @@
 <!-- Custom Theme Style -->
 <link href="/admin/build/css/custom0.css" rel="stylesheet">
-
+<div class="row" style="padding-top: 15px;">
   <div class="col-md-6 col-md-offset-3 col-xs-12 col-xs-offset-0">
     <div class="x_panel">
       <div class="x_title">
@@ -27,24 +27,26 @@
         <!-- start form for validation -->
         <!-- <form id="demo-form" data-parsley-validate> -->
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-          <label for="name">이름 * :</label>
-          <input class="form-control" autofocus="autofocus" type="text" value="<%= current_user.name %>" name="user[name]" id="user_name" required/>
+          <label for="user_name">이름 :</label>
+          <input class="form-control" autofocus="autofocus" type="text" value="<%= current_user.name %>" name="user[name]" id="user_name" />
 
-          <label for="current_password">현재 비밀번호 * :</label>
-          <input class="form-control" autocomplete="off" type="current_password" value="" name="user[current_password]" id="user_current_password" required/>
+          <label for="user_current_password">현재 비밀번호 * :</label>
+          <input class="form-control" autocomplete="off" type="password" value="" name="user[current_password]" id="user_current_password" required/>
 
-          <label for="password">변경 비밀번호 :</label>
+          <label for="user_password">변경 비밀번호 :</label>
           <input class="form-control" autocomplete="off" type="password" value="" name="user[password]" id="user_password"/>
 
-          <label for="password_confirmation">변경 비밀번호 재 입력 :</label>
-          <input class="form-control" autocomplete="off" type="password_confirmation" value="" name="user[password_confirmation]" id="user_password_confirmation"/>
+          <label for="user_password_confirmation">변경 비밀번호 재 입력 :</label>
+          <input class="form-control" autocomplete="off" type="password" value="" name="user[password_confirmation]" id="user_password_confirmation"/>
 
-          <label for="contact">연락처 :</label>
+          <label for="user_contact">연락처 :</label>
           <input class="form-control" type="text" value="" name="user[contact]" id="user_contact"/>
 
-          <span class="btn btn-primary">확인</span>
-
+          <br/>
+          <button class="btn btn-primary" type="submit" style="float:right">회원정보 수정</button>
         <% end %>
+        <hr>
+        <%= button_to "회원 탈퇴", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-danger', style: 'float: right;' %>
         <!-- end form for validations -->
 
       </div>
@@ -52,11 +54,4 @@
 
 
   </div>
-
-
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+</div>
