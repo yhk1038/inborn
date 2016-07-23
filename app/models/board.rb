@@ -6,4 +6,8 @@ class Board < ActiveRecord::Base
     def self.skip_elts
       return ['created_at', 'updated_at', 'id', 'visible']
     end
+    
+    def self.intab
+      return Intab.find(self.intab_id)
+    end
 end

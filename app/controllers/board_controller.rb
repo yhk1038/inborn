@@ -66,7 +66,7 @@ class BoardController < ApplicationController
   # Input > id : 해당 포스트의 id
   # Output > @p : 해당 포스트
   def post_read
-    @p = Post.where(id: params[:id]).first
+    @p = Post.find(params[:id])
     if @p.nil?
       flash[:error] = '잘못된 게시물입니다.'
       redirect_to :back
@@ -84,15 +84,16 @@ class BoardController < ApplicationController
         next if skip_elts.include?(a)
         eval("@p.#{a} = params[:#{a}]")
     end
-    @p.user_id = current_user.id
+    @p.user_id = 1 #current_user.id
     @p.save
+    redirect_to "/sites/" + Board.find(params[:board_id]).intab.id.to_s
   end
 
   # DELETE
   # Input > id : 해당 Post의 id
   # Output > @p : 해당 Post
   def post_delete
-    @p = Post.where(id: params[:id]).first
+    @p = Post.find(params[:id])
     if @p.nil?
       flash[:error] = '잘못된 게시물입니다.'
       return
@@ -105,7 +106,7 @@ class BoardController < ApplicationController
   # Input > 입력값들
   # Output > @p : 해당 Post
   def post_update
-    @p = Post.where(id: params[:id]).first
+    @p = Post.find(params[:id])
     if @p.nil?
       flash[:error] = '잘못된 게시물입니다.'
       return
@@ -117,5 +118,22 @@ class BoardController < ApplicationController
       end
       @p.save
     end
+    redirect_to "/sites/" + @p.board.intab.id.to_s
+  end
+  
+  def intab_update
+    @i = Intab.find(params[:id])
+    if @i.nil?
+      flash[:error] = '잘못된 접근입니다'
+      return
+    else
+      skip_elts = Intab.skip_elts
+      Intab.attribute_names.each do |a|
+        next if skip_elts.include?(a)
+        eval("@i.#{a} = params[:#{a}]")
+      end
+      @i.save
+    end
+    redirect_to "/sites/" + params[:id].to_s
   end
 end

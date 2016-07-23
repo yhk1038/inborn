@@ -2,7 +2,29 @@
 <%= render partial: 'site/features/page_common_header' %>
 <div id="contents">
   <div class="container" style="padding: 0px 30px;">
-    <p id="introduce-title" style="font-size: 30px;margin-top: 10px;margin-bottom: 40px;text-align: center;"><%= @intab.posts.first.title %></p>
-    <img src="<%= @intab.posts.first.img1 %>" style="width:100%;margin:0px 5px;box-shadow: #777 5px 5px 23px;">
+    
+    <!--head>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  -->
+      <% if @is_admin == true && @mod_select == "title" %>
+      <!--Admin Modify-->
+        <form action="/board/post_update" method="POST">
+          <input type="hidden" name="id" value="<%= @intab.posts.first.id %>">
+          <input type="hidden" name="board_id" value="<%= @intab.posts.first.board_id %>">
+          <input type="hidden" name="content" value="<%= @intab.posts.first.content %>">
+          <input type="text" name="title" id="introduce-title-input" value="<%= @intab.posts.first.title %>"><button type="submit" class="btn btn-info" id="introduce-title-submit">저장</button>
+          <a href="/sites/<%= @intab.id %>" class="btn btn-warning" id="introduce-title-submit" style="border-radius:5px; margin-top:10px">취소</a>
+          <br>이미지 : <input type="file" name="img1" class="input input-button input-25" id="" value="<%= @intab.posts.first.img1 %>">
+          <img src="<%= @intab.posts.first.img1 %>" style="width:100%;margin:0px 5px;box-shadow: #777 5px 5px 23px;">
+        </form>
+      <% elsif @is_admin == true && @mod_select != "title" %>
+      <!--Admin See-->
+        <p id="introduce-title" style="font-size: 30px;margin-top: 10px;margin-bottom: 40px;text-align: center;"><%= @intab.posts.first.title %></p>
+        <a href="?mod=title" class="btn btn-warning go_mod-button" id="" style="border-radius:5px;">수정</a>
+        <img src="<%= @intab.posts.first.img1 %>" style="width:100%;margin:0px 5px;box-shadow: #777 5px 5px 23px;">
+      <% else %>
+      <!--General See-->
+        <p id="introduce-title" style="font-size: 30px;margin-top: 10px;margin-bottom: 40px;text-align: center;"><%= @intab.posts.first.title %></p>
+        <img src="<%= @intab.posts.first.img1 %>" style="width:100%;margin:0px 5px;box-shadow: #777 5px 5px 23px;">
+      <% end %>
+    <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  -->
   </div>
 </div>

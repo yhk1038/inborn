@@ -64,6 +64,45 @@
     padding: 9.5px 0px;
     clear: both;
   }
+  
+  
+  .input{
+    height:40px;
+    margin-left:20px;
+    font-size:20px;
+  }
+  .input-first{
+    margin-top:15px;
+  }
+  <% 20.times do |i| %>
+  .input-<%= 5*(i+1) %>{
+    width:<%= 5*(i+1) %>% !important;
+  }
+  <% end %>
+  .input-button{
+    margin-top:15px;
+    display: inline-block !important;
+  }
+  .input-button-first{
+    margin-left:20px;
+  }
+  .go_mod-button{
+    position:absolute;
+    right:0;
+  }
+  
+  #header-input{
+    margin-top: 100px;
+    height: 40px;
+    width: 50%;
+    display: inline-block;
+    font-size: 20px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border: ridge;
+  }
+  
+  
   #introduce-title{
     color:#377ab7;
     font-weight: bold;

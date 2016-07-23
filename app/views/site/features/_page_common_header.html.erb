@@ -1,7 +1,32 @@
 <div id="identityPannel"></div>
 <div id="identityPannel_cover">
-  <p><%= @intab.title %></p>
-  <p><%= @intab.description %></p>
+<!--head>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  -->
+  <% if @is_admin == true && @mod_select == "header" %>
+  <!--Admin Modify-->
+    <form action="/board/intab_update" method="POST">
+      <input type="hidden" name="id" value="<%= @intab.id %>">
+      <input type="hidden" name="tab_id" value="<%= @intab.tab_id %>">
+      <input type="hidden" name="turn" value="<%= @intab.turn %>">
+      <input type="hidden" name="container" value="<%= @intab.container %>">
+      
+      <input type="text" name="title" class="input input-30 input-first" id="header-title-input" value="<%= @intab.title %>"><br>
+      <input type="text" name="description" class="input input-50" id="header-description-input" value="<%= @intab.description %>"><br>
+      페이지 형태 : <input type="text" name="template" class="input input-10" value="<%= @intab.template %>"><br>
+      <button type="submit" class="btn btn-info input-button input-button-first" id="">저장</button>
+      <a href="/sites/<%= @intab.id %>" class="btn btn-warning input-button" style="">취소</a>
+    </form>
+    
+  <% elsif @is_admin == true && @mod_select != "title" %>
+  <!--Admin See-->
+    <p><%= @intab.title %></p>
+    <p><%= @intab.description %></p>
+    <a href="?mod=header" class="btn btn-warning go_mod-button btn-lg" style="border-radius:5px;">수정</a>
+  <% else %>
+  <!--General See-->
+    <p><%= @intab.title %></p>
+    <p><%= @intab.description %></p>
+  <% end %>
+<!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  -->
 </div>
 <div id="current_position">
   <div class="container" style="padding: 0px 30px;">

@@ -7,21 +7,28 @@
   <!--head>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  -->
     <% if @is_admin == true && @mod_select == "title" %>
     <!--Admin Modify-->
-      <form action="" method="POST">
+      <form action="/board/post_update" method="POST">
         <input type="hidden" name="id" value="<%= @intab.posts.first.id %>">
+        <input type="hidden" name="board_id" value="<%= @intab.posts.first.board_id %>">
         <input type="text" name="title" id="introduce-title-input" value="<%= @intab.posts.first.title %>"><button type="submit" class="btn btn-info" id="introduce-title-submit">저장</button>
+        <a href="/sites/<%= @intab.id %>" class="btn btn-warning" id="introduce-title-submit" style="border-radius:5px; margin-top:10px">취소</a>
+        <textarea id="introduce-content" name="content" class="input input-first input-100" style="height:500px !important;"><%= @intab.posts.first.content %></textarea>
+        <input type="text" name="subtitle" class="input input-first input-30" id="" value="<%= @intab.posts.first.subtitle %>">
+        <br>첫번째 이미지 : <input type="file" name="img1" class="input input-button input-25" id="" value="<%= @intab.posts.first.img1 %>">
+        <br>두번째 이미지 : <input type="file" name="img2" class="input input-button input-25" id="" value="<%= @intab.posts.first.img2 %>">
       </form>
-      <a href="/sites/<%= @intab.id %>" class="btn btn-warning" id="introduce-title-submit" style="border-radius:5px; margin-top:10px">취소</a>
     <% elsif @is_admin == true && @mod_select != "title" %>
     <!--Admin See-->
       <p id="introduce-title"><%= @intab.posts.first.title %></p>
       <a href="?mod=title" class="btn btn-warning" id="introduce-title-submit" style="border-radius:5px;">수정</a>
+      <pre id="introduce-content"><%= @intab.posts.first.content %></pre>
+      <p id="introduce-signature"><%= @intab.posts.first.subtitle %></p>
     <% else %>
     <!--General See-->
       <p id="introduce-title"><%= @intab.posts.first.title %></p>
+      <pre id="introduce-content"><%= @intab.posts.first.content %></pre>
+      <p id="introduce-signature"><%= @intab.posts.first.subtitle %></p>
     <% end %>
   <!--<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  -->
-    <pre id="introduce-content"><%= @intab.posts.first.content %></pre>
-    <p id="introduce-signature"><%= @intab.posts.first.subtitle %></p>
   </div>
 </div>
