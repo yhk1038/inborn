@@ -32,7 +32,7 @@
                   <p class="read read_file"><span>첨부파일2 &nbsp;&nbsp;&nbsp;&nbsp; <a href="<%= @post.file2.url %>" download><%= @post.file2.url.split('/').last %></a></span></p>
                 <% end %>
                 
-                <pre style="min-height:400px;" class="read read_content"><%= @post.content.html_safe %></pre>
+                <pre style="min-height:400px; font-size:16px" class="read read_content"><%= @post.content.html_safe %></pre>
                 <!-- :content -->
               </div>
               

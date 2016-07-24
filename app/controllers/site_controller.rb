@@ -141,6 +141,11 @@ class SiteController < ApplicationController
         @is_admin = true
       end
     end
+    
+    unless params[:post_id].nil?
+      @post = Post.find(params[:post_id])
+      render 'site/post_modify'
+    end
   end
   
   def post_read
