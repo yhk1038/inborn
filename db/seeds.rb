@@ -77,7 +77,7 @@ Post.create!([
 ])
 
 15.times do |aa| 
-  eval("Post.create!({board_id:11, title: \"기업법무일반\", content: \"\", img1: \"/main/images/templete/member#{aa+1}.jpg\", img2: \"\"})  ")
+  eval("Post.create!({board_id:11, title: \"기업법무일반#{aa+1}\", content: \"\", img1: \"/main/images/templete/member#{aa+1}.jpg\", img2: \"\"})  ")
 end
 
 Reply.create!([

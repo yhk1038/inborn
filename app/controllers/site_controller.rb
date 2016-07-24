@@ -141,6 +141,24 @@ class SiteController < ApplicationController
       end
     end
   end
+  
+  def post_read
+    @post = Post.find(params[:id])
+    @board = @post.board
+    @intab = @board.intab
+    @tab = @intab.tab
+    @intabs = @tab.intabs
+    @mod_select = params[:mod]
+    
+    # @is_admin = false # 베포버전
+    @is_admin = true # 관리자 권한시를 테스트
+    
+    if user_signed_in?
+      if current_user.is_admin?
+        @is_admin = true
+      end
+    end
+  end
 
   def page
     @intab = Intab.find(params[:id])

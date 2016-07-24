@@ -19,9 +19,9 @@
                 <%# if @intab.is_secret == 1 %>
                   <p>비밀글 설정</p><!-- :is_secret -->
                 <%# end %>
-                <%# if @intab.template == "list" %>
+                <% if @intab.template == "list" %>
                   <p>카테고리</p><!-- :kind -->
-                <%# end %>
+                <% end %>
                 <p>글 제목</p><!-- :title -->
                 <p style="height:400px;">글 내용</p><!-- :content -->
                 <p>첨부파일1</p><!-- :file1 -->
@@ -36,7 +36,7 @@
                     <div style="float:right"><input type="radio" name="is_secret" class="" value="0" checked> 공개글(기본) &nbsp;&nbsp; <input type="radio" name="is_secret" class="" value="1"> 비밀글 사용하기</div>
                   </div>
                 <%# end %>
-                <%# if @intab.template == "list" %>
+                <% if @intab.template == "list" %>
                   <div>
                     <span>소속 카테고리 </span>
                     <select id="kindSelect" class="" style="height:25px;float:right">
@@ -52,7 +52,7 @@
                     </select>
                     <input id="kind_input" type="text" name="kind" style="display:none; width:15%; float:right" placeholder="새 카테고리명">
                   </div>
-                <%# end %>
+                <% end %>
                 <div><input type="text" name="title" class="" style="width:100%"></div>
                 <div style="height:400px;"><textarea type="text" name="content" class=""></textarea></div>
                 <div><span></span><input type="file" name="file1" class=""></div>

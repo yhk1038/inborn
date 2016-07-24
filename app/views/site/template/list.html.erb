@@ -11,16 +11,20 @@
         <!--End-->
       </div>
       <div class="col-sm-9" style="padding:0px 15px;margin-top:15px;">
-        <% @kinds = @intab.posts.map{|m| m.kind}.compact.uniq %>
+        <% @kinds = @intab.posts.map{|m| m.kind}.uniq.compact! %>
         <p id="sortingTab" style="margin-bottom: 0px;border-bottom: 0px;">
           <span id="table_0" class="sortBtn active"><%= "전체" %></span>
-          <% i=1 %>
-          <% @kinds.each do |s| %>
-            <!-- <div style="float: left;"> -->
-              <span id="table_<%=i%>" class="sortBtn <%#= "active" if i == 1 %>"><%= s %></span>
-            <!-- </div> -->
-            <% i+=1 %>
+          
+          <% unless @kinds.nil? %>
+            <% i=1 %>
+            <% @kinds.each do |s| %>
+              <!-- <div style="float: left;"> -->
+                <span id="table_<%=i%>" class="sortBtn <%#= "active" if i == 1 %>"><%= s %></span>
+              <!-- </div> -->
+              <% i+=1 %>
+            <% end %>
           <% end %>
+          
         </p>
         <table id="eTable_0" class="table table-hover">
           <script>
@@ -71,44 +75,46 @@
           </tbody>
         </table>
         
-        <% unless @kinds.count == 0 %>
-          <% @kinds.count.times do |k| %>
-          <table id="eTable_<%= k+1 %>" class="table table-hover" style="display:none;">
-            <script>
-              $("#table_<%= k+1 %>").click(function(){
-                $(".sortBtn").removeClass("active");
-                $(".table").hide();
-                $(this).addClass("active");
-                $("#eTable_<%= k+1 %>").show();
-              });
-            </script>
-            <thead>
-              <tr>
-                <th>번호</th>
-                <th>분류</th>
-                <th>제목</th>
-                <th>글쓴이</th>
-                <th>날짜</th>
-                <th>조회수</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @intab.posts.where(kind: @kinds[k]).reverse.each do |po| %>
-                <% unless po == nil %>
-                <a href="">
-                  <tr>
-                    <td><%= po.id %></td>
-                    <td><%= po.kind %></td>
-                    <td><a href="/site/post_read/<%= po.id %>"><%= po.title %></a></td>
-                    <td><%= po.user.email unless po.user.nil? %></td>
-                    <td><%= Date.parse(po.created_at.to_s).to_s %></td>
-                    <td><%= po.viewcount %></td>
-                  </tr>
-                </a>
+        <% unless @kinds.nil? %>
+          <% unless @kinds.count == 0 %>
+            <% @kinds.count.times do |k| %>
+            <table id="eTable_<%= k+1 %>" class="table table-hover" style="display:none;">
+              <script>
+                $("#table_<%= k+1 %>").click(function(){
+                  $(".sortBtn").removeClass("active");
+                  $(".table").hide();
+                  $(this).addClass("active");
+                  $("#eTable_<%= k+1 %>").show();
+                });
+              </script>
+              <thead>
+                <tr>
+                  <th>번호</th>
+                  <th>분류</th>
+                  <th>제목</th>
+                  <th>글쓴이</th>
+                  <th>날짜</th>
+                  <th>조회수</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @intab.posts.where(kind: @kinds[k]).reverse.each do |po| %>
+                  <% unless po == nil %>
+                  <a href="">
+                    <tr>
+                      <td><%= po.id %></td>
+                      <td><%= po.kind %></td>
+                      <td><a href="/site/post_read/<%= po.id %>"><%= po.title %></a></td>
+                      <td><%= po.user.email unless po.user.nil? %></td>
+                      <td><%= Date.parse(po.created_at.to_s).to_s %></td>
+                      <td><%= po.viewcount %></td>
+                    </tr>
+                  </a>
+                  <% end %>
                 <% end %>
-              <% end %>
-            </tbody>
-          </table>
+              </tbody>
+            </table>
+            <% end %>
           <% end %>
         <% end %>
         
