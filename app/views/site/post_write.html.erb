@@ -12,7 +12,7 @@
       </div>
       <div class="col-sm-9" style="padding:0px 15px;margin-top:15px;">
         <div class="col-sm-12">
-          <form action="/board/post_create" method="POST">
+          <form action="/board/post_create" method="POST" enctype="multipart/form-data">
             <div class="col-xs-12 blogCard">
               <div class="col-xs-3 labelWrapper" style="padding: 0;">
                 <p>작성 위치</p>
@@ -71,7 +71,7 @@
           <input type="hidden" name="?" value="<%#= @last_page %>">
           <input type="hidden" name="?" value="<%#= @current_page %>">
           <input type="hidden" name="?" value="<%#= @page_count %>">
-          
+
         </div>
       </div>
     </div>
