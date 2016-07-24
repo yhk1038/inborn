@@ -2,6 +2,8 @@ class SiteController < ApplicationController
   # layout 'site'
 
   def entering
+    ip = request.remote_ip
+    Viewcount.create!([{ip_address: ip}])
     render layout: false
   end
 
@@ -161,6 +163,10 @@ class SiteController < ApplicationController
       redirect_to :back
       return
     end
+
+    @post.viewcount += 1
+    @post.save
+
     # @is_admin = false # 베포버전
     @is_admin = true # 관리자 권한시를 테스트
 
