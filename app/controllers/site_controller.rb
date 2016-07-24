@@ -141,7 +141,7 @@ class SiteController < ApplicationController
         @is_admin = true
       end
     end
-    
+
     unless params[:post_id].nil?
       @post = Post.find(params[:post_id])
       render 'site/post_modify'
@@ -156,6 +156,11 @@ class SiteController < ApplicationController
     @intabs = @tab.intabs
     @mod_select = params[:mod]
 
+    unless can_read?(@post)
+      flash[:error] = '읽기 권한이 없습니다.'
+      redirect_to :back
+      return
+    end
     # @is_admin = false # 베포버전
     @is_admin = true # 관리자 권한시를 테스트
 
@@ -171,6 +176,7 @@ class SiteController < ApplicationController
     @tab = @intab.tab
     @intabs = @tab.intabs
     @mod_select = params[:mod]
+    @board = @intab.board
 
     # @is_admin = false # 베포버전
     @is_admin = true # 관리자 권한시를 테스트
@@ -195,9 +201,6 @@ class SiteController < ApplicationController
         @last_page = @intab.posts.count % 5
       end
     end
-
-
-
 
     sortingTab = [
                     ["전체","기업법무일반","금융","공정거래","조세-행정","지적재산권","부동산","엔터테인먼트-스포츠","가사","형사","일반 민사"],

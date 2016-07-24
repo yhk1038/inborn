@@ -16,15 +16,14 @@ ActiveRecord::Schema.define(version: 20160723124614) do
   create_table "boards", force: :cascade do |t|
     t.string   "title"
     t.string   "content"
-    t.integer  "visible"
     t.integer  "turn"
-    t.integer  "a_read"
-    t.integer  "a_write"
-    t.integer  "a_delete"
-    t.integer  "a_secret"
+    t.integer  "a_read",     default: 1
+    t.integer  "a_write",    default: 1
+    t.integer  "a_list",     default: 1
+    t.integer  "a_secret",   default: 0
     t.integer  "intab_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "intabs", force: :cascade do |t|

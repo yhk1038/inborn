@@ -14,7 +14,7 @@
         <% @kinds = @intab.posts.map{|m| m.kind}.uniq.compact! %>
         <p id="sortingTab" style="margin-bottom: 0px;border-bottom: 0px;">
           <span id="table_0" class="sortBtn active"><%= "전체" %></span>
-          
+
           <% unless @kinds.nil? %>
             <% i=1 %>
             <% @kinds.each do |s| %>
@@ -24,7 +24,7 @@
               <% i+=1 %>
             <% end %>
           <% end %>
-          
+
         </p>
         <table id="eTable_0" class="table table-hover">
           <script>
@@ -46,35 +46,46 @@
             </tr>
           </thead>
           <tbody>
-            <% @intab.posts.reverse.each do |po| %>
-              <% unless po == nil %>
-              <a href="">
-                <tr>
-                  <td><%= po.id %></td>
-                  <td><%= po.kind %></td>
-                  <td><a href="/site/post_read/<%= po.id %>"><%= po.title %></a></td>
-                  <td><%= po.user.email unless po.user.nil? %></td>
-                  <td><%= Date.parse(po.created_at.to_s).to_s %></td>
-                  <td><%= po.viewcount %></td>
-                </tr>
-              </a>
+            <% if can_list?(@board) %>
+              <% @intab.posts.reverse.each do |po| %>
+                <% unless po == nil %>
+                <a href="">
+                  <tr>
+                    <td><%= po.id %></td>
+                    <td><%= po.kind %></td>
+                    <td><a href="/site/post_read/<%= po.id %>"><%= po.title %></a></td>
+                    <td><%= po.user.email unless po.user.nil? %></td>
+                    <td><%= Date.parse(po.created_at.to_s).to_s %></td>
+                    <td><%= po.viewcount %></td>
+                  </tr>
+                </a>
+                <% end %>
               <% end %>
-            <% end %>
-            <% if @intab.posts.count == 0 %>
-            
+              <% if @intab.posts.count == 0 %>
+
+                <tr>
+                  <td><%= "0" %></td>
+                  <td><%= "전체" %></td>
+                  <td><%= "게시글이 존재하지 않습니다. 로그인 후 게시글을 작성하세요!" %></a></td>
+                  <td><%= "법무법인 인본" %></td>
+                  <td><%= "2016-07-16" %></td>
+                  <td><%= "518" %></td>
+                </tr>
+
+              <% end %>
+            <% else %>
               <tr>
                 <td><%= "0" %></td>
                 <td><%= "전체" %></td>
-                <td><%= "게시글이 존재하지 않습니다. 로그인 후 게시글을 작성하세요!" %></a></td>
+                <td><%= "목록보기 권한이 없습니다." %></a></td>
                 <td><%= "법무법인 인본" %></td>
-                <td><%= "2016-07-16" %></td>
-                <td><%= "518" %></td>
+                <td><%= "" %></td>
+                <td><%= "0" %></td>
               </tr>
-            
             <% end %>
           </tbody>
         </table>
-        
+
         <% unless @kinds.nil? %>
           <% unless @kinds.count == 0 %>
             <% @kinds.count.times do |k| %>
@@ -117,7 +128,7 @@
             <% end %>
           <% end %>
         <% end %>
-        
+
         <!--Pagenation-->
         <nav>
           <ul class="pagination my_pager">
@@ -139,15 +150,15 @@
             </li>
           </ul>
         </nav>
-        <% if user_signed_in? %>
-        <a href="/site/post_write/<%= @intab.id %>" class="btn btn-primary btn-write">글쓰기</a>
-        
-        <!--debuger-->
-        <input type="hidden" name="last_page" value="<%= @last_page %>">
-        <input type="hidden" name="current_page" value="<%= @current_page %>">
-        <input type="hidden" name="page_count" value="<%= @page_count %>">
+        <% if can_write?(@board) %>
+          <a href="/site/post_write/<%= @intab.id %>" class="btn btn-primary btn-write">글쓰기</a>
+
+          <!--debuger-->
+          <input type="hidden" name="last_page" value="<%= @last_page %>">
+          <input type="hidden" name="current_page" value="<%= @current_page %>">
+          <input type="hidden" name="page_count" value="<%= @page_count %>">
         <% end %>
-        
+
         <!--<table id="eTable_3" class="table table-hover" style="display:none;">-->
         <!--  <thead>-->
         <!--    <tr>-->

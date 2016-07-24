@@ -12,7 +12,6 @@ Intab.create!([
   {tab_id: 2, title: "연구원", description: "법무법인 인본은 사람을 근본으로 생각하며 일하고, 사람이 숨쉬는 자연을 소중히 합니다.", turn: 5, template: "people", container: nil},
 
   {tab_id: 2, title: "연구원활동", description: "법무법인 인본은 사람을 근본으로 생각하며 일하고, 사람이 숨쉬는 자연을 소중히 합니다.", turn: 1, template: "blogList", container: nil},
-  {tab_id: 4, title: "최근소식", description: "법무법인 인본은 사람을 근본으로 생각하며 일하고, 사람이 숨쉬는 자연을 소중히 합니다.", turn: 2, template: "blogList", container: nil},
   {tab_id: 4, title: "언론보도", description: "법무법인 인본은 사람을 근본으로 생각하며 일하고, 사람이 숨쉬는 자연을 소중히 합니다.", turn: 3, template: "blogList", container: nil},
   {tab_id: 3, title: "분야별", description: "법무법인 인본의 업무 분야 입니다.", turn: 1, template: "list", container: nil},
   {tab_id: 3, title: "기획소송", description: "인본에서 진행중인 기획소송입니다.", turn: 2, template: "list", container: nil},
@@ -20,7 +19,8 @@ Intab.create!([
   {tab_id: 4, title: "자료실", description: "법무법인 인본의 자료실 입니다.", turn: 4, template: "list", container: nil},
   {tab_id: 4, title: "공지사항", description: "법무법인 인본이 알리는 공지사항 입니다.", turn: 5, template: "list", container: nil},
   {tab_id: 5, title: "자주하는 질문", description: "가장 자주 하시는 질문을 모았습니다.", turn: 6, template: "list", container: nil},
-  {tab_id: 5, title: "방명록", description: "발자취를 남겨주세요.", turn: 1, template: "wall", container: nil}
+  {tab_id: 5, title: "방명록", description: "발자취를 남겨주세요.", turn: 1, template: "wall", container: nil},
+  {tab_id: 4, title: "최근소식", description: "법무법인 인본은 사람을 근본으로 생각하며 일하고, 사람이 숨쉬는 자연을 소중히 합니다.", turn: 2, template: "blogList", container: nil}
 ])
 Tab.create!([
   {title: "인본소개", icon: "https://parkhyunmin-inbon-yhk1038.c9users.io/main/images/inbon_logofix.png", picture: "/main/images/slider/slide4.jpg", turn: 1},
@@ -48,7 +48,8 @@ Board.create!([
   {intab_id: 16, title: "자료실"},
   {intab_id: 17, title: "공지사항"},
   {intab_id: 18, title: "자주하는 질문"},
-  {intab_id: 20, title: ""}
+  {intab_id: 19, title: "방명록"},
+  {intab_id: 20, title: "최근소식"}
 
 ])
 Post.create!([
@@ -76,7 +77,7 @@ Post.create!([
   {board_id: 9, title: "자문위원 이창진", content: "", img1: "/main/images/templete/member9.jpg", img2: ""}
 ])
 
-15.times do |aa| 
+15.times do |aa|
   eval("Post.create!({board_id:11, title: \"기업법무일반#{aa+1}\", content: \"\", img1: \"/main/images/templete/member#{aa+1}.jpg\", img2: \"\"})  ")
 end
 

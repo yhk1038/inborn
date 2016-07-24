@@ -31,23 +31,23 @@
           <input type="text" name="content" class="form-control col-md-7 col-xs-12" value="<%= @b.content %>">
         </div>
       </div>
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">순서<span class="required">*</span></label>
         <div class="col-md-6 col-sm-6 col-xs-12">
           <input class="form-control col-md-7 col-xs-12" type="number" name="turn" required="true" value="<%= @b.turn %><%= '1' if @b.turn.nil? %>">
         </div>
-      </div>
+      </div> -->
       <div class="form-group">
         <label class="control-label col-md-3 col-sm-3 col-xs-12">읽기 권한</label>
         <div class="col-md-6 col-sm-6 col-xs-12">
           <div class="btn-group" data-toggle="buttons">
-              <input type="radio" class="flat" name="a_read" value="3" <%= "checked" if @b.a_read == 3 || @b.a_read.nil? %> required />
+              <input type="radio" class="flat" name="a_read" value="1" <%= "checked" if @b.a_read == 1 || @b.a_read.nil? %> required />
               모두
               <br>
               <input type="radio" class="flat" name="a_read" value="2" <%= "checked" if @b.a_read == 2 %> />
               구성원 + 관리자
               <br>
-              <input type="radio" class="flat" name="a_read" value="1" <%= "checked" if @b.a_read == 1 %> />
+              <input type="radio" class="flat" name="a_read" value="3" <%= "checked" if @b.a_read == 3 %> />
               관리자
           </div>
         </div>
@@ -56,28 +56,28 @@
         <label class="control-label col-md-3 col-sm-3 col-xs-12">쓰기 권한</label>
         <div class="col-md-6 col-sm-6 col-xs-12">
           <div class="btn-group" data-toggle="buttons">
-              <input type="radio" class="flat" name="a_write" value="3" <%= "checked" if @b.a_write == 3 || @b.a_write.nil? %>  required />
+              <input type="radio" class="flat" name="a_write" value="1" <%= "checked" if @b.a_write == 1 || @b.a_write.nil? %>  required />
               모두
               <br>
               <input type="radio" class="flat" name="a_write" value="2" <%= "checked" if @b.a_write == 2 %> />
               구성원 + 관리자
               <br>
-              <input type="radio" class="flat" name="a_write" value="1" <%= "checked" if @b.a_write == 1 %> />
+              <input type="radio" class="flat" name="a_write" value="3" <%= "checked" if @b.a_write == 3 %> />
               관리자
           </div>
         </div>
       </div>
       <div class="form-group">
-        <label class="control-label col-md-3 col-sm-3 col-xs-12">삭제 권한</label>
+        <label class="control-label col-md-3 col-sm-3 col-xs-12">목록보기 권한</label>
         <div class="col-md-6 col-sm-6 col-xs-12">
           <div class="btn-group" data-toggle="buttons">
-              <input type="radio" class="flat" name="a_delete" value="3" <%= "checked" if @b.a_delete == 3  || @b.a_delete.nil?%>  required />
+              <input type="radio" class="flat" name="a_list" value="1" <%= "checked" if @b.a_list == 1  || @b.a_list.nil?%>  required />
               모두
               <br>
-              <input type="radio" class="flat" name="a_delete" value="2" <%= "checked" if @b.a_delete == 2 %> />
+              <input type="radio" class="flat" name="a_list" value="2" <%= "checked" if @b.a_list == 2 %> />
               구성원 + 관리자
               <br>
-              <input type="radio" class="flat" name="a_delete" value="1" <%= "checked" if @b.a_delete == 1 %> />
+              <input type="radio" class="flat" name="a_list" value="3" <%= "checked" if @b.a_list == 3 %> />
               관리자
           </div>
         </div>

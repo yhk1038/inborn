@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   # protect_from_forgery with: :exception
+  include ApplicationHelper
+
   $tab = []
   $tab = [
           {"id":"1", "title":"인본소개", "icon":"https://parkhyunmin-inbon-yhk1038.c9users.io/main/images/inbon_logofix.png", "picture":"/main/images/slider/slide4.jpg"},

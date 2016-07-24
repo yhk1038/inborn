@@ -16,9 +16,9 @@
             <div class="col-xs-12 blogCard">
               <div class="col-xs-3 labelWrapper" style="padding: 0;">
                 <p>작성 위치</p>
-                <%# if @intab.is_secret == 1 %>
+                <% if @intab.board.a_secret == 1 %>
                   <p>비밀글 설정</p><!-- :is_secret -->
-                <%# end %>
+                <% end %>
                 <% if @intab.template == "list" %>
                   <p>카테고리</p><!-- :kind -->
                 <% end %>
@@ -31,11 +31,11 @@
               </div>
               <div class="col-xs-9 contents-wrapper">
                 <div><span style="float:right"><%= @tab.title %>&nbsp;&nbsp; > &nbsp;&nbsp;<%= @intab.title %></span></div>
-                <%# if @intab.is_secret == 1 %>
+                <% if @intab.board.a_secret == 1 %>
                   <div>
                     <div style="float:right"><input type="radio" name="is_secret" class="" value="0" checked> 공개글(기본) &nbsp;&nbsp; <input type="radio" name="is_secret" class="" value="1"> 비밀글 사용하기</div>
                   </div>
-                <%# end %>
+                <% end %>
                 <% if @intab.template == "list" %>
                   <div>
                     <span>소속 카테고리 </span>

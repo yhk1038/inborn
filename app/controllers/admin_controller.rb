@@ -253,7 +253,6 @@ class AdminController < ApplicationController
 
   def intab
     @b = Intab.where(id: params[:id]).first if params[:id]
-
     case request.method_symbol
     when :get
       if params[:id] == 'delete'
@@ -273,6 +272,7 @@ class AdminController < ApplicationController
           redirect_to '/admin/tab'
           return
         end
+        @b = Intab.new
       elsif params[:id]
         if @b.nil?
           flash[:error] = '해당 인탭이 존재하지 않습니다.'
@@ -299,7 +299,7 @@ class AdminController < ApplicationController
         end
       end
       flash[:alert] = @b.title.to_s + ' 인탭이 성공적으로 저장되었습니다.'
-      redirect_to '/admin/intab/new/' + @b.tab_id.to_s
+      redirect_to '/admin/intab/' + @b.id.to_s
     when :options
       # Header will contain a comma-separated list of methods that are supported for the resource.
       headers['Access-Control-Allow-Methods'] = allowed_methods.map { |sym| sym.to_s.upcase }.join(', ')
