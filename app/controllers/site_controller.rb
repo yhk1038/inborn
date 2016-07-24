@@ -125,17 +125,17 @@ class SiteController < ApplicationController
 
     return @intab, @tab, @intabs
   end
-  
+
   def post_write
     @intab = Intab.find(params[:id])
     @post = Post.find(params[:post_id]) unless params[:post_id].nil?
     @tab = @intab.tab
     @intabs = @tab.intabs
     @mod_select = params[:mod]
-    
+
     # @is_admin = false # 베포버전
     @is_admin = true # 관리자 권한시를 테스트
-    
+
     if user_signed_in?
       if current_user.is_admin?
         @is_admin = true
@@ -147,7 +147,7 @@ class SiteController < ApplicationController
       render 'site/post_modify'
     end
   end
-  
+
   def post_read
     @post = Post.find(params[:id])
     @board = @post.board
@@ -155,10 +155,10 @@ class SiteController < ApplicationController
     @tab = @intab.tab
     @intabs = @tab.intabs
     @mod_select = params[:mod]
-    
+
     # @is_admin = false # 베포버전
     @is_admin = true # 관리자 권한시를 테스트
-    
+
     if user_signed_in?
       if current_user.is_admin?
         @is_admin = true
@@ -171,21 +171,21 @@ class SiteController < ApplicationController
     @tab = @intab.tab
     @intabs = @tab.intabs
     @mod_select = params[:mod]
-    
+
     # @is_admin = false # 베포버전
     @is_admin = true # 관리자 권한시를 테스트
-    
+
     if user_signed_in?
       if current_user.is_admin?
         @is_admin = true
       end
     end
-    
+
     @current_page = 1
     unless params[:page] == nil || params[:page].length < 1
       @current_page = params[:page].to_i
     end
-    
+
     @last_page = 5
     if @intab.posts.count % 5 == 0
       @page_count = @intab.posts.count/5
@@ -195,10 +195,10 @@ class SiteController < ApplicationController
         @last_page = @intab.posts.count % 5
       end
     end
-    
-    
-    
-    
+
+
+
+
     sortingTab = [
                     ["전체","기업법무일반","금융","공정거래","조세-행정","지적재산권","부동산","엔터테인먼트-스포츠","가사","형사","일반 민사"],
                     ["전체","경찰수당소송","근저당권설정비반환","KT개인정보유출 집단소송","아현2구역 조합원지위 확인의 소"],
