@@ -29,7 +29,7 @@
         <% else %>
           <% i=1 %>
           <% @intab.board.posts.reverse.first(@current_page*5).last(@last_page).each do |po| %>
-            <a href="">
+            <a href="/site/post_read/<%= po.id %>">
               <div class="col-sm-12 blogCard" style="<%= "border-top:1px solid" if i == 1 %>">
                 <div class="col-sm-3 imgWrapper" style="padding: 0;">
                   <%
@@ -48,7 +48,7 @@
                   <% if po.is_secret == 1 %>
                     <span><%= "익명의 작성자" %></span>
                   <% else %>
-                    <span><%= po.user.email %></span>
+                    <span><%= po.user.email unless po.user.nil? %><%= "[입력되지 않았습니다]" if po.user.nil? %></span>
                   <% end %>
                   &nbsp;&nbsp;작성일 <span><%= Date.parse(po.created_at.to_s).to_s.last(8) %></span></p>
                   <pre class="content"><% if po.content != "" %><%= po.content %><% else %><%= "게시글의 내용이 비공개로 설정되었습니다." %><% end %></pre>
@@ -80,14 +80,14 @@
             </li>
           </ul>
         </nav>
-        <% if user_signed_in? %>
+        <%# if user_signed_in? %>
         <a href="/site/post_write/<%= @intab.id %>" class="btn btn-primary btn-write">글쓰기</a>
         
         <!--debuger-->
         <input type="hidden" name="last_page" value="<%= @last_page %>">
         <input type="hidden" name="current_page" value="<%= @current_page %>">
         <input type="hidden" name="page_count" value="<%= @page_count %>">
-        <% end %>
+        <%# end %>
         
         </div>
       </div>
