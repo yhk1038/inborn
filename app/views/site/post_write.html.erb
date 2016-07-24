@@ -1,0 +1,167 @@
+<%= render 'site/features/page_common_CSS', layout: false %>
+<%= render 'site/features/page_common_header', layout: false %>
+<div id="contents">
+  <div class="container" style="padding: 0px 30px;">
+    <div id="member_detail_1" class="col-sm-12" style="padding:0;">
+      <div class="col-sm-3" style="padding:0px 15px;margin-top:15px;">
+        <!--
+            Side Navigation Box==
+        ------------------------->
+        <%= render partial: 'site/features/sideNaviBox' %>
+        <!--End-->
+      </div>
+      <div class="col-sm-9" style="padding:0px 15px;margin-top:15px;">
+        <div class="col-sm-12">
+          <form action="/board/post_create" method="POST">
+            <div class="col-xs-12 blogCard">
+              <div class="col-xs-3 labelWrapper" style="padding: 0;">
+                <p>작성 위치</p>
+                <%# if @intab.is_secret == 1 %>
+                  <p>비밀글 설정</p><!-- :is_secret -->
+                <%# end %>
+                <%# if @intab.template == "list" %>
+                  <p>카테고리</p><!-- :kind -->
+                <%# end %>
+                <p>글 제목</p><!-- :title -->
+                <p style="height:400px;">글 내용</p><!-- :content -->
+                <p>첨부파일1</p><!-- :file1 -->
+                <p>첨부파일2</p><!-- :file2 -->
+                <p>이미지파일1(주소)</p><!-- :img1 -->
+                <p>이미지파일2(주소)</p><!-- :img2 -->
+              </div>
+              <div class="col-xs-9 contents-wrapper">
+                <div><span style="float:right"><%= @tab.title %>&nbsp;&nbsp; > &nbsp;&nbsp;<%= @intab.title %></span></div>
+                <%# if @intab.is_secret == 1 %>
+                  <div>
+                    <div style="float:right"><input type="radio" name="is_secret" class="" value="0" checked> 공개글(기본) &nbsp;&nbsp; <input type="radio" name="is_secret" class="" value="1"> 비밀글 사용하기</div>
+                  </div>
+                <%# end %>
+                <%# if @intab.template == "list" %>
+                  <div>
+                    <span>소속 카테고리 </span>
+                    <select id="kindSelect" class="" style="height:25px;float:right">
+                      <% if @intab.posts.map{|d| d.kind}.uniq.size == 0 %>
+                        <option value="" class="kindNon">존재하지 않음</option>
+                        <option value="1" id="kindNew">새로 만들기</option>
+                      <% else %>
+                        <% @intab.posts.map{|k| k.kind}.uniq.each do |pk| %>
+                          <option value="<%= pk %>" class="kindNon"><%= pk %></option>
+                        <% end %>
+                        <option value="1" id="kindNew">새로 만들기</option>
+                      <% end %>
+                    </select>
+                    <input id="kind_input" type="text" name="kind" style="display:none; width:15%; float:right" placeholder="새 카테고리명">
+                  </div>
+                <%# end %>
+                <div><input type="text" name="title" class="" style="width:100%"></div>
+                <div style="height:400px;"><textarea type="text" name="content" class=""></textarea></div>
+                <div><span></span><input type="file" name="file1" class=""></div>
+                <div><span></span><input type="file" name="file2" class=""></div>
+                <div><span>글 상단 이미지의 주소 > </span><input type="text" name="img1" style="width:70%;float:right" placeholder="작성예) http://www.inbonlaw.co.kr/images/topimg03.jpg"></div>
+                <div><span>글 하단 이미지의 주소 > </span><input type="text" name="img2" style="width:70%;float:right" placeholder="작성예) http://www.inbonlaw.co.kr/images/topimg03.jpg"></div>
+              </div>
+            </div>
+            <input type="hidden" name="user_id" value="<%#= current_user.id %>">
+            <input type="hidden" name="board_id" value="<%= @intab.board.id %>">
+            <input type="hidden" name="?" value="<%= @page_count %>">
+            <button type="submit" class="btn btn-primary btn-write">게시</button>
+            <a href="/sites/<%= @intab.id %>" class="btn btn-warning btn-write btn-cancel">취소</a>
+          </form>
+          <!--debuger-->
+          <input type="hidden" name="?" value="<%#= @last_page %>">
+          <input type="hidden" name="?" value="<%#= @current_page %>">
+          <input type="hidden" name="?" value="<%#= @page_count %>">
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+/*local-template CSS*/
+  .blogCard{
+    /*border-bottom: 1px solid;*/
+    /*border-top:1px solid;*/
+    height: initial;
+    padding:0;
+    background: #f9f9f9;
+    box-shadow: 2px 2px 8px #777;
+  }
+  .labelWrapper{
+    /*display: inline-block;*/
+    /*width:100%;*/
+  }
+  .labelWrapper p{
+    width: 100%;
+    padding: 5px 0px;
+    margin: 0;
+    font-size: 18px !important;
+    background-color: #333;
+    text-align: center;
+    color: #fff;
+    border-bottom: 1px solid #777;
+  }
+  .contents-wrapper{
+    padding-right:0;
+    padding-left:0;
+  }
+  .contents-wrapper > div{
+    width:100%;
+    height:36px;
+    border-bottom:1px solid #777;
+    padding: 5px;
+  }
+  .contents-wrapper > div > span{
+    font-weight:bold;
+  }
+  .contents-wrapper > div > textarea{
+    width:100%;
+    height:389px;
+  }
+  .title{
+    margin-top: 15px;
+    margin-bottom: 0px;
+    font-weight: bold;
+    font-size: 22px !important;
+  }
+  .info{
+    font-size:16px !important;
+    font-weight: bold;
+    margin-top: 0px !important;
+    margin-bottom:0;
+    text-align: right;
+  }
+  .info span{
+    color:#377ab7;
+  }
+  .content{
+    height: 100px;
+    margin: 0;
+    line-height: 1.3 !important;
+    font-size: 17px !important;
+    overflow-y: hidden;
+  }
+</style>
+<script>
+// local-template JS
+$("#kindNew").hover(function(){
+  $("#kind_input").show();
+});
+$(".kindNon").click(function(){
+  $("#kind_input").hide();
+});
+
+
+$("#kindSelect").on('change', function(){
+  var value = this.value;
+  //alert(value);
+  if (value == "1"){
+    $("#kind_input").show();
+  } else {
+    $("#kind_input").hide();
+    $("#kind_input").attr("value",value);
+  };
+});
+
+</script>

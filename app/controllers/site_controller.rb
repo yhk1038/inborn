@@ -125,6 +125,22 @@ class SiteController < ApplicationController
 
     return @intab, @tab, @intabs
   end
+  
+  def post_write
+    @intab = Intab.find(params[:id])
+    @tab = @intab.tab
+    @intabs = @tab.intabs
+    @mod_select = params[:mod]
+    
+    # @is_admin = false # 베포버전
+    @is_admin = true # 관리자 권한시를 테스트
+    
+    if user_signed_in?
+      if current_user.is_admin?
+        @is_admin = true
+      end
+    end
+  end
 
   def page
     @intab = Intab.find(params[:id])
@@ -140,6 +156,22 @@ class SiteController < ApplicationController
         @is_admin = true
       end
     end
+    
+    @current_page = 1
+    unless params[:page] == nil || params[:page].length < 1
+      @current_page = params[:page].to_i
+    end
+    
+    @last_page = 5
+    if @intab.posts.count % 5 == 0
+      @page_count = @intab.posts.count/5
+    else
+      @page_count = @intab.posts.count/5 + 1
+      if @current_page.to_i == @page_count.to_i
+        @last_page = @intab.posts.count % 5
+      end
+    end
+    
     
     
     

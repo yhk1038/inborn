@@ -11,16 +11,26 @@
         <!--End-->
       </div>
       <div class="col-sm-9" style="padding:0px 15px;margin-top:15px;">
+        <% @kinds = @intab.posts.map{|m| m.kind}.compact.uniq %>
         <p id="sortingTab" style="margin-bottom: 0px;border-bottom: 0px;">
+          <span id="table_0" class="sortBtn active"><%= "전체" %></span>
           <% i=1 %>
-          <% @sortingTab.each do |s| %>
+          <% @kinds.each do |s| %>
             <!-- <div style="float: left;"> -->
-              <span id="table_<%=i%>" class="sortBtn <%= "active" if i == 1 %>"><%= s %></span>
+              <span id="table_<%=i%>" class="sortBtn <%#= "active" if i == 1 %>"><%= s %></span>
             <!-- </div> -->
             <% i+=1 %>
           <% end %>
         </p>
-        <table id="eTable_1" class="table table-hover">
+        <table id="eTable_0" class="table table-hover">
+          <script>
+            $("#table_0").click(function(){
+              $(".sortBtn").removeClass("active");
+              $(".table").hide();
+              $(this).addClass("active");
+              $("#eTable_0").show();
+            });
+          </script>
           <thead>
             <tr>
               <th>번호</th>
@@ -32,66 +42,130 @@
             </tr>
           </thead>
           <tbody>
-            <% @table.each do |row| %>
-            <tr>
-              <td><%= row[0] %></td>
-              <td><%= row[1] %></td>
-              <td><%= row[2] %></td>
-              <td><%= row[3].to_s.split(']').last.to_s %></td>
-              <td><%= row[4] %></td>
-              <td><%= row[5] %></td>
-            </tr>
+            <% @intab.posts.reverse.each do |po| %>
+              <% unless po == nil %>
+              <a href="">
+                <tr>
+                  <td><%= po.id %></td>
+                  <td><%= po.kind %></td>
+                  <td><a href="/site/post_read/<%= po.id %>"><%= po.title %></a></td>
+                  <td><%= po.user.email unless po.user.nil? %></td>
+                  <td><%= Date.parse(po.created_at.to_s).to_s %></td>
+                  <td><%= po.viewcount %></td>
+                </tr>
+              </a>
+              <% end %>
+            <% end %>
+            <% if @intab.posts.count == 0 %>
+            
+              <tr>
+                <td><%= "0" %></td>
+                <td><%= "전체" %></td>
+                <td><%= "게시글이 존재하지 않습니다. 로그인 후 게시글을 작성하세요!" %></a></td>
+                <td><%= "법무법인 인본" %></td>
+                <td><%= "2016-07-16" %></td>
+                <td><%= "518" %></td>
+              </tr>
+            
             <% end %>
           </tbody>
         </table>
-        <table id="eTable_2" class="table table-hover" style="display:none;">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>분류</th>
-              <th>제목</th>
-              <th>글쓴이</th>
-              <th>날짜</th>
-              <th>조회수</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @table.each do |row| %>
-            <tr>
-              <td><%= row[0] %></td>
-              <td><%= row[1] %></td>
-              <td><%= row[2] %></td>
-              <td><%= row[3].to_s.split(']').last.to_s %></td>
-              <td><%= row[4] %></td>
-              <td><%= row[5] %></td>
-            </tr>
+        
+        <% unless @kinds.count == 0 %>
+          <% @kinds.count.times do |k| %>
+          <table id="eTable_<%= k+1 %>" class="table table-hover" style="display:none;">
+            <script>
+              $("#table_<%= k+1 %>").click(function(){
+                $(".sortBtn").removeClass("active");
+                $(".table").hide();
+                $(this).addClass("active");
+                $("#eTable_<%= k+1 %>").show();
+              });
+            </script>
+            <thead>
+              <tr>
+                <th>번호</th>
+                <th>분류</th>
+                <th>제목</th>
+                <th>글쓴이</th>
+                <th>날짜</th>
+                <th>조회수</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @intab.posts.where(kind: @kinds[k]).reverse.each do |po| %>
+                <% unless po == nil %>
+                <a href="">
+                  <tr>
+                    <td><%= po.id %></td>
+                    <td><%= po.kind %></td>
+                    <td><a href="/site/post_read/<%= po.id %>"><%= po.title %></a></td>
+                    <td><%= po.user.email unless po.user.nil? %></td>
+                    <td><%= Date.parse(po.created_at.to_s).to_s %></td>
+                    <td><%= po.viewcount %></td>
+                  </tr>
+                </a>
+                <% end %>
+              <% end %>
+            </tbody>
+          </table>
+          <% end %>
+        <% end %>
+        
+        <!--Pagenation-->
+        <nav>
+          <ul class="pagination my_pager">
+            <li>
+              <a href="?page=<%= @current_page - 1 unless @current_page == 1 %>" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <% @page_count.times do |num| %>
+            <li><a href="?page=<%= num+1 %>" class="<%= "current_page" if @current_page == num+1 %>"><%= num+1 %></a></li>
             <% end %>
-          </tbody>
-        </table>
-        <table id="eTable_3" class="table table-hover" style="display:none;">
-          <thead>
-            <tr>
-              <th>3</th>
-              <th>분류</th>
-              <th>제목</th>
-              <th>글쓴이</th>
-              <th>날짜</th>
-              <th>조회수</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @table.each do |row| %>
-            <tr>
-              <td><%= row[0] %></td>
-              <td><%= row[1] %></td>
-              <td><%= row[2] %></td>
-              <td><%= row[3].to_s.split(']').last.to_s %></td>
-              <td><%= row[4] %></td>
-              <td><%= row[5] %></td>
-            </tr>
+            <% if @intab.posts.count == 0 %>
+            <li><a href="#" class="<%#= "current_page" %>"><%= 1 %></a></li>
             <% end %>
-          </tbody>
-        </table>
+            <li>
+              <a href="<%= "?page=" + (@current_page + 1).to_s unless @current_page == @page_count %>#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <% if user_signed_in? %>
+        <a href="/site/post_write/<%= @intab.id %>" class="btn btn-primary btn-write">글쓰기</a>
+        
+        <!--debuger-->
+        <input type="hidden" name="last_page" value="<%= @last_page %>">
+        <input type="hidden" name="current_page" value="<%= @current_page %>">
+        <input type="hidden" name="page_count" value="<%= @page_count %>">
+        <% end %>
+        
+        <!--<table id="eTable_3" class="table table-hover" style="display:none;">-->
+        <!--  <thead>-->
+        <!--    <tr>-->
+        <!--      <th>3</th>-->
+        <!--      <th>분류</th>-->
+        <!--      <th>제목</th>-->
+        <!--      <th>글쓴이</th>-->
+        <!--      <th>날짜</th>-->
+        <!--      <th>조회수</th>-->
+        <!--    </tr>-->
+        <!--  </thead>-->
+        <!--  <tbody>-->
+        <!--    <%# @table.each do |row| %>-->
+        <!--    <tr>-->
+        <!--      <td><%#= row[0] %></td>-->
+        <!--      <td><%#= row[1] %></td>-->
+        <!--      <td><%#= row[2] %></td>-->
+        <!--      <td><%#= row[3].to_s.split(']').last.to_s %></td>-->
+        <!--      <td><%#= row[4] %></td>-->
+        <!--      <td><%#= row[5] %></td>-->
+        <!--    </tr>-->
+        <!--    <%# end %>-->
+        <!--  </tbody>-->
+        <!--</table>-->
       </div>
     </div>
   </div>
@@ -130,24 +204,24 @@
   }
 </style>
 <script>
-  $("#table_1").click(function(){
-    $(".sortBtn").removeClass("active");
-    $(".table").hide();
-    $(this).addClass("active");
-    $("#eTable_1").show();
-  });
-  $("#table_2").click(function(){
-    $(".sortBtn").removeClass("active");
-    $(".table").hide();
-    $(this).addClass("active");
-    $("#eTable_2").show();
-  });
-  $("#table_3").click(function(){
-    $(".sortBtn").removeClass("active");
-    $(".table").hide();
-    $(this).addClass("active");
-    $("#eTable_3").show();
-  });
+  // $("#table_1").click(function(){
+  //   $(".sortBtn").removeClass("active");
+  //   $(".table").hide();
+  //   $(this).addClass("active");
+  //   $("#eTable_1").show();
+  // });
+  // $("#table_2").click(function(){
+  //   $(".sortBtn").removeClass("active");
+  //   $(".table").hide();
+  //   $(this).addClass("active");
+  //   $("#eTable_2").show();
+  // });
+  // $("#table_3").click(function(){
+  //   $(".sortBtn").removeClass("active");
+  //   $(".table").hide();
+  //   $(this).addClass("active");
+  //   $("#eTable_3").show();
+  // });
   // $("#member_2").click(function(){
   //   $("#member_1").removeClass("active");
   //   $("#member_detail_1").fadeOut();

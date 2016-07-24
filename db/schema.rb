@@ -65,9 +65,9 @@ ActiveRecord::Schema.define(version: 20160723124614) do
     t.integer  "user_id"
     t.integer  "board_id"
     t.integer  "is_secret"
-    t.integer  "viewcount"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "viewcount",  default: 0
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "replies", force: :cascade do |t|
