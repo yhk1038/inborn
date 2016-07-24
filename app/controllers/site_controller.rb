@@ -128,6 +128,7 @@ class SiteController < ApplicationController
   
   def post_write
     @intab = Intab.find(params[:id])
+    @post = Post.find(params[:post_id]) unless params[:post_id].nil?
     @tab = @intab.tab
     @intabs = @tab.intabs
     @mod_select = params[:mod]

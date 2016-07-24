@@ -1,0 +1,180 @@
+<%= render 'site/features/page_common_CSS', layout: false %>
+<%= render 'site/features/page_common_header', layout: false %>
+<div id="contents">
+  <div class="container" style="padding: 0px 30px;">
+    <div id="member_detail_1" class="col-sm-12" style="padding:0;">
+      <div class="col-sm-3" style="padding:0px 15px;margin-top:15px;">
+        <!--
+            Side Navigation Box==
+        ------------------------->
+        <%= render partial: 'site/features/sideNaviBox' %>
+        <!--End-->
+      </div>
+      <div class="col-sm-9" style="padding:0px 15px;margin-top:15px;">
+        <div class="col-sm-12">
+          <form action="/board/post_create" method="POST">
+            <div class="col-xs-12 blogCard">
+              <div class="col-xs-12 labelWrapper" style="padding: 0;">
+                <p class="colored-dark read_title"><span class="<%= "read_kind" unless @post.kind.nil? %>"><%= "[ " + @post.kind + " ]" unless @post.kind.nil? || @post.kind.length < 1 %></span><%= @post.title %><span class="read_date"><%= @post.created_at.to_s.split('UTC').first %></span></p>
+                <p class="read"><span class="read_user">글쓴이 <%= @post.user.name unless @post.user.nil? %><%= "[작성자가 입력되지 않았습니다]" if @post.user.nil? %></span><span class="read_reply">댓글 <%= @post.replies.count %></span></p><!-- :is_secret -->
+                
+                <% unless @post.file1.url.nil? || @post.file1.url.length < 1 %>
+                  <p class="read read_file">
+                    <span>첨부파일1 &nbsp;&nbsp;&nbsp;&nbsp; 
+                      <a href="<%= @post.file1.url %>" download>
+                        <%= @post.file1.url.split('/').last %>
+                      </a>
+                    </span>
+                  </p>
+                <% end %>
+                
+                <% unless @post.file2.url.nil? || @post.file2.url.length < 1 %>
+                  <p class="read read_file"><span>첨부파일2 &nbsp;&nbsp;&nbsp;&nbsp; <a href="<%= @post.file2.url %>" download><%= @post.file2.url.split('/').last %></a></span></p>
+                <% end %>
+                
+                <pre style="min-height:400px;" class="read read_content"><%= @post.content.html_safe %></pre>
+                <!-- :content -->
+              </div>
+              
+            </div>
+            <input type="hidden" name="user_id" value="<%#= current_user.id %>">
+            <input type="hidden" name="board_id" value="<%= @intab.board.id %>">
+            <input type="hidden" name="?" value="<%= @page_count %>">
+            
+            <!--Pagenation-->
+            <% 
+                @prev = @intab.posts.all[@intab.posts.map{|aa| aa.id}.index(@post.id)-1]
+                if @intab.posts.map{|aa| aa.id}.index(@post.id) == 0
+                  @prev = @intab.posts.all[0]
+                end
+                @next = @intab.posts.all[@intab.posts.map{|aa| aa.id}.index(@post.id)+1]
+                if @next == nil
+                  @next = @intab.posts.all[@intab.posts.map{|aa| aa.id}.index(@post.id)]
+                end
+            %>
+            <nav>
+              <ul class="pagination my_pager">
+                <li>
+                  <a href="/site/post_read/<%= @prev.id %>" aria-label="Previous">
+                    <span aria-hidden="true">&laquo; 이전</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/site/post_read/<%= @next.id %>" aria-label="Next">
+                    <span aria-hidden="true">다음 &raquo;</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+            
+            <a href="/sites/<%= @intab.id %>" class="btn btn-info btn-write">목록으로</a>
+            <a href="/site/post_write/<%= @intab.id %>?post_id=<%= @post.id %>" class="btn btn-warning btn-write btn-cancel">수정</a>
+          </form>
+          <!--debuger-->
+          <input type="hidden" name="?" value="<%#=%>">
+          <input type="hidden" name="?" value="<%#=%>">
+          <input type="hidden" name="?" value="<%#=%>">
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+/*local-template CSS*/
+  .blogCard{
+    /*border-bottom: 1px solid;*/
+    /*border-top:1px solid;*/
+    height: initial;
+    padding:0;
+    background: #f9f9f9;
+    box-shadow: 2px 2px 8px #777;
+  }
+  .labelWrapper{
+    /*display: inline-block;*/
+    /*width:100%;*/
+  }
+  .labelWrapper p{
+    width: 100%;
+    padding: 5px 0px;
+    margin: 0;
+    font-size: 18px !important;
+    text-align: center;
+    color: #fff;
+    border-bottom: 1px solid #777;
+  }
+  .colored-dark{
+    background-color: #333;
+  }
+  .colored-light{
+    background: #f9f9f9;
+  }
+  .read{
+    text-align:left !important;
+    padding-left: 20px !important;
+    color:#000 !important;
+  }
+  .read_kind{
+    font-size: 13px;
+    padding-right: 40px;
+  }
+  .read_title{
+    text-align:left !important;
+    padding-left: 20px !important;
+  }
+  .read_date{
+    float:right;
+    font-size: 13px;
+    padding: 5px 10px;
+  }
+  .read_user{
+    font-size: 13px;
+    font-weight: bold;
+  }
+  .read_reply{
+    float:right;
+    font-size: 13px;
+    padding: 5px 10px;
+    font-weight:bold;
+  }
+  .read_file{
+    border: none !important;
+    font-weight:bold;
+    padding:0px !important;
+    padding-left: 20px !important;
+    line-height: 1;
+  }
+  .read_file > span{
+    font-size: 13px !important;
+  }
+  .read_content{
+    padding-right: 20px !important;
+    border-bottom: 1px solid #777 !important;
+    border-radius: 0px;
+    margin: 0;
+  }
+  
+</style>
+<script>
+// local-template JS
+$("#kindNew").hover(function(){
+  $("#kind_input").show();
+});
+$(".kindNon").click(function(){
+  $("#kind_input").hide();
+});
+
+
+$("#kindSelect").on('change', function(){
+  var value = this.value;
+  //alert(value);
+  if (value == "1"){
+    $("#kind_input").show();
+  } else {
+    $("#kind_input").hide();
+    $("#kind_input").attr("value",value);
+  };
+});
+
+</script>
