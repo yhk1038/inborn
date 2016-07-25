@@ -13,8 +13,8 @@ class CreatePosts < ActiveRecord::Migration
         t.integer :user_id  #user.
         t.integer :board_id #board.
 
-        t.integer :is_secret#비밀글?
-        t.integer :viewcount, default: 0#조회수
+        t.integer :is_secret #비밀글?
+        t.integer :viewcount, default: 0 #조회수
       t.timestamps null: false
     end
   end

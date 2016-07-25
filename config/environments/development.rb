@@ -3,6 +3,16 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default :charset => "utf-8"
+  ActionMailer::Base.smtp_settings = {
+    :address => "smtp.gmail.com",
+    :port => 587, :authentication => :plain,
+    :domain => 'gmail.com',
+    :user_name => 'username@gmail.com',
+    :password => 'secret' }
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
@@ -41,4 +51,7 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+
+
 end
