@@ -19,7 +19,6 @@ class SiteController < ApplicationController
     @carousel = ["slide2","slide3","slide4","slide5","slide6","slide7","slide8"]
   end
 
-
   def introduce_1 # Temp templete sample no.1 >> introduce-type
 
   end
@@ -144,19 +143,30 @@ class SiteController < ApplicationController
       end
     end
 
-    unless params[:post_id].nil?
-      @post = Post.find(params[:post_id])
+    @post = Post.where(id: params[:post_id]).first unless params[:post_id].nil?
+
+    unless @post.nil?
       render 'site/post_modify'
+    else
+      flash[:error] = '잘못된 게시물입니다.'
+      redirect_to :back
+      return
     end
   end
 
   def post_read
-    @post = Post.find(params[:id])
+    @post = Post.where(id: params[:id]).first
     @board = @post.board
     @intab = @board.intab
     @tab = @intab.tab
     @intabs = @tab.intabs
     @mod_select = params[:mod]
+
+    if @post.nil?
+      flash[:error] = '해당 게시물이 존재하지 않습니다.'
+      redirect_to :back
+      return
+    end
 
     unless can_read?(@post)
       flash[:error] = '읽기 권한이 없습니다.'

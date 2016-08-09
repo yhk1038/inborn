@@ -20,6 +20,8 @@
 </head>
 
 <body>
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
   <!-- <div class="body"></div> -->
   <!-- Mixins-->
   <!-- Pen Title-->
@@ -38,13 +40,13 @@
         <div class="input-container">
           <!-- <input type="email" name="email" id="Username" required="required"/> -->
           <input autofocus="autofocus" type="email" value="" name="user[email]" id="user_email" style="margin-top: 15px;">
-          <label for="Username">이메일</label>
+          <label for="user_email">이메일</label>
           <div class="bar"></div>
         </div>
         <div class="input-container">
           <input autocomplete="off" type="password" name="user[password]" id="user_password" style="margin-top: 15px;">
           <!-- <input type="password" name="password" id="Password" required="required"/> -->
-          <label for="Password">비밀번호</label>
+          <label for="user_password">비밀번호</label>
           <div class="bar"></div>
         </div>
         <div class="button-container">
@@ -61,7 +63,7 @@
       </h1>
       <!-- <form action="/" method="POST"> -->
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <%= devise_error_messages! %>
+        <%#= devise_error_messages! %>
         <div class="input-container">
           <!-- <input type="email" id="Username" name="email" required="required"/> -->
           <input autofocus="autofocus" type="email" value="" name="user[email]" id="user_email">

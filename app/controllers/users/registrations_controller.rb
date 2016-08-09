@@ -36,8 +36,6 @@ before_action :configure_account_update_params, only: [:update]
   #   super
   # end
 
-  protected
-
   # @@params = [:role, :name, :contact]
 
   # If you have extra params to permit, append them to the sanitizer.
@@ -46,8 +44,9 @@ before_action :configure_account_update_params, only: [:update]
     # @@params.each do |p|
     #   devise_parameter_sanitizer.for(:sign_up) << p
     # end
-    devise_parameter_sanitizer.for(:sign_up) << :name
-    devise_parameter_sanitizer.for(:sign_up) << :contact
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :contact])
+    # devise_parameter_sanitizer.for(:sign_up) << :name
+    # devise_parameter_sanitizer.for(:sign_up) << :contact
   end
 
   # If you have extra params to permit, append them to the sanitizer.
@@ -56,8 +55,9 @@ before_action :configure_account_update_params, only: [:update]
     # @@params.each do |p|
     #   devise_parameter_sanitizer.for(:account_update) << p
     # end
-    devise_parameter_sanitizer.for(:account_update) << :name
-    devise_parameter_sanitizer.for(:account_update) << :contact
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :contact])
+    # devise_parameter_sanitizer.for(:account_update) << :name
+    # devise_parameter_sanitizer.for(:account_update) << :contact
   end
 
   # The path used after sign up.

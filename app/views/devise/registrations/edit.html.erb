@@ -27,26 +27,27 @@
         <!-- start form for validation -->
         <!-- <form id="demo-form" data-parsley-validate> -->
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+          <%= devise_error_messages! %>
           <label for="user_name">이름 :</label>
           <input class="form-control" autofocus="autofocus" type="text" value="<%= current_user.name %>" name="user[name]" id="user_name" />
 
           <label for="user_current_password">현재 비밀번호 * :</label>
           <input class="form-control" autocomplete="off" type="password" value="" name="user[current_password]" id="user_current_password" required/>
 
-          <label for="user_password">변경 비밀번호 :</label>
+          <label for="user_password">변경 비밀번호 :<small>(변경을 원치 않으시면 입력하지 않으셔도 됩니다)</small></label>
           <input class="form-control" autocomplete="off" type="password" value="" name="user[password]" id="user_password"/>
 
           <label for="user_password_confirmation">변경 비밀번호 재 입력 :</label>
           <input class="form-control" autocomplete="off" type="password" value="" name="user[password_confirmation]" id="user_password_confirmation"/>
 
           <label for="user_contact">연락처 :</label>
-          <input class="form-control" type="text" value="" name="user[contact]" id="user_contact"/>
+          <input class="form-control" type="text" value="<%= current_user.contact %>" name="user[contact]" id="user_contact"/>
 
           <br/>
           <button class="btn btn-primary" type="submit" style="float:right">회원정보 수정</button>
         <% end %>
         <hr>
-        <%= button_to "회원 탈퇴", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-danger', style: 'float: right;' %>
+        <%= button_to "회원 탈퇴", registration_path(resource_name), data: { confirm: "정말로 탈퇴하시겠습니까?" }, method: :delete, class: 'btn btn-danger', style: 'float: right;' %>
         <!-- end form for validations -->
 
       </div>

@@ -165,7 +165,10 @@ class AdminController < ApplicationController
         eval("@u.#{a} = params[:#{a}]")
       end
       @u.save
-      flash[:alert] = @u.email.to_s + ' 사용자가 성공적으로 저장되었습니다.'
+      flash[:alert] = @u.email
+      flash[:alert] = @u.name + '(' + @u.email + ')' unless @u.name.empty?
+      flash[:alert] += ' 사용자가 성공적으로 저장되었습니다.'
+
       redirect_to '/admin/user'
     when :options
       # Header will contain a comma-separated list of methods that are supported for the resource.

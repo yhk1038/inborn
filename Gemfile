@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'devise-i18n'
 gem 'coffee-script-source', '1.8.0'
 # gem "rmagick"
 gem "carrierwave"
