@@ -19,7 +19,7 @@ before_action :configure_account_update_params, only: [:update]
 
   # PUT /resource
   # def update
-  #   super
+  #  super
   # end
 
   # DELETE /resource
@@ -38,23 +38,18 @@ before_action :configure_account_update_params, only: [:update]
 
   # @@params = [:role, :name, :contact]
 
+  protected
+
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
     # devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
-    # @@params.each do |p|
-    #   devise_parameter_sanitizer.for(:sign_up) << p
-    # end
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :contact])
-    # devise_parameter_sanitizer.for(:sign_up) << :name
-    # devise_parameter_sanitizer.for(:sign_up) << :contact
   end
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
-    # devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
-    # @@params.each do |p|
-    #   devise_parameter_sanitizer.for(:account_update) << p
-    # end
+    # devise_parameter_sanitizer.permit(:account_update, keys: [:attribute]
+
     devise_parameter_sanitizer.permit(:account_update, keys: [:name, :contact])
     # devise_parameter_sanitizer.for(:account_update) << :name
     # devise_parameter_sanitizer.for(:account_update) << :contact
