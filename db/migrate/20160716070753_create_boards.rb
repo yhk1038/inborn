@@ -3,7 +3,7 @@ class CreateBoards < ActiveRecord::Migration
     create_table :boards do |t|
         t.string :title     #타이틀
         t.string :content   #설명 내용
-        t.integer :turn     #Board 메뉴에서 순서
+        # t.integer :turn     #Board 메뉴에서 순서
 
         t.integer :a_read, default: 1   #읽기권한
         t.integer :a_write, default: 1  #쓰기권한
